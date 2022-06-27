@@ -95,7 +95,7 @@ Plug 'Konfekt/FastFold'
 Plug 'preservim/tagbar'
 Plug 'zhimsel/vim-stay'
 " Plug 'crusoexia/vim-monokai' installed manually instead
-Plug 'pangloss/vim-javascript'
+" Plug 'pangloss/vim-javascript'
 Plug 'luochen1990/rainbow'
 Plug 'easymotion/vim-easymotion'
 Plug 'preservim/nerdtree' | 
