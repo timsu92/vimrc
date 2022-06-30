@@ -23,9 +23,9 @@ silent! normal! zE
 317,321fold
 324,333fold
 336,340fold
-343,356fold
-359,373fold
-376,377fold
+343,358fold
+361,375fold
+378,379fold
 77
 normal! zc
 116
@@ -56,18 +56,16 @@ normal! zc
 normal! zc
 336
 normal! zc
-343
+361
 normal! zc
-359
+378
 normal! zc
-376
-normal! zc
-let s:l = 136 - ((10 * winheight(0) + 25) / 51)
+let s:l = 346 - ((220 * winheight(0) + 25) / 51)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-136
-normal! 0
+346
+normal! 044|
 let &so = s:so_save | let &siso = s:siso_save
 nohlsearch
 doautoall SessionLoadPost
