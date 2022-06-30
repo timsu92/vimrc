@@ -343,7 +343,7 @@ autocmd User EasyMotionPromptEnd   silent! CocEnable
 " preservim/nerdtree
 autocmd StdinReadPre * let s:std_in=1
 " Start NERDTree when Vim is started without file arguments.
-autocmd VimEnter * if argc() == 0 && !exist('s:std_in') | NERDTree | endif
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
 " Start NERDTree when Vim starts with a directory argument and leave the
 " cursot in it.
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exist('s:std_in') |
