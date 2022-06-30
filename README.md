@@ -8,7 +8,7 @@ Note! This is a config file on Ubuntu on WSL2. If you use another system, you ma
 [✓] [**FastFold**](https://github.com/Konfekt/FastFold): Recognizes languages and create folds  
 [✓] [**tagbar**](https://github.com/preservim/tagbar): Navigate around code  
 [✓] [**vim-stay**](https://github.com/zhimsel/vim-stay): Memorized page position, cursor position, folds' status  
-[▲] [**vim-javascript**](https://github.com/pangloss/vim-javascript): JavaScript bundle for vim (Never used. Disabled currently)  
+[✗] [**vim-javascript**](https://github.com/pangloss/vim-javascript): JavaScript bundle for vim (Never used. Disabled currently)  
 [✓] [**rainbow**](https://github.com/luochen1990/rainbow): Colorful parentheses, brackets... for locate with ease  
 [✓] [**easymotion**](https://github.com/easymotion/vim-easymotion): Move your cursor faster and easier  
 [✓] [**nerdtree**](https://github.com/preservim/nerdtree): File explorer  
