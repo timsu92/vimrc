@@ -353,9 +353,6 @@ nnoremap <c-t> :NERDTreeToggle<cr>
 
 
 " terryma/vim-expand-region
-" vnoremap + <Plug>(expand_region_expand)
-" vnoremap - <Plug>(expand_region_shrink)
-
 let g:expand_region_text_objects = {
       \ 'i"'  :1,
       \ 'a"'  :1,
