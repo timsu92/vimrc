@@ -323,9 +323,13 @@ augroup END
 
 " luochen1990/rainbow
 let g:rainbow_active = 1
+" rainbow is conflicting with NERDTree
 let g:rainbow_conf = {
 	\'guifgs': ['yellow', '#00FFFF', 'lightmagenta', '#B8FBA9'],
-	\'ctermfgs': ['yellow', 'lightcyan','lightblue', 'lightmagenta']
+	\'ctermfgs': ['yellow', 'lightcyan','lightblue', 'lightmagenta'],
+	\'separately': {
+		\ 'nerdtree': 0,
+	\ },
 \}
 
 
