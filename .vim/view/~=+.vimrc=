@@ -62,11 +62,11 @@ normal! zc
 normal! zc
 376
 normal! zc
-let s:l = 376 - ((251 * winheight(0) + 25) / 51)
+let s:l = 136 - ((10 * winheight(0) + 25) / 51)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-376
+136
 normal! 0
 let &so = s:so_save | let &siso = s:siso_save
 nohlsearch
