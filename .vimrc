@@ -371,3 +371,7 @@ let g:expand_region_text_objects = {
       \ 'il'  :1,
       \ 'ip'  :1,
       \ }
+
+
+" Xuyuanp/nerdtree-git-plugin
+let g:NERDTreeGitStatusUseNerdFonts = 1
