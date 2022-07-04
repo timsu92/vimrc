@@ -11,6 +11,7 @@ set nocompatible
 set scrolloff=2  " keep at least 2 lines above/below
 set incsearch  " incremental search
 " set cindent  " 自動縮排
+set wildmenu  " 按下tab時，顯示候選清單，而非直接覆蓋原本的指令
 
 " auto completion ignoring case
 set ignorecase
