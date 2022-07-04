@@ -9,65 +9,74 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-78,87fold
-117,124fold
-127,135fold
-160,165fold
-167,182fold
-138,246fold
-249,258fold
-261,272fold
-275,286fold
-289,308fold
-311,315fold
-318,322fold
-325,334fold
-337,341fold
-344,356fold
-359,373fold
-376,377fold
-78
+23,32fold
+38,44fold
+79,82fold
+84,93fold
+123,130fold
+133,141fold
+166,171fold
+173,188fold
+144,252fold
+255,264fold
+267,278fold
+281,292fold
+295,314fold
+317,321fold
+324,328fold
+331,340fold
+343,347fold
+350,362fold
+365,379fold
+382,383fold
+23
 normal! zc
-117
+38
 normal! zc
-127
+79
 normal! zc
-138
+84
+normal! zc
+123
+normal! zc
+133
+normal! zc
+144
 normal! zo
-160
+166
 normal! zc
-167
+173
 normal! zc
-138
+144
 normal! zc
-249
+255
 normal! zc
-261
+267
 normal! zc
-275
+281
 normal! zc
-289
+295
 normal! zc
-311
+317
 normal! zc
-318
+324
 normal! zc
-325
+331
 normal! zc
-337
+343
 normal! zc
-344
+350
 normal! zc
-359
+365
 normal! zc
-376
+382
 normal! zc
-let s:l = 8 - ((7 * winheight(0) + 25) / 51)
+let s:l = 79 - ((59 * winheight(0) + 25) / 51)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-8
-normal! 013|
+79
+normal! 01|
 let &so = s:so_save | let &siso = s:siso_save
 nohlsearch
 doautoall SessionLoadPost

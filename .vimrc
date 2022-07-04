@@ -76,6 +76,11 @@ nnoremap z<down> zj
 " Used for 多欄選取。Windows會變成貼上
 nmap mv <c-v>
 
+" Load matchit.vim, but only if the user hasn't installed a newer version.
+if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
+  runtime! macros/matchit.vim
+endif
+
 " PowerLine
 set rtp+=/usr/local/lib/python3.8/dist-packages/powerline_status-2.8.2-py3.8.egg/powerline/bindings/vim
 set laststatus=2 " always show the statusline rendered by PowerLine
