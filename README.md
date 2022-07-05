@@ -23,3 +23,4 @@ Note! This is a config file on Ubuntu on WSL2. If you use another system, you ma
 [✓] [**Powerline**](https://github.com/powerline/powerline): Multi-function status line  
 [▲] **line mover**: Move line using `ctrl+UP` and `ctrl+DOWN`. (Indentation might be wrong)  
 [✓] **WSL yank**: Copy yanked content to Windows clipboard w/o installing other programs  
+[✓] **matchit.vim**: Use % to jump between currespond surrounds and if, else if, else  
