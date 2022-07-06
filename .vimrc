@@ -266,7 +266,7 @@ let g:NERDAltDelims_java = 1
 
 " mphe/grayout.vim
 " Set libclang searchpath. This should point to the directory containing `libclang.so`.
-let g:grayout_libclang_path = '/usr/lib/llvm-12/lib'
+let g:grayout_libclang_path = '/usr/lib/llvm-14/lib'
 " Set default compile flags.
 " These are used, when no `compile_commands.json` or `.grayout.conf` file was found.
 autocmd BufNewFile,BufReadPost * if &ft == 'c' | let g:grayout_default_args = ['-x', 'c', '-std=c11'] | endif

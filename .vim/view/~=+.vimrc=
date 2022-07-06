@@ -1,4 +1,4 @@
-let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
+let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-1 siso=-1
 argglobal
 setlocal fdm=manual
 setlocal fde=0
@@ -29,6 +29,7 @@ silent! normal! zE
 350,362fold
 365,379fold
 382,383fold
+let &fdl = &fdl
 23
 normal! zc
 38
@@ -71,13 +72,13 @@ normal! zc
 normal! zc
 382
 normal! zc
-let s:l = 79 - ((59 * winheight(0) + 25) / 51)
+let s:l = 269 - ((170 * winheight(0) + 24) / 48)
 if s:l < 1 | let s:l = 1 | endif
-exe s:l
+keepjumps exe s:l
 normal! zt
-79
+keepjumps 269
 normal! 01|
-let &so = s:so_save | let &siso = s:siso_save
+let &g:so = s:so_save | let &g:siso = s:siso_save
 nohlsearch
 doautoall SessionLoadPost
 " vim: set ft=vim :
