@@ -118,3 +118,7 @@ cd /usr/lib/llvm-14/lib
 ```bash
 sudo ln -s libclang.so.1 libclang.so
 ```
+### Install plugins using [vim-plug](https://github.com/junegunn/vim-plug)
+#### step1: Enter your vim
+#### step2: Upgrade [vim-plug](https://github.com/junegunn/vim-plug) itself by `:PlugUpgrade`
+#### step3: In normal node, type `:PlugInstall` to get plugins
