@@ -101,3 +101,20 @@ If you use git, it's nice to turn it on to improve performance a lot. To do so, 
 powerline-daemon -q
 ```
 #### step9: restart your terminal or source `.bashrc`
+### Install depency of grayout
+#### step1: Install `libclang1`
+```bash
+sudo apt install libclang1
+```
+#### step2: Move to the folder
+```bash
+cd /usr/lib/llvm-<version appropriate>/lib
+```
+for example
+```bash
+cd /usr/lib/llvm-14/lib
+```
+#### step3: Alias the lib
+```bash
+sudo ln -s libclang.so.1 libclang.so
+```
