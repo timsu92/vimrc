@@ -85,7 +85,7 @@ cd powerline
 ```bash
 git checkout $(git rev-list --tags --max-count=1)
 ```
-> The above line receives hash of the last release commit, and make the files confine with it
+> The above line receives hash of the last release commit, and make the files conform with it
 #### step5: Install
 ```bash
 pip install -e .
