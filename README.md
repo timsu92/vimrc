@@ -25,6 +25,7 @@ Note! This is a config file on Ubuntu on WSL2. If you use another system, you ma
 [▲] **line mover**: Move line using `ctrl+UP` and `ctrl+DOWN`. (Indentation might be wrong)  
 [✓] **WSL yank**: Copy yanked content to Windows clipboard w/o installing other programs  
 [✓] **matchit.vim**: Use % to jump between currespond surrounds and if, else if, else  
+
 ## Installation
 ### Node.js
 This guide allows you to install Node.js using nvm
@@ -69,6 +70,7 @@ nvm ls
 Now, you should be able to see it.  
 ![example output](https://docs.microsoft.com/zh-tw/windows/images/nvm-node-installed.png)
 *credit goes to Microsoft*
+
 ### PowerLine
 #### step1: Change directory to a place your WSL distro can reach
 #### step2: Get PowerLine
@@ -101,7 +103,8 @@ If you use git, it's nice to turn it on to improve performance a lot. To do so, 
 powerline-daemon -q
 ```
 #### step9: restart your terminal or source `.bashrc`
-### Install depency of grayout
+
+### Depency of grayout
 #### step1: Install `libclang1`
 ```bash
 sudo apt install libclang1
@@ -118,7 +121,13 @@ cd /usr/lib/llvm-14/lib
 ```bash
 sudo ln -s libclang.so.1 libclang.so
 ```
-### Install plugins using [vim-plug](https://github.com/junegunn/vim-plug)
-#### step1: Enter your vim
+
+### Plugins using [vim-plug](https://github.com/junegunn/vim-plug)
+#### step1: Enter your Vim
 #### step2: Upgrade [vim-plug](https://github.com/junegunn/vim-plug) itself by `:PlugUpgrade`
-#### step3: In normal node, type `:PlugInstall` to get plugins
+#### step3: In normal mode, type `:PlugInstall` to get plugins
+#### step4: Restart Vim
+
+### Clangd of coc
+#### step1: Enter your Vim
+#### step2: In normal mode, type `:CocCommand clangd.install`
