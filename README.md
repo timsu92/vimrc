@@ -69,3 +69,35 @@ nvm ls
 Now, you should be able to see it.  
 ![example output](https://docs.microsoft.com/zh-tw/windows/images/nvm-node-installed.png)
 *credit goes to Microsoft*
+### PowerLine
+#### step1: Change directory to a place your WSL distro can reach
+#### step2: Get PowerLine
+```bash
+git clone https://github.com/powerline/powerline.git
+```
+#### step3: Move to it
+```bash
+cd powerline
+```
+#### step4(optional, recommended): switch to a newest version of release, instead of devlopement one
+```bash
+git checkout $(git rev-list --tags --max-count=1)
+```
+> The above line receives hash of the last release commit, and make the files confine with it
+#### step5: Install
+```bash
+pip install -e .
+```
+#### step6: Make executables visible
+Put this line in your `.bashrc` or something alike
+```bash
+export PATH="$HOME/.local/bin:$PATH"
+```
+#### step7: Get font
+Follow [their guide](https://powerline.readthedocs.io/en/latest/installation.html#fonts-installation) to get a font. Then, change settings of your Windows Terminal
+#### step8(optional): turn on the daemon
+If you use git, it's nice to turn it on to improve performance a lot. To do so, put this in your `.bashrc` or something alike.
+```bash
+powerline-daemon -q
+```
+#### step9: restart your terminal or source `.bashrc`
