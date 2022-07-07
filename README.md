@@ -3,7 +3,7 @@ Note! This is a config file on Ubuntu on WSL2. If you use another system, you ma
 ## Plugins
 ### Plugins installed using [vim-plug](https://github.com/junegunn/vim-plug)
 [✓] [**coc**](https://github.com/neoclide/coc.nvim): Code linting, code complete, error checking and more!  
-[✓] [**vim-easy-align**](https://github.com/junegunn/vim-easy-align): Align your code with keys  
+[✓] [**vim-easy-align**](https://github.com/junegunn/vim-easy-align): Align your code with ease  
 [✓] [**nerdcommenter**](https://github.com/preservim/nerdcommenter): Comment code with ease  
 [✓] [**grayout.vim**](https://github.com/mphe/grayout.vim): Grayout unused code in `#` preprocessor blocks of C/C++  
 [✓] [**FastFold**](https://github.com/Konfekt/FastFold): Recognizes languages and create folds  
@@ -25,6 +25,7 @@ Note! This is a config file on Ubuntu on WSL2. If you use another system, you ma
 [▲] **line mover**: Move line using `ctrl+UP` and `ctrl+DOWN`. (Indentation might be wrong)  
 [✓] **WSL yank**: Copy yanked content to Windows clipboard w/o installing other programs  
 [✓] **matchit.vim**: Use % to jump between currespond surrounds and if, else if, else  
+[✓] [**fzf**](https://github.com/junegunn/fzf): The fuzzy finder  
 
 ## Installation
 ### Node.js
@@ -131,3 +132,6 @@ sudo ln -s libclang.so.1 libclang.so
 ### Clangd of coc
 #### step1: Enter your Vim
 #### step2: In normal mode, type `:CocCommand clangd.install`
+
+### fzf
+Personally, I use `git` to pull newest releases. Head over [their guide](https://github.com/junegunn/fzf#using-git) and everything explained

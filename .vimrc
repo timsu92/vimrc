@@ -112,6 +112,7 @@ Plug 'tpope/vim-surround'
 Plug 'terryma/vim-expand-region'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
+Plug '~/.fzf'
 call plug#end()
 " call ":PlugUpdate [name ...]" to update plugins
 " call ":PlugInstall" to install plugins
@@ -380,3 +381,53 @@ let g:expand_region_text_objects = {
 
 " Xuyuanp/nerdtree-git-plugin
 let g:NERDTreeGitStatusUseNerdFonts = 1
+
+
+" fzf
+" An action can be a reference to a function that processes selected lines
+" function! s:build_quickfix_list(lines)
+  " call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+  " copen
+  " cc
+" endfunction
+
+" key bindings
+" 'ctrl-q': function('s:build_quickfix_list'),
+let g:fzf_action = {
+		\ 'ctrl-t': 'tab split',
+		\ 'ctrl-h': 'split',
+		\ 'ctrl-v': 'vsplit'
+	  \ }
+
+" Customize fzf colors to match your color scheme
+" - fzf#wrap translates this to a set of `--color` options
+let g:fzf_colors = {
+        \  'fg':      ['fg', 'Normal'],
+        \  'bg':      ['bg', 'Normal'],
+        \  'hl':      ['fg', 'Comment'],
+        \  'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+        \  'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+        \  'hl+':     ['fg', 'Statement'],
+        \  'info':    ['fg', 'PreProc'],
+        \  'border':  ['fg', 'Ignore'],
+        \  'prompt':  ['fg', 'Conditional'],
+        \  'pointer': ['fg', 'Exception'],
+        \  'marker':  ['fg', 'Keyword'],
+        \  'spinner': ['fg', 'Label'],
+        \  'header':  ['fg', 'Comment']
+	  \ }
+
+" Enable per-command history
+" - History files will be stored in the specified directory
+" - When set, CTRL-N and CTRL-P will be bound to 'next-history' and
+"   'previous-history' instead of 'down' and 'up'.
+let g:fzf_history_dir = '~/.local/share/fzf-history'
+
+" Use fzf to find files.
+" Receives an optional param to specify the folder to search
+" Saves historical searches of *LS* and *LA* in file *ls*
+command -complete=dir -nargs=? LS
+	\ call fzf#run(fzf#wrap('ls', {'source': 'ls', 'dir': <q-args>}))
+command -complete=dir -nargs=? LA
+	\ call fzf#run(fzf#wrap('ls', {'source': 'ls -A', 'dir': <q-args>}))
+nmap <silent><c-n> :LA<cr>
