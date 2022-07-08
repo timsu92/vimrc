@@ -83,8 +83,6 @@ normal! zc
 normal! zo
 401
 normal! zo
-417
-normal! zc
 401
 normal! zc
 436
@@ -99,12 +97,12 @@ normal! zc
 normal! zc
 443
 normal! zc
-let s:l = 395 - ((95 * winheight(0) + 25) / 50)
+let s:l = 402 - ((33 * winheight(0) + 25) / 50)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 395
-normal! 0
+keepjumps 402
+normal! 01|
 let &g:so = s:so_save | let &g:siso = s:siso_save
 nohlsearch
 doautoall SessionLoadPost

@@ -399,8 +399,8 @@ let g:vimspector_install_gadgets = ['debugpy', 'CodeLLDB']
 let g:vimspector_base_dir=expand('~/.vim/plugged/vimspector') " do NOT end with forward slash
 
 " HUMAN-like mappings
-nmap <F5>         <Plug>VimspectorContinue
-" nmap <leader><F5> <Plug>VimspectorLaunch
+nmap <F5>                 <Plug>VimspectorContinue
+" nmap <leader><F5>         <Plug>VimspectorLaunch
 nmap <F3>                 <Plug>VimspectorReset
 nmap <F4>                 <Plug>VimspectorRestart
 nmap <F6>                 <Plug>VimspectorPause
