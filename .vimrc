@@ -112,6 +112,7 @@ Plug 'tpope/vim-surround'
 Plug 'terryma/vim-expand-region'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
+Plug 'puremourning/vimspector'
 Plug '~/.fzf'
 call plug#end()
 " call ":PlugUpdate [name ...]" to update plugins
@@ -381,6 +382,59 @@ let g:expand_region_text_objects = {
 
 " Xuyuanp/nerdtree-git-plugin
 let g:NERDTreeGitStatusUseNerdFonts = 1
+
+
+" puremourning/vimspector
+" use ":VimspectorInstall <adapter> <args...>" to install adapters/gadgets. Add '!' to not close the
+" output window right after successful installation
+" use ":VimspectorUpdate <adapter> <args...>" to update adapters/gadgets. Add '!' to not close the
+" output window right after successful installation
+syntax enable
+filetype indent on
+let g:vimspector_install_gadgets = ['debugpy', 'CodeLLDB']
+" required by debugpy
+let g:vimspector_base_dir=expand('~/.vim/plugged/vimspector') " do NOT end with forward slash
+
+" HUMAN-like mappings
+nmap <F5>         <Plug>VimspectorContinue
+" nmap <leader><F5> <Plug>VimspectorLaunch
+nmap <F3>                 <Plug>VimspectorReset
+nmap <F4>                 <Plug>VimspectorRestart
+nmap <F6>                 <Plug>VimspectorPause
+nmap <F9>                 <Plug>VimspectorToggleBreakpoint
+nmap <s-F9>               <Plug>VimspectorToggleConditionalBreakpoint
+nmap <F8>                 <Plug>VimspectorAddFunctionBreakpoint
+nmap <leader><F8>         <Plug>VimspectorRunToCursor
+nmap <F10>                <Plug>VimspectorStepOver
+nmap <F11>                <Plug>VimspectorStepInto
+nmap <F12>                <Plug>VimspectorStepOut
+nmap <LocalLeader><F12>   <Plug>VimspectorUpFrame
+nmap <LocalLeader><s-F12> <Plug>VimspectorDownFrame
+
+function s:setupVimspectorConfig()
+	if filereadable(expand('.vimspector.json')) || !exists('g:vimspector_config')
+		nmap <c-f5> <Plug>VimspectorLaunch
+	else
+		" echo '[vimspector] Using default config for ' . &ft
+		nmap <c-f5> :call vimspector#LaunchWithConfigurations(g:vimspector_config)<cr>
+	endif
+endfunction
+
+autocmd BufEnter * call s:setupVimspectorConfig()
+
+" toggle breakpoints window
+nmap <leader>db <Plug>VimspectorBreakpoints
+" See https://github.com/puremourning/vimspector#breakpoints-window
+
+" Evaluate part of program
+nmap <leader>di <Plug>VimspectorBalloonEval
+xmap <leader>di <Plug>VimspectorBalloonEval
+
+" Save/load session file
+let s:vimspectorSessionPrefix = '~/.vim/view/'
+let s:vimspectorSessionFileName = substitute(expand('%:p'), '/', '+', 'g') . '.vimspector.session.json'
+autocmd VimEnter * silent! execute("VimspectorLoadSession " . s:vimspectorSessionPrefix . s:vimspectorSessionFileName)
+autocmd BufWritePost * silent execute("VimspectorMkSession " . s:vimspectorSessionPrefix . s:vimspectorSessionFileName)
 
 
 " fzf

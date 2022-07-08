@@ -13,22 +13,30 @@ silent! normal! zE
 38,44fold
 79,82fold
 84,93fold
-123,130fold
-133,141fold
-166,171fold
-173,188fold
-144,252fold
-255,264fold
-267,278fold
-281,292fold
-295,314fold
-317,321fold
-324,328fold
-331,340fold
-343,347fold
-350,362fold
-365,379fold
-382,383fold
+125,132fold
+135,143fold
+168,173fold
+175,190fold
+146,254fold
+257,266fold
+269,280fold
+283,294fold
+297,316fold
+319,323fold
+326,330fold
+333,342fold
+345,349fold
+352,363fold
+366,380fold
+383,384fold
+415,422fold
+399,424fold
+434,438fold
+387,438fold
+387,438fold
+443,447fold
+462,476fold
+441,491fold
 let &fdl = &fdl
 23
 normal! zc
@@ -38,45 +46,69 @@ normal! zc
 normal! zc
 84
 normal! zc
-123
+125
 normal! zc
-133
+135
 normal! zc
-144
+146
 normal! zo
-166
+168
 normal! zc
-173
+175
 normal! zc
-144
+146
 normal! zc
-255
+257
 normal! zc
-267
+269
 normal! zc
-281
+283
 normal! zc
-295
+297
 normal! zc
-317
+319
 normal! zc
-324
+326
 normal! zc
-331
+333
 normal! zc
-343
+345
 normal! zc
-350
+352
 normal! zc
-365
+366
 normal! zc
-382
+383
 normal! zc
-let s:l = 269 - ((170 * winheight(0) + 24) / 48)
+387
+normal! zo
+387
+normal! zo
+399
+normal! zo
+415
+normal! zc
+399
+normal! zc
+434
+normal! zc
+387
+normal! zc
+387
+normal! zc
+441
+normal! zo
+443
+normal! zc
+462
+normal! zc
+441
+normal! zc
+let s:l = 418 - ((75 * winheight(0) + 24) / 48)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 269
+keepjumps 418
 normal! 01|
 let &g:so = s:so_save | let &g:siso = s:siso_save
 nohlsearch
