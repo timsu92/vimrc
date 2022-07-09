@@ -402,25 +402,25 @@ let g:vimspector_base_dir=expand('~/.vim/plugged/vimspector') " do NOT end with 
 nmap <F5>                 <Plug>VimspectorContinue
 " nmap <leader><F5>         <Plug>VimspectorLaunch
 nmap <F3>                 <Plug>VimspectorStop
-nmap <s-F3>               <Plug>VimspectorReset
+nmap <leader><F3>         <Plug>VimspectorReset
 nmap <F4>                 <Plug>VimspectorRestart
 nmap <F6>                 <Plug>VimspectorPause
 nmap <F9>                 <Plug>VimspectorToggleBreakpoint
-nmap <s-F9>               <Plug>VimspectorToggleConditionalBreakpoint
+nmap <leader><F9>         <Plug>VimspectorToggleConditionalBreakpoint
 nmap <F8>                 <Plug>VimspectorAddFunctionBreakpoint
 nmap <leader><F8>         <Plug>VimspectorRunToCursor
 nmap <F10>                <Plug>VimspectorStepOver
 nmap <F11>                <Plug>VimspectorStepInto
 nmap <F12>                <Plug>VimspectorStepOut
-nmap <LocalLeader><F12>   <Plug>VimspectorUpFrame
-nmap <LocalLeader><s-F12> <Plug>VimspectorDownFrame
+nmap <LocalLeader><s-F12> <Plug>VimspectorUpFrame
+nmap <LocalLeader><F12>   <Plug>VimspectorDownFrame
 
 function s:setupVimspectorConfig()
 	if filereadable(expand('.vimspector.json')) || !exists('g:vimspector_config')
-		nmap <c-f5> <Plug>VimspectorLaunch
+		nmap <leader><f5> <Plug>VimspectorLaunch
 	else
 		" echo '[vimspector] Using default config for ' . &ft
-		nmap <c-f5> :call vimspector#LaunchWithConfigurations(g:vimspector_config)<cr>
+		nmap <leader><f5> :call vimspector#LaunchWithConfigurations(g:vimspector_config)<cr>
 	endif
 endfunction
 
