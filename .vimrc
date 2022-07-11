@@ -150,7 +150,7 @@ nmap ga <Plug>(EasyAlign)
 "	+ means extension is loaded
 "	- means extension is disabled
 "	Use arrows to navigate. Hit <TAB> to activate action menu
-let g:coc_global_extensions = ['coc-json', 'coc-clangd', 'coc-cmake', 'coc-highlight', 'coc-html', 'coc-sh', 'coc-vimlsp', 'coc-pairs']
+let g:coc_global_extensions = ['coc-json', 'coc-clangd', 'coc-cmake', 'coc-highlight', 'coc-html', 'coc-sh', 'coc-vimlsp', 'coc-pairs', 'coc-omni']
 " Some servers have issues with backup files, see #649.
 set nobackup
 set nowritebackup
@@ -419,7 +419,6 @@ function s:setupVimspectorConfig()
 	if filereadable(expand('.vimspector.json')) || !exists('g:vimspector_config')
 		nmap <leader><f5> <Plug>VimspectorLaunch
 	else
-		" echo '[vimspector] Using default config for ' . &ft
 		nmap <leader><f5> :call vimspector#LaunchWithConfigurations(g:vimspector_config)<cr>
 	endif
 endfunction
