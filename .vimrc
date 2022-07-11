@@ -402,7 +402,7 @@ let g:vimspector_base_dir=expand('~/.vim/plugged/vimspector') " do NOT end with 
 nmap <F5>                 <Plug>VimspectorContinue
 " nmap <leader><F5>         <Plug>VimspectorLaunch
 nmap <F3>                 <Plug>VimspectorStop
-nmap <leader><F3>         <Plug>VimspectorReset
+nmap <leader><F3>         :VimspectorReset<cr>
 nmap <F4>                 <Plug>VimspectorRestart
 nmap <F6>                 <Plug>VimspectorPause
 nmap <F9>                 <Plug>VimspectorToggleBreakpoint
