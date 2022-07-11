@@ -1,5 +1,7 @@
 set number  " shows the line number
 
+" source ~/.vim/log-autocmds.vim
+" silent execute('LogAutocmds')
 filetype on
 set shiftwidth=4
 set autoindent

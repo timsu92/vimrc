@@ -9,101 +9,101 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-23,32fold
-38,44fold
-79,82fold
-84,93fold
-125,132fold
-135,143fold
-168,173fold
-175,190fold
-218,224fold
-146,254fold
-257,266fold
-269,280fold
-283,297fold
-300,319fold
-322,326fold
-329,333fold
-336,345fold
-348,352fold
-355,366fold
-369,383fold
-386,387fold
-418,424fold
-401,426fold
-436,440fold
-390,440fold
-445,449fold
-464,478fold
-443,493fold
+25,34fold
+40,46fold
+81,84fold
+86,95fold
+127,134fold
+137,145fold
+170,175fold
+177,192fold
+220,226fold
+148,256fold
+259,268fold
+271,282fold
+285,299fold
+302,321fold
+324,328fold
+331,335fold
+338,347fold
+350,354fold
+357,368fold
+371,385fold
+388,389fold
+420,426fold
+403,428fold
+438,442fold
+392,442fold
+447,451fold
+466,480fold
+445,495fold
 let &fdl = &fdl
-23
+25
 normal! zc
-38
+40
 normal! zc
-79
+81
 normal! zc
-84
+86
 normal! zc
-125
+127
 normal! zc
-135
+137
 normal! zc
-146
+148
 normal! zo
-168
+170
 normal! zc
-175
+177
 normal! zc
-218
+220
 normal! zc
-146
+148
 normal! zc
-257
+259
 normal! zc
-269
+271
 normal! zc
-283
+285
 normal! zc
-300
+302
 normal! zc
-322
+324
 normal! zc
-329
+331
 normal! zc
-336
+338
 normal! zc
-348
+350
 normal! zc
-355
+357
 normal! zc
-369
+371
 normal! zc
-386
+388
 normal! zc
-390
+392
 normal! zo
-401
+403
 normal! zo
-418
+420
 normal! zc
-436
+438
 normal! zc
-443
+445
 normal! zo
+447
+normal! zc
+466
+normal! zc
 445
 normal! zc
-464
-normal! zc
-443
-normal! zc
-let s:l = 395 - ((2 * winheight(0) + 25) / 51)
+let s:l = 403 - ((34 * winheight(0) + 25) / 51)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 395
-normal! 0
+keepjumps 403
+normal! 021|
 let &g:so = s:so_save | let &g:siso = s:siso_save
 nohlsearch
 doautoall SessionLoadPost
