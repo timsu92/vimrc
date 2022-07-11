@@ -436,7 +436,7 @@ xmap <leader>di <Plug>VimspectorBalloonEval
 " Save/load session file
 let s:vimspectorSessionPrefix = '~/.vim/view/'
 let s:vimspectorSessionFileName = substitute(expand('%:p'), '/', '+', 'g') . '.vimspector.session.json'
-autocmd VimEnter * silent! execute("VimspectorLoadSession " . s:vimspectorSessionPrefix . s:vimspectorSessionFileName)
+autocmd BufReadPost * silent! execute("VimspectorLoadSession " . s:vimspectorSessionPrefix . s:vimspectorSessionFileName)
 autocmd BufWritePost * silent execute("VimspectorMkSession " . s:vimspectorSessionPrefix . s:vimspectorSessionFileName)
 
 
