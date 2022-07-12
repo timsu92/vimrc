@@ -417,14 +417,6 @@ nmap <F12>                <Plug>VimspectorStepOut
 nmap <LocalLeader><s-F12> <Plug>VimspectorUpFrame
 nmap <LocalLeader><F12>   <Plug>VimspectorDownFrame
 
-function s:setupVimspectorConfig()
-	if filereadable(expand('.vimspector.json')) || !exists('g:vimspector_config')
-		nmap <leader><f5> <Plug>VimspectorLaunch
-	else
-		nmap <leader><f5> :call vimspector#LaunchWithConfigurations(g:vimspector_config)<cr>
-	endif
-endfunction
-
 autocmd BufEnter * call s:setupVimspectorConfig()
 
 " toggle breakpoints window
@@ -434,6 +426,26 @@ nmap <leader>db <Plug>VimspectorBreakpoints
 " Evaluate part of program
 nmap <leader>di <Plug>VimspectorBalloonEval
 xmap <leader>di <Plug>VimspectorBalloonEval
+
+nmap <expr><leader><TAB> <sid>canShowVimspectorSwitchOutput() ? ':VimspectorShowOutput ' : "\<leader>\<TAB>"
+
+function s:setupVimspectorConfig()
+	if filereadable(expand('.vimspector.json')) || !exists('g:vimspector_config')
+		nmap <leader><f5> <Plug>VimspectorLaunch
+	else
+		nmap <leader><f5> :call vimspector#LaunchWithConfigurations(g:vimspector_config)<cr>
+	endif
+endfunction
+
+function s:canShowVimspectorSwitchOutput()
+	let l:vimspectorOutputFileNames = ['vimspector.Output:stderr', '_vimspector_log_Vimspector', 'vimspector.Output:server', 'vimspector.Console']
+	for l:test in l:vimspectorOutputFileNames
+		if expand('%') == l:test
+			return v:true
+		endif
+	endfor
+	return v:false
+endfunction
 
 " Save/load session file
 let s:vimspectorSessionPrefix = '~/.vim/view/'
