@@ -17,6 +17,9 @@ function! s:log_autocmds_toggle()
     for l:au in s:aulist
       silent execute 'autocmd' l:au '* call s:log(''' . l:au . ''')'
     endfor
+	for l:au in s:aulistFileName
+		silent! execute 'autocmd' l:au '* call s:log(''' . l:au . ', filename(\%)=' . expand('%') . ', \<afile>=' . expand("<afile>") . ', \<abuf>=' . expand("<abuf>") . ''')'
+	endfor
   augroup END
 endfunction
 
@@ -34,6 +37,23 @@ endfunction
 " - FileReadCmd
 " - BufReadCmd
 " - FuncUndefined
+"
+" These are left out due to their uselessness
+" - User
+" - CursorHold
+" - CursorHoldI
+" - CursorMoved
+" - CursorMovedI
+" - SourcePre
+
+let s:aulistFileName = [
+      \ 'BufEnter',
+	  \ 'BufAdd',
+	  \ 'BufLeave',
+	  \ 'BufUnload',
+	  \ 'BufDelete',
+	  \ 'BufFilePost'
+      \ ]
 
 let s:aulist = [
       \ 'BufNewFile',
@@ -55,17 +75,12 @@ let s:aulist = [
       \ 'FileAppendPost',
       \ 'FilterWritePre',
       \ 'FilterWritePost',
-      \ 'BufAdd',
       \ 'BufCreate',
-      \ 'BufDelete',
       \ 'BufWipeout',
       \ 'BufFilePre',
       \ 'BufFilePost',
-      \ 'BufEnter',
-      \ 'BufLeave',
       \ 'BufWinEnter',
       \ 'BufWinLeave',
-      \ 'BufUnload',
       \ 'BufHidden',
       \ 'BufNew',
       \ 'SwapExists',
@@ -87,14 +102,9 @@ let s:aulist = [
       \ 'ShellFilterPost',
       \ 'CmdUndefined',
       \ 'SpellFileMissing',
-      \ 'SourcePre',
       \ 'VimResized',
       \ 'FocusGained',
       \ 'FocusLost',
-      \ 'CursorHold',
-      \ 'CursorHoldI',
-      \ 'CursorMoved',
-      \ 'CursorMovedI',
       \ 'WinEnter',
       \ 'WinLeave',
       \ 'TabEnter',
@@ -114,6 +124,5 @@ let s:aulist = [
       \ 'SessionLoadPost',
       \ 'MenuPopup',
       \ 'CompleteDone',
-      \ 'User',
 	  \ 'QuitPre',
       \ ]
