@@ -401,23 +401,23 @@ let g:vimspector_install_gadgets = ['debugpy', 'CodeLLDB']
 let g:vimspector_base_dir=expand('~/.vim/plugged/vimspector') " do NOT end with forward slash
 
 " HUMAN-like mappings
-nmap <F5>                 <Plug>VimspectorContinue
-" nmap <leader><F5>         <Plug>VimspectorLaunch
 nmap <F3>                 <Plug>VimspectorStop
 nmap <leader><F3>         :VimspectorReset<cr>
 nmap <F4>                 <Plug>VimspectorRestart
+nmap <F5>                 <Plug>VimspectorContinue
+" nmap <leader><F5>         <Plug>VimspectorLaunch
+nmap <leader><s-F5>       <Plug>VimspectorRunToCursor
 nmap <F6>                 <Plug>VimspectorPause
-nmap <F9>                 <Plug>VimspectorToggleBreakpoint
-nmap <leader><F9>         <Plug>VimspectorToggleConditionalBreakpoint
-nmap <F8>                 <Plug>VimspectorAddFunctionBreakpoint
-nmap <leader><F8>         <Plug>VimspectorRunToCursor
-nmap <F10>                <Plug>VimspectorStepOver
-nmap <F11>                <Plug>VimspectorStepInto
-nmap <F12>                <Plug>VimspectorStepOut
+nmap <F7>                 <Plug>VimspectorStepOver
+nmap <F8>                 <Plug>VimspectorStepInto
+nmap <F9>                 <Plug>VimspectorStepOut
+nmap <F10>                <Plug>VimspectorToggleBreakpoint
+nmap <leader><F10>        <Plug>VimspectorToggleConditionalBreakpoint
+nmap <leader><s-F10>      <Plug>VimspectorAddFunctionBreakpoint
 nmap <LocalLeader><s-F12> <Plug>VimspectorUpFrame
 nmap <LocalLeader><F12>   <Plug>VimspectorDownFrame
 
-autocmd BufEnter * call s:setupVimspectorConfig()
+autocmd BufEnter * call <SID>setupVimspectorConfig()
 
 " toggle breakpoints window
 nmap <leader>db <Plug>VimspectorBreakpoints
