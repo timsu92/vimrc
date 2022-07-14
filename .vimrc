@@ -176,12 +176,12 @@ endfunction
 
 " Remap <C-f> and <C-b> for scroll float windows/popups.
 if has('nvim-0.4.0') || has('patch-8.2.0750')
-	inoremap <silent><nowait><expr> <c-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : EchoWarn("[coc] Scroll not supported")
-	inoremap <silent><nowait><expr> <c-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : EchoWarn("[coc] Scroll not supported")
-	nnoremap <silent><nowait><expr> <c-f> coc#float#has_scroll() ? coc#float#scroll(1) : EchoWarn("[coc] Scroll not supported")
-	nnoremap <silent><nowait><expr> <c-b> coc#float#has_scroll() ? coc#float#scroll(0) : EchoWarn("[coc] Scroll not supported")
-	vnoremap <silent><nowait><expr> <c-f> coc#float#has_scroll() ? coc#float#scroll(1) : EchoWarn("[coc] Scroll not supported")
-	vnoremap <silent><nowait><expr> <c-b> coc#float#has_scroll() ? coc#float#scroll(0) : EchoWarn("[coc] Scroll not supported")
+	inoremap <silent><nowait><expr> <c-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : EchoWarn("[coc] Scroll not exist")
+	inoremap <silent><nowait><expr> <c-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : EchoWarn("[coc] Scroll not exist")
+	nnoremap <silent><nowait><expr> <c-f> coc#float#has_scroll() ? coc#float#scroll(1) : EchoWarn("[coc] Scroll not exist")
+	nnoremap <silent><nowait><expr> <c-b> coc#float#has_scroll() ? coc#float#scroll(0) : EchoWarn("[coc] Scroll not exist")
+	vnoremap <silent><nowait><expr> <c-f> coc#float#has_scroll() ? coc#float#scroll(1) : EchoWarn("[coc] Scroll not exist")
+	vnoremap <silent><nowait><expr> <c-b> coc#float#has_scroll() ? coc#float#scroll(0) : EchoWarn("[coc] Scroll not exist")
 else
 	inoremap <silent><nowait><expr> <c-f> EchoWarn("[coc] Scroll not supported")
 	inoremap <silent><nowait><expr> <c-b> EchoWarn("[coc] Scroll not supported")
