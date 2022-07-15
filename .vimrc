@@ -386,7 +386,7 @@ let g:NERDTreeGitStatusUseNerdFonts = 1
 " output window right after successful installation
 syntax enable
 filetype indent on
-let g:vimspector_install_gadgets = ['debugpy', 'CodeLLDB']
+let g:vimspector_install_gadgets = ['debugpy', 'vscode-cpptools']
 " required by debugpy
 let g:vimspector_base_dir=expand('~/.vim/plugged/vimspector') " do NOT end with forward slash
 
