@@ -1,1 +1,0 @@
-cpp_vimspector_config.vim

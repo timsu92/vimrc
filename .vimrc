@@ -395,7 +395,7 @@ nmap <F3>                 <Plug>VimspectorStop
 nmap <leader><F3>         :VimspectorReset<cr>
 nmap <F4>                 <Plug>VimspectorRestart
 nmap <F5>                 <Plug>VimspectorContinue
-" nmap <leader><F5>         <Plug>VimspectorLaunch
+nmap <leader><F5>         <Plug>VimspectorLaunch
 nmap <leader><s-F5>       <Plug>VimspectorRunToCursor
 nmap <F6>                 <Plug>VimspectorPause
 nmap <F7>                 <Plug>VimspectorStepOver
@@ -407,8 +407,6 @@ nmap <leader><s-F10>      <Plug>VimspectorAddFunctionBreakpoint
 nmap <LocalLeader><s-F12> <Plug>VimspectorUpFrame
 nmap <LocalLeader><F12>   <Plug>VimspectorDownFrame
 
-autocmd BufEnter * call <SID>setupVimspectorConfig()
-
 " toggle breakpoints window
 nmap <leader>db <Plug>VimspectorBreakpoints
 " See https://github.com/puremourning/vimspector#breakpoints-window
@@ -418,14 +416,6 @@ nmap <leader>di <Plug>VimspectorBalloonEval
 xmap <leader>di <Plug>VimspectorBalloonEval
 
 nmap <expr><leader><TAB> <sid>canShowVimspectorSwitchOutput() ? ':VimspectorShowOutput ' : "\<leader>\<TAB>"
-
-function s:setupVimspectorConfig()
-	if filereadable(expand('.vimspector.json')) || !exists('g:vimspector_config')
-		nmap <leader><f5> <Plug>VimspectorLaunch
-	else
-		nmap <leader><f5> :call vimspector#LaunchWithConfigurations(g:vimspector_config)<cr>
-	endif
-endfunction
 
 function s:canShowVimspectorSwitchOutput()
 	let l:vimspectorOutputFileNames = ['vimspector.Output:stderr', '_vimspector_log_Vimspector', 'vimspector.Output:server', 'vimspector.Console']

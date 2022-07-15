@@ -136,3 +136,15 @@ sudo ln -s libclang.so.1 libclang.so
 
 ### fzf
 Personally, I use `git` to pull newest releases. Head over [their guide](https://github.com/junegunn/fzf#using-git) and everything explained
+
+### VimSpector
+#### linux
+1. It seems that it's recommended to use GDB rather than LLDB on linux
+```sh
+sudo apt install gdb
+```
+2. If you want to use default settings for C/C++/C#/Rust, link the file to appropriate location
+```sh
+cd ~/.vim/plugged/vimspector/configurations/linux/_all
+ln -s ../../../../../vimspector.json vimspector.json
+```
