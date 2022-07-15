@@ -190,6 +190,7 @@ else
 	vnoremap <silent><nowait><expr> <c-f> EchoWarn("[coc] Scroll not supported")
 	vnoremap <silent><nowait><expr> <c-b> EchoWarn("[coc] Scroll not supported")
 endif
+
 " Use tab for trigger completion with characters ahead and navigate.
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
@@ -205,17 +206,6 @@ endfunction
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" function! Show_documentation()
-  " if (index(['vim','help'], &filetype) >= 0)
-    " execute 'h '.expand('<cword>')
-  " elseif (coc#rpc#ready())
-	" echo "doHover"
-    " call CocActionAsync('doHover')
-  " else
-    " execute '!' . &keywordprg . " " . expand('<cword>')
-  " endif
-" endfunction
 
 function! ShowDocumentation()
   if CocAction('hasProvider', 'hover')
@@ -318,7 +308,7 @@ let g:tagbar_autoshowtag = 1
 " let g:tagbar_autopreview = 1
 let g:tagbar_sort = 0
 let g:no_status_line = 1
-autocmd FileType vim let b:tagbar_ignore = 1
+autocmd FileType vim,diff let b:tagbar_ignore = 1
 
 
 " zhimsel/vim-stay
