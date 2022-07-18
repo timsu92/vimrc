@@ -2,7 +2,6 @@
 	"$schema": "https://puremourning.github.io/vimspector/schema/vimspector.schema.json#",
 	"configurations": {
 		"launch": {
-			"default": true,
 			"adapter": "vscode-cpptools",
 			"filetypes": [
 				"cpp",
@@ -34,7 +33,14 @@
 						"ignoreFailures": true
 					}
 				],
-				"stopAtEntry": true
+				"stopAtEntry": false
+			}
+		},
+		"launch - input from in": {
+			"default": true,
+			"extends": "launch",
+			"configuration": {
+				"args": ["<", "in"]
 			}
 		},
 		"attach": {
