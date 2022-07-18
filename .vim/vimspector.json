@@ -23,7 +23,8 @@
 				"breakpointers": {
 					"exception": {
 						"cpp_catch": "N",
-						"cpp_throw": "Y"
+						"cpp_throw": "Y",
+						"all": "Y"
 					}
 				},
 				"setupCommands": [
