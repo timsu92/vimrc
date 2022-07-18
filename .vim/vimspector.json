@@ -37,34 +37,11 @@
 			}
 		},
 		"attach": {
-			"adapter": "vscode-cpptools",
-			"filetypes": [
-				"cpp",
-				"c",
-				"objc",
-				"rust"
-			],
+			"extends": "launch",
 			"configuration": {
 				"name": "attach",
-				"type": "cppdbg",
-				"request": "attach",
-				"program": "${workspaceRoot}/a.out",
-				"MIMode": "gdb",
-				"breakpointers": {
-					"exception": {
-						"cpp_catch": "N",
-						"cpp_throw": "Y"
-					}
-				},
-				"setupCommands": [
-					{
-						"description": "Enable pretty-printing for gdb",
-						"text": "-enable-pretty-printing",
-						"ignoreFailures": true
-					}
-				]
-			},
-			"stopAtEntry": true
+				"request": "attach"
+			}
 		}
 	}
 }
