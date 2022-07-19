@@ -174,7 +174,7 @@ function! EchoWarn(text)
 	return ""
 endfunction
 
-" Remap <C-f> and <C-b> for scroll float windows/popups.
+" Map <C-f> and <C-b> for scroll float windows/popups.
 if has('nvim-0.4.0') || has('patch-8.2.0750')
 	inoremap <silent><nowait><expr> <c-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : EchoWarn("[coc] Scroll not exist")
 	inoremap <silent><nowait><expr> <c-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : EchoWarn("[coc] Scroll not exist")
@@ -234,7 +234,18 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 " Add `:Fold` command to fold current buffer.
 command! -nargs=? Fold :call CocAction('fold', <f-args>)
 nnoremap <silent> <f1> :call ShowDocumentation()<CR>
-" inoremap <silent><expr> <f1> ShowDocumentation()
+
+" Map function and class text objects
+" Use like vif, vaf...
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
 
 " Used for the format on type and improvement of brackets
 " inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
