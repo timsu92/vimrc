@@ -39,8 +39,19 @@
 		"launch - input from in": {
 			"default": true,
 			"extends": "launch",
+			"filetypes": [
+				"cpp",
+				"c",
+				"objc"
+			],
 			"configuration": {
 				"args": ["<", "in"]
+			},
+			"variables": {
+				"BUILD_IGNORED": {
+					"shell": ["g++", "-g", "${relativeFile}"],
+					"cwd": "${workspaceRoot}"
+				}
 			}
 		},
 		"attach": {
