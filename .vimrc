@@ -253,8 +253,7 @@ omap ac <Plug>(coc-classobj-a)
 inoremap <silent><expr> <cr> "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+autocmd CursorHold,CursorHoldI * silent call CocActionAsync('highlight')
 
 
 " preservim/nerdcommenter
