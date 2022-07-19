@@ -370,6 +370,8 @@ nnoremap <silent><c-t> :NERDTreeToggle<cr>
 
 
 " terryma/vim-expand-region
+map <silent>+ <Plug>(expand_region_expand)
+map <silent>- <Plug>(expand_region_shrink)
 let g:expand_region_text_objects = {
       \ 'i"'  :1,
       \ 'a"'  :1,
