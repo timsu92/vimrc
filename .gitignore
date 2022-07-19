@@ -38,3 +38,5 @@ documents
 other_program/
 temp
 test.c
+.local/
+.lesshst

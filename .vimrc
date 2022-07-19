@@ -116,6 +116,7 @@ Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
 Plug 'puremourning/vimspector'
 Plug '~/.fzf'
+Plug 'honza/vim-snippets'
 call plug#end()
 " call ":PlugUpdate [name ...]" to update plugins
 " call ":PlugInstall" to install plugins
@@ -152,7 +153,7 @@ nmap ga <Plug>(EasyAlign)
 "	+ means extension is loaded
 "	- means extension is disabled
 "	Use arrows to navigate. Hit <TAB> to activate action menu
-let g:coc_global_extensions = ['coc-json', 'coc-clangd', 'coc-cmake', 'coc-highlight', 'coc-html', 'coc-sh', 'coc-vimlsp', 'coc-pairs', 'coc-omni', 'coc-word']
+let g:coc_global_extensions = ['coc-json', 'coc-clangd', 'coc-cmake', 'coc-highlight', 'coc-html', 'coc-sh', 'coc-vimlsp', 'coc-pairs', 'coc-omni', 'coc-word', 'coc-snippets']
 " Some servers have issues with backup files, see #649.
 set nobackup
 set nowritebackup
@@ -191,9 +192,10 @@ else
 	vnoremap <silent><nowait><expr> <c-b> EchoWarn("[coc] Scroll not supported")
 endif
 
-" Use tab for trigger completion with characters ahead and navigate.
+" Use tab for navigate, snippet jump.
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
+      \ !coc#expandable() && coc#jumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ Check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
@@ -250,10 +252,20 @@ omap ac <Plug>(coc-classobj-a)
 " Used for the format on type and improvement of brackets
 " inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 	" \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-inoremap <silent><expr> <cr> "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" inoremap <silent><expr> <cr> "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <cr> coc#expandable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand',''])\<CR>" :
+			\ "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold,CursorHoldI * silent call CocActionAsync('highlight')
+
+
+" coc-snippets
+" snippet expand
+imap <c-s-right> <Plug>(coc-snippets-expand)
+" select text for visual placeholder of snippet
+vmap <c-s-right> <Plug>(coc-snippets-select)
+let g:coc_snippet_next = '<tab>'
 
 
 " preservim/nerdcommenter
