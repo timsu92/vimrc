@@ -1,5 +1,5 @@
 # vimrc: my vim settings
-Note! This is a config file on Ubuntu on WSL2. If you use another system, you may need some changes to it.
+Note! This is a config file on Ubuntu 22.04 on WSL2. If you use another system, you may need some changes to it.
 ## Plugins
 ### Plugins installed using [vim-plug](https://github.com/junegunn/vim-plug)
 [✓] [**coc**](https://github.com/neoclide/coc.nvim): Code linting, code complete, error checking and more!  
