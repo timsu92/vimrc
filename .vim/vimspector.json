@@ -1,0 +1,65 @@
+{
+	"$schema": "https://puremourning.github.io/vimspector/schema/vimspector.schema.json#",
+	"configurations": {
+		"launch": {
+			"adapter": "vscode-cpptools",
+			"filetypes": [
+				"cpp",
+				"c",
+				"objc",
+				"rust"
+			],
+			"configuration": {
+				"name": "launch",
+				"type":"cppdbg",
+				"request": "launch",
+				"program": "${workspaceRoot}/a.out",
+				"args": [],
+				"cwd": "${workspaceRoot}",
+				"environment": [],
+				"externalConsole": true,
+				"MIMode": "gdb",
+				"breakpointers": {
+					"exception": {
+						"cpp_catch": "N",
+						"cpp_throw": "Y",
+						"all": "Y"
+					}
+				},
+				"setupCommands": [
+					{
+						"description": "Enable pretty-printing for gdb",
+						"text": "-enable-pretty-printing",
+						"ignoreFailures": true
+					}
+				],
+				"stopAtEntry": false
+			}
+		},
+		"launch - input from in": {
+			"default": true,
+			"extends": "launch",
+			"filetypes": [
+				"cpp",
+				"c",
+				"objc"
+			],
+			"configuration": {
+				"args": ["<", "in"]
+			},
+			"variables": {
+				"BUILD_IGNORED": {
+					"shell": ["g++", "-g", "${relativeFile}"],
+					"cwd": "${workspaceRoot}"
+				}
+			}
+		},
+		"attach": {
+			"extends": "launch",
+			"configuration": {
+				"name": "attach",
+				"request": "attach"
+			}
+		}
+	}
+}

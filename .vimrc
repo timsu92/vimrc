@@ -1,5 +1,7 @@
 set number  " shows the line number
 
+" source ~/.vim/log-autocmds.vim
+" silent execute('LogAutocmds')
 filetype on
 set shiftwidth=4
 set autoindent
@@ -112,6 +114,9 @@ Plug 'tpope/vim-surround'
 Plug 'terryma/vim-expand-region'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-line'
+Plug 'puremourning/vimspector'
+Plug '~/.fzf'
+Plug 'honza/vim-snippets'
 call plug#end()
 " call ":PlugUpdate [name ...]" to update plugins
 " call ":PlugInstall" to install plugins
@@ -148,7 +153,7 @@ nmap ga <Plug>(EasyAlign)
 "	+ means extension is loaded
 "	- means extension is disabled
 "	Use arrows to navigate. Hit <TAB> to activate action menu
-let g:coc_global_extensions = ['coc-json', 'coc-clangd', 'coc-cmake', 'coc-highlight', 'coc-html', 'coc-sh', 'coc-vimlsp', 'coc-pairs']
+let g:coc_global_extensions = ['coc-json', 'coc-clangd', 'coc-cmake', 'coc-highlight', 'coc-html', 'coc-sh', 'coc-vimlsp', 'coc-pairs', 'coc-omni', 'coc-word', 'coc-snippets']
 " Some servers have issues with backup files, see #649.
 set nobackup
 set nowritebackup
@@ -170,14 +175,14 @@ function! EchoWarn(text)
 	return ""
 endfunction
 
-" Remap <C-f> and <C-b> for scroll float windows/popups.
+" Map <C-f> and <C-b> for scroll float windows/popups.
 if has('nvim-0.4.0') || has('patch-8.2.0750')
-	inoremap <silent><nowait><expr> <c-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : EchoWarn("[coc] Scroll not supported")
-	inoremap <silent><nowait><expr> <c-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : EchoWarn("[coc] Scroll not supported")
-	nnoremap <silent><nowait><expr> <c-f> coc#float#has_scroll() ? coc#float#scroll(1) : EchoWarn("[coc] Scroll not supported")
-	nnoremap <silent><nowait><expr> <c-b> coc#float#has_scroll() ? coc#float#scroll(0) : EchoWarn("[coc] Scroll not supported")
-	vnoremap <silent><nowait><expr> <c-f> coc#float#has_scroll() ? coc#float#scroll(1) : EchoWarn("[coc] Scroll not supported")
-	vnoremap <silent><nowait><expr> <c-b> coc#float#has_scroll() ? coc#float#scroll(0) : EchoWarn("[coc] Scroll not supported")
+	inoremap <silent><nowait><expr> <c-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : EchoWarn("[coc] Scroll not exist")
+	inoremap <silent><nowait><expr> <c-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : EchoWarn("[coc] Scroll not exist")
+	nnoremap <silent><nowait><expr> <c-f> coc#float#has_scroll() ? coc#float#scroll(1) : EchoWarn("[coc] Scroll not exist")
+	nnoremap <silent><nowait><expr> <c-b> coc#float#has_scroll() ? coc#float#scroll(0) : EchoWarn("[coc] Scroll not exist")
+	vnoremap <silent><nowait><expr> <c-f> coc#float#has_scroll() ? coc#float#scroll(1) : EchoWarn("[coc] Scroll not exist")
+	vnoremap <silent><nowait><expr> <c-b> coc#float#has_scroll() ? coc#float#scroll(0) : EchoWarn("[coc] Scroll not exist")
 else
 	inoremap <silent><nowait><expr> <c-f> EchoWarn("[coc] Scroll not supported")
 	inoremap <silent><nowait><expr> <c-b> EchoWarn("[coc] Scroll not supported")
@@ -186,9 +191,11 @@ else
 	vnoremap <silent><nowait><expr> <c-f> EchoWarn("[coc] Scroll not supported")
 	vnoremap <silent><nowait><expr> <c-b> EchoWarn("[coc] Scroll not supported")
 endif
-" Use tab for trigger completion with characters ahead and navigate.
+
+" Use tab for navigate, snippet jump.
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
+      \ coc#jumpable() ? "\<C-r>=coc#snippet#next()\<CR>" :
       \ Check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
@@ -201,17 +208,6 @@ endfunction
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" function! Show_documentation()
-  " if (index(['vim','help'], &filetype) >= 0)
-    " execute 'h '.expand('<cword>')
-  " elseif (coc#rpc#ready())
-	" echo "doHover"
-    " call CocActionAsync('doHover')
-  " else
-    " execute '!' . &keywordprg . " " . expand('<cword>')
-  " endif
-" endfunction
 
 function! ShowDocumentation()
   if CocAction('hasProvider', 'hover')
@@ -240,16 +236,36 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 " Add `:Fold` command to fold current buffer.
 command! -nargs=? Fold :call CocAction('fold', <f-args>)
 nnoremap <silent> <f1> :call ShowDocumentation()<CR>
-" inoremap <silent><expr> <f1> ShowDocumentation()
+
+" Map function and class text objects
+" Use like vif, vaf...
+" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
 
 " Used for the format on type and improvement of brackets
 " inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 	" \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-inoremap <silent><expr> <cr> "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+" inoremap <silent><expr> <cr> "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <cr> coc#expandable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand',''])\<CR>" :
+			\ "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+autocmd CursorHold,CursorHoldI * silent call CocActionAsync('highlight')
+
+
+" coc-snippets
+" snippet expand
+imap <c-s-right> <Plug>(coc-snippets-expand)
+" select text for visual placeholder of snippet
+vmap <c-s-right> <Plug>(coc-snippets-select)
+let g:coc_snippet_next = '<tab>'
 
 
 " preservim/nerdcommenter
@@ -266,7 +282,7 @@ let g:NERDAltDelims_java = 1
 
 " mphe/grayout.vim
 " Set libclang searchpath. This should point to the directory containing `libclang.so`.
-let g:grayout_libclang_path = '/usr/lib/llvm-12/lib'
+let g:grayout_libclang_path = '/usr/lib/llvm-14/lib'
 " Set default compile flags.
 " These are used, when no `compile_commands.json` or `.grayout.conf` file was found.
 autocmd BufNewFile,BufReadPost * if &ft == 'c' | let g:grayout_default_args = ['-x', 'c', '-std=c11'] | endif
@@ -285,10 +301,13 @@ let g:fastfold_savehook = 0
 let g:fastfold_fold_command_suffixes =  ['x','X','a','A','O','C']
 let g:fastfold_fold_movement_commands = [']z','[z','zj','zk']
 let g:fastfold_minlines = 6
-autocmd FileType c,cpp,sh,json setlocal foldmethod=syntax
+let g:fastfold_skip_filetypes = ['diff', 'list']
+let g:markdown_folding = 1
+autocmd FileType c,cpp,sh,zsh,json setlocal foldmethod=syntax
 autocmd FileType python setlocal foldmethod=indent
 " javascript在vim-javascript
-autocmd FileType sh let g:sh_fold_enabled = 7
+let g:sh_fold_enabled = 7
+let g:zsh_fold_enable = 1
 autocmd TextChanged <silent> <Plug>(FastFoldUpdate)
 
 
@@ -311,7 +330,7 @@ let g:tagbar_autoshowtag = 1
 " let g:tagbar_autopreview = 1
 let g:tagbar_sort = 0
 let g:no_status_line = 1
-autocmd FileType vim let b:tagbar_ignore = 1
+autocmd FileType vim,diff let b:tagbar_ignore = 1
 
 
 " zhimsel/vim-stay
@@ -359,10 +378,11 @@ autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTa
 autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
     \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 nnoremap <silent><c-t> :NERDTreeToggle<cr>
-nnoremap <silent><c-n> :NERDTree<cr>
 
 
 " terryma/vim-expand-region
+map <silent>+ <Plug>(expand_region_expand)
+map <silent>- <Plug>(expand_region_shrink)
 let g:expand_region_text_objects = {
       \ 'i"'  :1,
       \ 'a"'  :1,
@@ -381,3 +401,113 @@ let g:expand_region_text_objects = {
 
 " Xuyuanp/nerdtree-git-plugin
 let g:NERDTreeGitStatusUseNerdFonts = 1
+
+
+" puremourning/vimspector
+" use ":VimspectorInstall <adapter> <args...>" to install adapters/gadgets. Add '!' to not close the
+" output window right after successful installation
+" use ":VimspectorUpdate <adapter> <args...>" to update adapters/gadgets. Add '!' to not close the
+" output window right after successful installation
+" Document for config file: https://puremourning.github.io/vimspector/configuration.html
+" Config file can be put under ~/.vim/plugged/vimspector/configurations/linux/_all/
+syntax enable
+filetype indent on
+let g:vimspector_install_gadgets = ['debugpy', 'vscode-cpptools']
+" required by debugpy
+let g:vimspector_base_dir=expand('~/.vim/plugged/vimspector') " do NOT end with forward slash
+
+" HUMAN-like mappings
+nmap <F3>                 <Plug>VimspectorStop
+nmap <leader><F3>         :VimspectorReset<cr>
+nmap <F4>                 <Plug>VimspectorRestart
+nmap <F5>                 <Plug>VimspectorContinue
+nmap <leader><F5>         <Plug>VimspectorLaunch
+nmap <leader><s-F5>       <Plug>VimspectorRunToCursor
+nmap <F6>                 <Plug>VimspectorPause
+nmap <F7>                 <Plug>VimspectorStepOver
+nmap <F8>                 <Plug>VimspectorStepInto
+nmap <F9>                 <Plug>VimspectorStepOut
+nmap <F10>                <Plug>VimspectorToggleBreakpoint
+nmap <leader><F10>        <Plug>VimspectorToggleConditionalBreakpoint
+nmap <leader><s-F10>      <Plug>VimspectorAddFunctionBreakpoint
+nmap <LocalLeader><s-F12> <Plug>VimspectorUpFrame
+nmap <LocalLeader><F12>   <Plug>VimspectorDownFrame
+
+" toggle breakpoints window
+nmap <leader>db <Plug>VimspectorBreakpoints
+" See https://github.com/puremourning/vimspector#breakpoints-window
+
+" Evaluate part of program
+nmap <leader>di <Plug>VimspectorBalloonEval
+xmap <leader>di <Plug>VimspectorBalloonEval
+
+nmap <expr><leader><TAB> <sid>canShowVimspectorSwitchOutput() ? ':VimspectorShowOutput ' : "\<leader>\<TAB>"
+
+function s:canShowVimspectorSwitchOutput()
+	let l:vimspectorOutputFileNames = ['vimspector.Output:stderr', '_vimspector_log_Vimspector', 'vimspector.Output:server', 'vimspector.Console']
+	for l:test in l:vimspectorOutputFileNames
+		if expand('%') == l:test
+			return v:true
+		endif
+	endfor
+	return v:false
+endfunction
+
+" Save/load session file
+let s:vimspectorSessionPrefix = '~/.vim/view/'
+let s:vimspectorSessionFileName = substitute(expand('%:p'), '/', '+', 'g') . '.vimspector.session.json'
+autocmd BufReadPost * silent! execute("VimspectorLoadSession " . s:vimspectorSessionPrefix . s:vimspectorSessionFileName)
+autocmd BufWritePost * silent execute("VimspectorMkSession " . s:vimspectorSessionPrefix . s:vimspectorSessionFileName)
+
+
+" fzf
+" An action can be a reference to a function that processes selected lines
+" function! s:build_quickfix_list(lines)
+  " call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+  " copen
+  " cc
+" endfunction
+
+" key bindings
+" 'ctrl-q': function('s:build_quickfix_list'),
+let g:fzf_action = {
+		\ 'ctrl-t': 'tab split',
+		\ 'ctrl-h': 'split',
+		\ 'ctrl-v': 'vsplit'
+	  \ }
+
+" Popup window (anchored to the bottom of the current window)
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true, 'yoffset': 1.0 } }
+
+" Customize fzf colors to match your color scheme
+" - fzf#wrap translates this to a set of `--color` options
+let g:fzf_colors = {
+        \  'fg':      ['fg', 'Normal'],
+        \  'bg':      ['bg', 'Normal'],
+        \  'hl':      ['fg', 'Comment'],
+        \  'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+        \  'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+        \  'hl+':     ['fg', 'Statement'],
+        \  'info':    ['fg', 'PreProc'],
+        \  'border':  ['fg', 'Ignore'],
+        \  'prompt':  ['fg', 'Conditional'],
+        \  'pointer': ['fg', 'Exception'],
+        \  'marker':  ['fg', 'Keyword'],
+        \  'spinner': ['fg', 'Label'],
+        \  'header':  ['fg', 'Comment']
+	  \ }
+
+" Enable per-command history
+" - History files will be stored in the specified directory
+" - When set, CTRL-N and CTRL-P will be bound to 'next-history' and
+"   'previous-history' instead of 'down' and 'up'.
+let g:fzf_history_dir = '~/.local/share/fzf-history'
+
+" Use fzf to find files.
+" Receives an optional param to specify the folder to search
+" Saves historical searches of *LS* and *LA* in file *ls*
+command -complete=dir -nargs=? LS
+	\ call fzf#run(fzf#wrap('ls', {'source': 'ls', 'dir': <q-args>}))
+command -complete=dir -nargs=? LA
+	\ call fzf#run(fzf#wrap('ls', {'source': 'ls -A', 'dir': <q-args>}))
+nmap <silent><c-n> :LA<cr>

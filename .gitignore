@@ -10,6 +10,13 @@
 .landscape/
 .motd_shown
 .mybashrc.bash
+.fzf.zsh
+.mybashrc_common.bash
+.myzshrc.zsh
+.vimspector.log
+.zcompdump
+.zsh_history
+.zshrc
 .npm/
 .nvm/
 .profile
@@ -31,3 +38,5 @@ documents
 other_program/
 temp
 test.c
+.local/
+.lesshst
