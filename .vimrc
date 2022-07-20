@@ -195,7 +195,7 @@ endif
 " Use tab for navigate, snippet jump.
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
-      \ !coc#expandable() && coc#jumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+      \ coc#jumpable() ? "\<C-r>=coc#snippet#next()\<CR>" :
       \ Check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
