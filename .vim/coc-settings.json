@@ -1,3 +1,6 @@
 {
-  "coc.source.omni.filetypes": ["VimspectorPrompt"]
+	"coc.source.omni.filetypes": ["VimspectorPrompt"],
+	"markdownlint.config": {
+		"line_length": false
+	}
 }
