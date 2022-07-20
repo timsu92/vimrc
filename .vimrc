@@ -226,6 +226,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <f2> <Plug>(coc-rename)
 imap <f2> <c-o><Plug>(coc-rename)
+nmap <leader>ca <Plug>(coc-codeaction)
 " Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
@@ -278,6 +279,13 @@ let g:NERDCompactSexyComs = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 let g:NERDAltDelims_java = 1
+let g:NERDCreateDefaultMappings = 0
+nmap <leader>cc       <Plug>NERDCommenterComment
+nmap <leader>cu       <Plug>NERDCommenterUncomment
+nmap <leader>c<space> <Plug>NERDCommenterToggle
+vmap <leader>cc       <Plug>NERDCommenterComment
+vmap <leader>cu       <Plug>NERDCommenterUncomment
+vmap <leader>c<space> <Plug>NERDCommenterToggle
 
 
 " mphe/grayout.vim
