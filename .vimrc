@@ -345,7 +345,7 @@ autocmd FileType vim,diff let b:tagbar_ignore = 1
 " type ":CleanViewdir[!] [days]" to remove saved view sessions older than
 " [days]. The bang version will remove w/o confirmation
 set viewoptions=cursor,slash,unix,folds
-" autocmd FileType vim set viewoptions+=folds
+autocmd FileType json set viewoptions-=folds
 
 
 " pangloss/vim-javascript
@@ -464,8 +464,8 @@ endfunction
 " Save/load session file
 let s:vimspectorSessionPrefix = '~/.vim/view/'
 let s:vimspectorSessionFileName = substitute(expand('%:p'), '/', '+', 'g') . '.vimspector.session.json'
-autocmd BufReadPost * silent! execute("VimspectorLoadSession " . <sid>vimspectorSessionPrefix . <sid>vimspectorSessionFileName)
-autocmd BufWritePost * silent execute("VimspectorMkSession " . <sid>vimspectorSessionPrefix . <sid>vimspectorSessionFileName)
+autocmd BufReadPost * silent! execute("VimspectorLoadSession " . s:vimspectorSessionPrefix . s:vimspectorSessionFileName)
+autocmd BufWritePost * silent execute("VimspectorMkSession " . s:vimspectorSessionPrefix . s:vimspectorSessionFileName)
 
 
 " fzf
