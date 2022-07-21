@@ -196,11 +196,11 @@ endif
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ coc#jumpable() ? "\<C-r>=coc#snippet#next()\<CR>" :
-      \ Check_back_space() ? "\<TAB>" :
+      \ <sid>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-function! Check_back_space() abort
+function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
@@ -464,8 +464,8 @@ endfunction
 " Save/load session file
 let s:vimspectorSessionPrefix = '~/.vim/view/'
 let s:vimspectorSessionFileName = substitute(expand('%:p'), '/', '+', 'g') . '.vimspector.session.json'
-autocmd BufReadPost * silent! execute("VimspectorLoadSession " . s:vimspectorSessionPrefix . s:vimspectorSessionFileName)
-autocmd BufWritePost * silent execute("VimspectorMkSession " . s:vimspectorSessionPrefix . s:vimspectorSessionFileName)
+autocmd BufReadPost * silent! execute("VimspectorLoadSession " . <sid>vimspectorSessionPrefix . <sid>vimspectorSessionFileName)
+autocmd BufWritePost * silent execute("VimspectorMkSession " . <sid>vimspectorSessionPrefix . <sid>vimspectorSessionFileName)
 
 
 " fzf
