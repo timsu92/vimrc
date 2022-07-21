@@ -19,13 +19,6 @@
 				"environment": [],
 				"externalConsole": true,
 				"MIMode": "gdb",
-				"breakpointers": {
-					"exception": {
-						"cpp_catch": "N",
-						"cpp_throw": "Y",
-						"all": "Y"
-					}
-				},
 				"setupCommands": [
 					{
 						"description": "Enable pretty-printing for gdb",
@@ -34,6 +27,13 @@
 					}
 				],
 				"stopAtEntry": false
+			},
+			"breakpointers": {
+				"exception": {
+					"cpp_catch": "N",
+					"cpp_throw": "Y",
+					"all": "Y"
+				}
 			}
 		},
 		"launch - input from in": {
