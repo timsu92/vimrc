@@ -28,7 +28,7 @@
 				],
 				"stopAtEntry": false
 			},
-			"breakpointers": {
+			"breakpoints": {
 				"exception": {
 					"cpp_catch": "N",
 					"cpp_throw": "Y",
