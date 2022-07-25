@@ -445,20 +445,27 @@ nmap <silent><expr> <leader>db "\<Plug>VimspectorBreakpoints:if len(g:vimspector
 
 let s:vimspectorMappedBufnr = []
 
+function s:VimspectorUIcodePost() abort
+	" Evaluate part of program
+	nmap <buffer> <f1> <Plug>VimspectorBalloonEval
+	xmap <buffer> <f1> <Plug>VimspectorBalloonEval
+endfunction
+
+function s:VimspectorUIbreakpointsPost() abort
+	nunmap <buffer> <leader><F3>
+	nmap <buffer><expr> <leader><F3> ":call win_gotoid(g:vimspector_session_windows['code'])<cr>:VimspectorReset<cr>"
+endfunction
+
 function s:VimspectorCreateUI() abort
 	for l:winName in keys(g:vimspector_session_windows)
 		if g:vimspector_session_windows[l:winName] != v:none && l:winName != 'tabpage' && l:winName != 'mode'
 			call win_gotoid(g:vimspector_session_windows[l:winName])
-			call <sid>VimspectorInitBuf()
-			if l:winName == 'code'
-				" Evaluate part of program
-				nmap <buffer> <f1> <Plug>VimspectorBalloonEval
-				xmap <buffer> <f1> <Plug>VimspectorBalloonEval
+			if(exists("*<sid>VimspectorUI" . l:winName . "Pre"))
+				execute "call <sid>VimspectorUI" . l:winName . 'Pre()'
 			endif
-
-			if l:winName == 'breakpoints'
-				nunmap <buffer> <leader><F3>
-				nmap <buffer><expr> <leader><F3> ":call win_gotoid(g:vimspector_session_windows['code'])<cr>:VimspectorReset<cr>"
+			call <sid>VimspectorInitBuf()
+			if(exists("*<sid>VimspectorUI" . l:winName . "Post"))
+				execute "call <sid>VimspectorUI" . l:winName . 'Post()'
 			endif
 		endif
 	endfor
