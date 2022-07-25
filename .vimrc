@@ -38,11 +38,11 @@ set cursorline  " highlighting of the current line
 autocmd FileType c,cpp nnoremap <silent> 0 yyGo<ESC>]pA<BS>{}<Left><CR><esc>O
 
 " move a line up/down
-inoremap <c-up> <esc>dd<up>]Pi
+inoremap <c-up>   <esc>dd<up>]Pi
 inoremap <c-down> <esc>dd]pi
-xnoremap <c-up> d<up>]P
+xnoremap <c-up>   d<up>]P
 xnoremap <c-down> d]p
-nnoremap <c-up> Vd<up>]P
+nnoremap <c-up>   Vd<up>]P
 nnoremap <c-down> Vd]p
 
 " highlight search
@@ -71,7 +71,7 @@ set cmdheight=2
 set updatetime=600
 
 " 以摺疊移動
-nnoremap z<up> zk
+nnoremap z<up>   zk
 nnoremap z<down> zj
 
 " block-wise visual mode
@@ -198,7 +198,7 @@ inoremap <silent><expr> <TAB>
       \ coc#jumpable() ? "\<C-r>=coc#snippet#next()\<CR>" :
       \ <sid>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -220,17 +220,17 @@ endfunction
 " GoTo code navigation.
 " Use ctrl-o to go back
 " Use ":verbose imap <KEY>" to check if it's mapped by others
-nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gd  <Plug>(coc-definition)
 nmap <silent> gtd <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <f2> <Plug>(coc-rename)
-imap <f2> <c-o><Plug>(coc-rename)
-nmap <leader>ca <Plug>(coc-codeaction)
-vmap <leader>ca <Plug>(coc-codeaction-selected)
+nmap <silent> gi  <Plug>(coc-implementation)
+nmap <silent> gr  <Plug>(coc-references)
+nmap <f2>         <Plug>(coc-rename)
+imap <f2>         <c-o><Plug>(coc-rename)
+nmap <leader>ca   <Plug>(coc-codeaction)
+vmap <leader>ca   <Plug>(coc-codeaction-selected)
 " Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+xmap <leader>f    <Plug>(coc-format-selected)
+nmap <leader>f    <Plug>(coc-format-selected)
 " Update signature help on jump placeholder.
 autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 " Apply AutoFix to problem on the current line.
@@ -254,7 +254,6 @@ omap ac <Plug>(coc-classobj-a)
 " Used for the format on type and improvement of brackets
 " inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 	" \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-" inoremap <silent><expr> <cr> "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 inoremap <silent><expr> <cr> coc#expandable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand',''])\<CR>" :
 			\ "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
@@ -455,8 +454,8 @@ function s:VimspectorCreateUI() abort
 			call <sid>VimspectorInitBuf()
 			if l:winName == 'code'
 				" Evaluate part of program
-				nmap <buffer><f1> <Plug>VimspectorBalloonEval
-				xmap <buffer><f1> <Plug>VimspectorBalloonEval
+				nmap <buffer> <f1> <Plug>VimspectorBalloonEval
+				xmap <buffer> <f1> <Plug>VimspectorBalloonEval
 			endif
 
 			if l:winName == 'breakpoints'
@@ -473,39 +472,39 @@ function s:VimspectorInitBuf() abort
 	endif
 
 	" HUMAN-like mappings
-	nmap <buffer><F3>             <Plug>VimspectorStop
+	nmap <buffer> <F3>             <Plug>VimspectorStop
 	if(g:vimspector_session_windows['breakpoints'] == bufnr())
-		nmap <buffer><expr><leader><F3> ":call win_gotoid(g:vimspector_session_windows['code'])<cr>:VimspectorReset<cr>"
+		nmap <buffer><expr> <leader><F3> ":call win_gotoid(g:vimspector_session_windows['code'])<cr>:VimspectorReset<cr>"
 	else
-		nmap <buffer><leader><F3> :VimspectorReset<cr>
+		nmap <buffer>       <leader><F3> :VimspectorReset<cr>
 	endif
-	nmap <buffer><F4>             <Plug>VimspectorRestart
-	nmap <buffer><F6>             <Plug>VimspectorPause
-	nmap <buffer><F7>             <Plug>VimspectorStepOver
-	nmap <buffer><F8>             <Plug>VimspectorStepInto
-	nmap <buffer><F9>             <Plug>VimspectorStepOut
-	nmap <buffer><Leader><s-F12>  <Plug>VimspectorUpFrame
-	nmap <buffer><Leader><F12>    <Plug>VimspectorDownFrame
+	nmap <buffer> <F4>             <Plug>VimspectorRestart
+	nmap <buffer> <F6>             <Plug>VimspectorPause
+	nmap <buffer> <F7>             <Plug>VimspectorStepOver
+	nmap <buffer> <F8>             <Plug>VimspectorStepInto
+	nmap <buffer> <F9>             <Plug>VimspectorStepOut
+	nmap <buffer> <Leader><s-F12>  <Plug>VimspectorUpFrame
+	nmap <buffer> <Leader><F12>    <Plug>VimspectorDownFrame
 
-	nnoremap <buffer><leader><TAB> :VimspectorShowOutput 
+	nnoremap <buffer> <leader><TAB> :VimspectorShowOutput 
 
 	call add(s:vimspectorMappedBufnr, bufnr())
 endfunction
 
 function s:VimspectorOnDebugEnd() abort
 	for l:bufnr in s:vimspectorMappedBufnr
-		silent! nunmap <buffer><F3>
-		silent! nunmap <buffer><leader><F3>
-		silent! nunmap <buffer><F4>
-		silent! nunmap <buffer><F6>
-		silent! nunmap <buffer><F7>
-		silent! nunmap <buffer><F8>
-		silent! nunmap <buffer><F9>
-		silent! nunmap <buffer><leader><s-F12>
-		silent! nunmap <buffer><Leader><F12>
-		silent! nunmap <buffer><f1>
-		silent! xunmap <buffer><f1>
-		silent! nunmap <buffer><leader><TAB>
+		silent! nunmap <buffer> <F3>
+		silent! nunmap <buffer> <leader><F3>
+		silent! nunmap <buffer> <F4>
+		silent! nunmap <buffer> <F6>
+		silent! nunmap <buffer> <F7>
+		silent! nunmap <buffer> <F8>
+		silent! nunmap <buffer> <F9>
+		silent! nunmap <buffer> <leader><s-F12>
+		silent! nunmap <buffer> <Leader><F12>
+		silent! nunmap <buffer> <f1>
+		silent! xunmap <buffer> <f1>
+		silent! nunmap <buffer> <leader><TAB>
 	endfor
 
 	let s:vimspectorMappedBufnr = []
@@ -572,4 +571,4 @@ command -complete=dir -nargs=? LS
 	\ call fzf#run(fzf#wrap('ls', {'source': 'ls', 'dir': <q-args>}))
 command -complete=dir -nargs=? LA
 	\ call fzf#run(fzf#wrap('ls', {'source': 'ls -A', 'dir': <q-args>}))
-nmap <silent><c-n> :LA<cr>
+nmap <silent> <c-n> :LA<cr>
