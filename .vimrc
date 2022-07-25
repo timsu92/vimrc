@@ -443,30 +443,49 @@ nmap <leader><s-F10> <Plug>VimspectorAddFunctionBreakpoint
 " nmap <Leader><F12>   <Plug>VimspectorDownFrame
 
 " toggle breakpoints window
-nmap <leader>db <Plug>VimspectorBreakpoints
+nmap <silent><expr> <leader>db "\<Plug>VimspectorBreakpoints:if len(g:vimspector_session_windows) > 1 \| call \<sid>VimspectorInitBuf()<cr> \| endif<cr>"
 " See https://github.com/puremourning/vimspector#breakpoints-window
 
 let s:vimspectorMappedBufnr = []
 
-function s:VimspectorOnJumpToFrame() abort
+function s:VimspectorCreateUI() abort
+	for l:winName in keys(g:vimspector_session_windows)
+		if g:vimspector_session_windows[l:winName] != v:none && l:winName != 'tabpage' && l:winName != 'mode'
+			call win_gotoid(g:vimspector_session_windows[l:winName])
+			call <sid>VimspectorInitBuf()
+			if l:winName == 'code'
+				" Evaluate part of program
+				nmap <buffer><f1> <Plug>VimspectorBalloonEval
+				xmap <buffer><f1> <Plug>VimspectorBalloonEval
+			endif
+
+			if l:winName == 'breakpoints'
+				nunmap <buffer> <leader><F3>
+				nmap <buffer><expr> <leader><F3> ":call win_gotoid(g:vimspector_session_windows['code'])<cr>:VimspectorReset<cr>"
+			endif
+		endif
+	endfor
+endfunction
+
+function s:VimspectorInitBuf() abort
 	if(index(s:vimspectorMappedBufnr, bufnr()) != -1)
 		return
 	endif
 
 	" HUMAN-like mappings
-	nmap <buffer><F3>              <Plug>VimspectorStop
-	nmap <buffer><leader><F3>      :VimspectorReset<cr>
-	nmap <buffer><F4>              <Plug>VimspectorRestart
-	nmap <buffer><F6>              <Plug>VimspectorPause
-	nmap <buffer><F7>              <Plug>VimspectorStepOver
-	nmap <buffer><F8>              <Plug>VimspectorStepInto
-	nmap <buffer><F9>              <Plug>VimspectorStepOut
-	nmap <buffer><Leader><s-F12>   <Plug>VimspectorUpFrame
-	nmap <buffer><Leader><F12>     <Plug>VimspectorDownFrame
-
-	" Evaluate part of program
-	nmap <buffer><f1>              <Plug>VimspectorBalloonEval
-	xmap <buffer><f1>              <Plug>VimspectorBalloonEval
+	nmap <buffer><F3>             <Plug>VimspectorStop
+	if(g:vimspector_session_windows['breakpoints'] == bufnr())
+		nmap <buffer><expr><leader><F3> ":call win_gotoid(g:vimspector_session_windows['code'])<cr>:VimspectorReset<cr>"
+	else
+		nmap <buffer><leader><F3> :VimspectorReset<cr>
+	endif
+	nmap <buffer><F4>             <Plug>VimspectorRestart
+	nmap <buffer><F6>             <Plug>VimspectorPause
+	nmap <buffer><F7>             <Plug>VimspectorStepOver
+	nmap <buffer><F8>             <Plug>VimspectorStepInto
+	nmap <buffer><F9>             <Plug>VimspectorStepOut
+	nmap <buffer><Leader><s-F12>  <Plug>VimspectorUpFrame
+	nmap <buffer><Leader><F12>    <Plug>VimspectorDownFrame
 
 	nnoremap <buffer><leader><TAB> :VimspectorShowOutput 
 
@@ -492,8 +511,8 @@ function s:VimspectorOnDebugEnd() abort
 	let s:vimspectorMappedBufnr = []
 endfunction
 
-autocmd User VimspectorUICreated call <sid>VimspectorOnJumpToFrame()
-autocmd User VimspectorJumpedToFrame call <sid>VimspectorOnJumpToFrame()
+autocmd User VimspectorUICreated call <sid>VimspectorCreateUI()
+autocmd User VimspectorJumpedToFrame call <sid>VimspectorInitBuf()
 autocmd User VimspectorDebugEnded ++nested call <sid>VimspectorOnDebugEnd()
 
 " Save/load session file
