@@ -101,7 +101,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdcommenter'
 Plug 'mphe/grayout.vim'
 Plug 'Konfekt/FastFold'
-Plug 'preservim/tagbar'
+" Plug 'preservim/tagbar'
 Plug 'zhimsel/vim-stay'
 " Plug 'crusoexia/vim-monokai' installed manually instead
 " Plug 'pangloss/vim-javascript'
@@ -319,8 +319,8 @@ autocmd TextChanged <silent> <Plug>(FastFoldUpdate)
 
 " preservim/tagbar
 " visibility of a tag is shown as { 'public' : '+', 'protected' : '#', 'private' : '-' }
-nmap <silent> <F8> :TagbarToggle<CR>
-imap <silent> <F8> <C-O>:TagbarToggle<CR><esc>
+" nmap <silent> <F8> :TagbarToggle<CR>
+" imap <silent> <F8> <C-O>:TagbarToggle<CR><esc>
 " 視窗水平分割在上方
 let g:tagbar_position = 'top'
 let g:tagbar_height = 13

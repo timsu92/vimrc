@@ -7,7 +7,7 @@ Note! This is a config file on Ubuntu 22.04 on WSL2. If you use another system, 
 [✓] [**nerdcommenter**](https://github.com/preservim/nerdcommenter): Comment code with ease  
 [✓] [**grayout.vim**](https://github.com/mphe/grayout.vim): Grayout unused code in `#` preprocessor blocks of C/C++  
 [✓] [**FastFold**](https://github.com/Konfekt/FastFold): Recognizes languages and create folds  
-[✓] [**tagbar**](https://github.com/preservim/tagbar): Navigate around code  
+[✗] [**tagbar**](https://github.com/preservim/tagbar): Navigate around code (disabled currently as I'm not using it)  
 [✓] [**vim-stay**](https://github.com/zhimsel/vim-stay): Memorized page position, cursor position, folds' status  
 [✗] [**vim-javascript**](https://github.com/pangloss/vim-javascript): JavaScript bundle for vim (Never used. Disabled currently)  
 [✓] [**rainbow**](https://github.com/luochen1990/rainbow): Colorful parentheses, brackets... for locate with ease  
