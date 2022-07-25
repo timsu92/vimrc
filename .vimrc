@@ -418,7 +418,7 @@ let g:NERDTreeGitStatusUseNerdFonts = 1
 " use ":VimspectorUpdate <adapter> <args...>" to update adapters/gadgets. Add '!' to not close the
 " output window right after successful installation
 " Document for config file: https://puremourning.github.io/vimspector/configuration.html
-" Config file can be put under ~/.vim/plugged/vimspector/configurations/linux/_all/
+" Config file '.vimspector.json' can be put under ~/.vim/plugged/vimspector/configurations/linux/_all/
 syntax enable
 filetype indent on
 let g:vimspector_install_gadgets = ['debugpy', 'vscode-cpptools']
