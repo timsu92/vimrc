@@ -262,8 +262,6 @@ autocmd CursorHold,CursorHoldI * silent call CocActionAsync('highlight')
 
 
 " coc-snippets
-" snippet expand
-imap <c-s-right> <Plug>(coc-snippets-expand)
 " select text for visual placeholder of snippet
 vmap <c-s-right> <Plug>(coc-snippets-select)
 let g:coc_snippet_next = '<tab>'
