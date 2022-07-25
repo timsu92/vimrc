@@ -426,41 +426,75 @@ let g:vimspector_install_gadgets = ['debugpy', 'vscode-cpptools']
 let g:vimspector_base_dir=expand('~/.vim/plugged/vimspector') " do NOT end with forward slash
 
 " HUMAN-like mappings
-nmap <F3>                 <Plug>VimspectorStop
-nmap <leader><F3>         :VimspectorReset<cr>
-nmap <F4>                 <Plug>VimspectorRestart
-nmap <F5>                 <Plug>VimspectorContinue
-nmap <leader><F5>         <Plug>VimspectorLaunch
-nmap <leader><s-F5>       <Plug>VimspectorRunToCursor
-nmap <F6>                 <Plug>VimspectorPause
-nmap <F7>                 <Plug>VimspectorStepOver
-nmap <F8>                 <Plug>VimspectorStepInto
-nmap <F9>                 <Plug>VimspectorStepOut
-nmap <F10>                <Plug>VimspectorToggleBreakpoint
-nmap <leader><F10>        <Plug>VimspectorToggleConditionalBreakpoint
-nmap <leader><s-F10>      <Plug>VimspectorAddFunctionBreakpoint
-nmap <LocalLeader><s-F12> <Plug>VimspectorUpFrame
-nmap <LocalLeader><F12>   <Plug>VimspectorDownFrame
+" nmap <F3>            <Plug>VimspectorStop
+" nmap <leader><F3>    :VimspectorReset<cr>
+" nmap <F4>            <Plug>VimspectorRestart
+nmap <F5>            <Plug>VimspectorContinue
+nmap <leader><F5>    <Plug>VimspectorLaunch
+nmap <leader><s-F5>  <Plug>VimspectorRunToCursor
+" nmap <F6>            <Plug>VimspectorPause
+" nmap <F7>            <Plug>VimspectorStepOver
+" nmap <F8>            <Plug>VimspectorStepInto
+" nmap <F9>            <Plug>VimspectorStepOut
+nmap <F10>           <Plug>VimspectorToggleBreakpoint
+nmap <leader><F10>   <Plug>VimspectorToggleConditionalBreakpoint
+nmap <leader><s-F10> <Plug>VimspectorAddFunctionBreakpoint
+" nmap <Leader><s-F12> <Plug>VimspectorUpFrame
+" nmap <Leader><F12>   <Plug>VimspectorDownFrame
 
 " toggle breakpoints window
 nmap <leader>db <Plug>VimspectorBreakpoints
 " See https://github.com/puremourning/vimspector#breakpoints-window
 
-" Evaluate part of program
-nmap <leader>di <Plug>VimspectorBalloonEval
-xmap <leader>di <Plug>VimspectorBalloonEval
+let s:vimspectorMappedBufnr = []
 
-nmap <expr><leader><TAB> <sid>canShowVimspectorSwitchOutput() ? ':VimspectorShowOutput ' : "\<leader>\<TAB>"
+function s:VimspectorOnJumpToFrame() abort
+	if(index(s:vimspectorMappedBufnr, bufnr()) != -1)
+		return
+	endif
 
-function s:canShowVimspectorSwitchOutput()
-	let l:vimspectorOutputFileNames = ['vimspector.Output:stderr', '_vimspector_log_Vimspector', 'vimspector.Output:server', 'vimspector.Console']
-	for l:test in l:vimspectorOutputFileNames
-		if expand('%') == l:test
-			return v:true
-		endif
-	endfor
-	return v:false
+	" HUMAN-like mappings
+	nmap <buffer><F3>              <Plug>VimspectorStop
+	nmap <buffer><leader><F3>      :VimspectorReset<cr>
+	nmap <buffer><F4>              <Plug>VimspectorRestart
+	nmap <buffer><F6>              <Plug>VimspectorPause
+	nmap <buffer><F7>              <Plug>VimspectorStepOver
+	nmap <buffer><F8>              <Plug>VimspectorStepInto
+	nmap <buffer><F9>              <Plug>VimspectorStepOut
+	nmap <buffer><Leader><s-F12>   <Plug>VimspectorUpFrame
+	nmap <buffer><Leader><F12>     <Plug>VimspectorDownFrame
+
+	" Evaluate part of program
+	nmap <buffer><f1>              <Plug>VimspectorBalloonEval
+	xmap <buffer><f1>              <Plug>VimspectorBalloonEval
+
+	nnoremap <buffer><leader><TAB> :VimspectorShowOutput 
+
+	call add(s:vimspectorMappedBufnr, bufnr())
 endfunction
+
+function s:VimspectorOnDebugEnd() abort
+	for l:bufnr in s:vimspectorMappedBufnr
+		silent! nunmap <buffer><F3>
+		silent! nunmap <buffer><leader><F3>
+		silent! nunmap <buffer><F4>
+		silent! nunmap <buffer><F6>
+		silent! nunmap <buffer><F7>
+		silent! nunmap <buffer><F8>
+		silent! nunmap <buffer><F9>
+		silent! nunmap <buffer><leader><s-F12>
+		silent! nunmap <buffer><Leader><F12>
+		silent! nunmap <buffer><f1>
+		silent! xunmap <buffer><f1>
+		silent! nunmap <buffer><leader><TAB>
+	endfor
+
+	let s:vimspectorMappedBufnr = []
+endfunction
+
+autocmd User VimspectorUICreated call <sid>VimspectorOnJumpToFrame()
+autocmd User VimspectorJumpedToFrame call <sid>VimspectorOnJumpToFrame()
+autocmd User VimspectorDebugEnded ++nested call <sid>VimspectorOnDebugEnd()
 
 " Save/load session file
 let s:vimspectorSessionPrefix = '~/.vim/view/'
