@@ -538,8 +538,11 @@ autocmd User VimspectorDebugEnded ++nested call <sid>VimspectorOnDebugEnd()
 " Save/load session file
 let s:vimspectorSessionPrefix = '~/.vim/view/'
 let s:vimspectorSessionFileName = substitute(expand('%:p'), '/', '+', 'g') . '.vimspector.session.json'
-autocmd BufReadPost * silent! execute("VimspectorLoadSession " . s:vimspectorSessionPrefix . s:vimspectorSessionFileName)
-autocmd BufWritePost * silent execute("VimspectorMkSession " . s:vimspectorSessionPrefix . s:vimspectorSessionFileName)
+augroup VIMSPECTOR_SESSION
+	autocmd VIMSPECTOR_SESSION BufReadPost * silent! execute("VimspectorLoadSession " . s:vimspectorSessionPrefix . s:vimspectorSessionFileName)
+	autocmd VIMSPECTOR_SESSION BufWritePost * silent execute("VimspectorMkSession " . s:vimspectorSessionPrefix . s:vimspectorSessionFileName)
+augroup end
+autocmd FileType diff,gitcommit,json,vim,sh,zsh au! VIMSPECTOR_SESSION
 
 
 " fzf
