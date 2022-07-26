@@ -343,6 +343,7 @@ autocmd FileType vim,diff let b:tagbar_ignore = 1
 " type ":CleanViewdir[!] [days]" to remove saved view sessions older than
 " [days]. The bang version will remove w/o confirmation
 set viewoptions=cursor,slash,unix,folds
+autocmd FileType diff,gitcommit set viewoptions=
 autocmd FileType json set viewoptions-=folds
 
 
