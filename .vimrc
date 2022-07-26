@@ -449,6 +449,17 @@ function s:VimspectorUIcodePost() abort
 	" Evaluate part of program
 	nmap <buffer> <f1> <Plug>VimspectorBalloonEval
 	xmap <buffer> <f1> <Plug>VimspectorBalloonEval
+
+	" Clear the existing WinBar created by Vimspector
+	nunmenu WinBar
+	nmenu WinBar.▶\ Cont⁵     <Plug>VimspectorContinue
+	nmenu WinBar.\|\|\ Pause⁶ <Plug>VimspectorPause
+	nmenu WinBar.■\ Stop³     <Plug>VimspectorStop
+	nmenu WinBar.✕\ Closeˢ³   :VimspectorReset<cr>
+	nmenu WinBar.⟲\ Restart⁴  <Plug>VimspectorRestart
+	nmenu WinBar.↷\ Over⁷     <Plug>VimspectorStepOver
+	nmenu WinBar.↓\ Into⁸     <Plug>VimspectorStepInto
+	nmenu WinBar.↑\ Out⁹      <Plug>VimspectorStepOut
 endfunction
 
 function s:VimspectorUIbreakpointsPost() abort
