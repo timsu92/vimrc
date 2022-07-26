@@ -19,13 +19,13 @@ Note! This is a config file on Ubuntu 22.04 on WSL2. If you use another system, 
 [▲] [**vim-expand-region**](https://github.com/terryma/vim-expand-region): Expand and shrink selection somewhat like IntelliJ's [Select code constructs](https://www.jetbrains.com/help/idea/working-with-source-code.html#editor_code_selection), but can be improved  
 [✓] [**vim-textobj-user**](https://github.com/kana/vim-textobj-user): Define `textobj` on your own  
 [✓] [**vim-textobj-line**](https://github.com/kana/vim-textobj-line): Make entire line as `textobj`s  
-[▲] [**VimSpector**](https://github.com/puremourning/vimspector): Debug right in Vim [setting up]  
+[✓] [**VimSpector**](https://github.com/puremourning/vimspector): Debug right in Vim  
 ### Other plugins or functions
 [✓] [**vim-monokai**](https://github.com/crusoexia/vim-monokai): Beautiful dark theme  
 [✓] [**Powerline**](https://github.com/powerline/powerline): Multi-function status line  
 [▲] **line mover**: Move line using `ctrl+UP` and `ctrl+DOWN`. (Indentation might be wrong)  
 [✓] **WSL yank**: Copy yanked content to Windows clipboard w/o installing other programs  
-[✓] **matchit.vim**: Use % to jump between currespond surrounds and if, else if, else  
+[✓] **matchit.vim**: Use % to jump between correspond surrounds and if, else if, else  
 [✓] [**fzf**](https://github.com/junegunn/fzf): The fuzzy finder  
 
 ## Installation

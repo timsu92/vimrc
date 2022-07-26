@@ -444,7 +444,7 @@ nmap <silent><expr> <leader>db "\<Plug>VimspectorBreakpoints:if len(g:vimspector
 " See https://github.com/puremourning/vimspector#breakpoints-window
 
 let s:vimspectorMappedBufnr = []
-
+" ⁰¹²³⁴⁵⁶⁷⁸⁹
 function s:VimspectorUIcodePost() abort
 	" Evaluate part of program
 	nmap <buffer> <f1> <Plug>VimspectorBalloonEval

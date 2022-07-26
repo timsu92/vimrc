@@ -53,18 +53,18 @@ normal! zo
 normal! zc
 412
 normal! zo
-412
-normal! zc
+425
+normal! zo
 544
 normal! zo
 544
 normal! zc
-let s:l = 470 - ((60 * winheight(0) + 25) / 50)
+let s:l = 447 - ((37 * winheight(0) + 24) / 49)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 470
-normal! 0
+keepjumps 447
+normal! 012|
 let &g:so = s:so_save | let &g:siso = s:siso_save
 nohlsearch
 doautoall SessionLoadPost
