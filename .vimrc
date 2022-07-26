@@ -456,7 +456,7 @@ function s:VimspectorUIcodePost() abort
 	nmenu WinBar.\|\|\ Pause⁶ <Plug>VimspectorPause
 	nmenu WinBar.■\ Stop³     <Plug>VimspectorStop
 	nmenu WinBar.✕\ Closeˢ³   :VimspectorReset<cr>
-	nmenu WinBar.⟲\ Restart⁴  <Plug>VimspectorRestart
+	nmenu WinBar.⟲\ Reload⁴  <Plug>VimspectorRestart
 	nmenu WinBar.↷\ Over⁷     <Plug>VimspectorStepOver
 	nmenu WinBar.↓\ Into⁸     <Plug>VimspectorStepInto
 	nmenu WinBar.↑\ Out⁹      <Plug>VimspectorStepOut
@@ -465,6 +465,10 @@ endfunction
 function s:VimspectorUIbreakpointsPost() abort
 	nunmap <buffer> <leader><F3>
 	nmap <buffer><expr> <leader><F3> ":call win_gotoid(g:vimspector_session_windows['code'])<cr>:VimspectorReset<cr>"
+endfunction
+
+function s:VimspectorUIoutputPre() abort
+	set nonumber norelativenumber
 endfunction
 
 function s:VimspectorCreateUI() abort
