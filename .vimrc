@@ -452,14 +452,14 @@ function s:VimspectorUIcodePost() abort
 
 	" Clear the existing WinBar created by Vimspector
 	nunmenu WinBar
-	nmenu WinBar.▶\ Cont⁵     <Plug>VimspectorContinue
-	nmenu WinBar.\|\|\ Pause⁶ <Plug>VimspectorPause
-	nmenu WinBar.■\ Stop³     <Plug>VimspectorStop
-	nmenu WinBar.✕\ Closeˢ³   :VimspectorReset<cr>
-	nmenu WinBar.⟲\ Reload⁴  <Plug>VimspectorRestart
-	nmenu WinBar.↷\ Over⁷     <Plug>VimspectorStepOver
-	nmenu WinBar.↓\ Into⁸     <Plug>VimspectorStepInto
-	nmenu WinBar.↑\ Out⁹      <Plug>VimspectorStepOut
+	nmenu WinBar.▶Cont⁵     <Plug>VimspectorContinue
+	nmenu WinBar.\|\|Pause⁶ <Plug>VimspectorPause
+	nmenu WinBar.■Stop³     <Plug>VimspectorStop
+	nmenu WinBar.✕Closeˢ³   :VimspectorReset<cr>
+	nmenu WinBar.⟲Reload⁴  <Plug>VimspectorRestart
+	nmenu WinBar.↷Over⁷     <Plug>VimspectorStepOver
+	nmenu WinBar.↓Into⁸     <Plug>VimspectorStepInto
+	nmenu WinBar.↑Out⁹      <Plug>VimspectorStepOut
 endfunction
 
 function s:VimspectorUIbreakpointsPost() abort
