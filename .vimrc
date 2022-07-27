@@ -368,6 +368,8 @@ let g:rainbow_conf = {
 
 " easymotion/vim-easymotion
 let g:EasyMotion_use_migemo = 1  " match multibyte Japanese character with alphabetical input
+let g:EasyMotion_smartcase = 1  " lower case will match both lower and upper; upper case will match upper only
+let g:EasyMotion_use_smartsign_us = 1  " make 1 match 1 and !; ! will match ! only
 " avoid annoying syntax errors while jumping
 autocmd User EasyMotionPromptBegin silent! CocDisable
 autocmd User EasyMotionPromptEnd   silent! CocEnable
