@@ -372,7 +372,7 @@ let g:EasyMotion_smartcase = 1  " lower case will match both lower and upper; up
 let g:EasyMotion_use_smartsign_us = 1  " make 1 match 1 and !; ! will match ! only
 " avoid annoying syntax errors while jumping
 autocmd User EasyMotionPromptBegin silent! CocDisable
-autocmd User EasyMotionPromptEnd   silent! CocEnable \| call coc#refresh()
+autocmd User EasyMotionPromptEnd   silent! CocEnable
 
 
 " preservim/nerdtree
