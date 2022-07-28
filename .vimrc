@@ -448,6 +448,15 @@ nmap <silent><expr> <leader>db "\<Plug>VimspectorBreakpoints:if len(g:vimspector
 
 let s:vimspectorMappedBufnr = []
 " ⁰¹²³⁴⁵⁶⁷⁸⁹
+function s:VimspectorUIoutputPre() abort
+	set nonumber norelativenumber
+endfunction
+
+function s:VimspectorUIwatchesPre() abort
+	nnoremap <buffer> <up>   <up><up>
+	nnoremap <buffer> <down> <down><down>
+endfunction
+
 function s:VimspectorUIcodePost() abort
 	" Evaluate part of program
 	nmap <buffer> <f1> <Plug>VimspectorBalloonEval
@@ -468,10 +477,6 @@ endfunction
 function s:VimspectorUIbreakpointsPost() abort
 	nunmap <buffer> <leader><F3>
 	nmap <buffer><expr> <leader><F3> ":call win_gotoid(g:vimspector_session_windows['code'])<cr>:VimspectorReset<cr>"
-endfunction
-
-function s:VimspectorUIoutputPre() abort
-	set nonumber norelativenumber
 endfunction
 
 function s:VimspectorCreateUI() abort
