@@ -449,8 +449,10 @@ nmap <silent><expr> <leader>db "\<Plug>VimspectorBreakpoints:if len(g:vimspector
 
 let s:vimspectorMappedBufnr = []
 " ⁰¹²³⁴⁵⁶⁷⁸⁹
+" ['stack_trace', 'output', 'watches', 'terminal', 'variables', 'code', 'eval', 'mode', 'breakpoints', 'tabpage']
 function s:VimspectorUIoutputPre() abort
-	set nonumber norelativenumber
+	set nonumber 
+	set relativenumber
 endfunction
 
 function s:VimspectorUIwatchesPre() abort
