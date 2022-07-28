@@ -12,51 +12,51 @@ silent! normal! zE
 25,34fold
 40,46fold
 86,95fold
-128,135fold
-138,146fold
-171,176fold
-178,193fold
-195,201fold
-203,206fold
-212,218fold
-242,252fold
-149,261fold
-264,267fold
-270,286fold
-289,300fold
-303,317fold
-320,339fold
-342,347fold
-350,354fold
-357,366fold
-369,375fold
-378,389fold
-392,408fold
-411,412fold
-428,443fold
-451,453fold
-455,458fold
-460,475fold
-477,480fold
-482,495fold
-497,520fold
-522,539fold
-545,552fold
-415,552fold
-574,590fold
-555,605fold
+129,136fold
+139,147fold
+172,177fold
+179,194fold
+196,202fold
+204,207fold
+213,219fold
+243,253fold
+150,262fold
+265,268fold
+271,287fold
+290,301fold
+304,318fold
+321,340fold
+343,348fold
+351,355fold
+358,367fold
+370,376fold
+379,390fold
+393,409fold
+412,413fold
+429,444fold
+452,454fold
+456,459fold
+461,476fold
+478,481fold
+483,496fold
+498,521fold
+523,540fold
+546,553fold
+416,553fold
+575,591fold
+556,606fold
 let &fdl = &fdl
-149
+150
 normal! zo
-149
+150
 normal! zc
-415
+416
 normal! zo
-415
+416
 normal! zc
-555
+556
 normal! zo
-555
+556
 normal! zc
 let s:l = 120 - ((55 * winheight(0) + 25) / 51)
 if s:l < 1 | let s:l = 1 | endif

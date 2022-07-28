@@ -117,6 +117,7 @@ Plug 'kana/vim-textobj-line'
 Plug 'puremourning/vimspector'
 Plug '~/.fzf'
 Plug 'honza/vim-snippets'
+Plug 'tpope/vim-endwise'
 call plug#end()
 " call ":PlugUpdate [name ...]" to update plugins
 " call ":PlugInstall" to install plugins
