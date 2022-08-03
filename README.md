@@ -20,6 +20,7 @@ Note! This is a config file on Ubuntu 22.04 on WSL2. If you use another system, 
 [✓] [**vim-textobj-user**](https://github.com/kana/vim-textobj-user): Define `textobj` on your own  
 [✓] [**vim-textobj-line**](https://github.com/kana/vim-textobj-line): Make entire line as `textobj`s  
 [✓] [**VimSpector**](https://github.com/puremourning/vimspector): Debug right in Vim  
+[✓] [**endwise.vim**](https://github.com/tpope/vim-endwise): Close pairs when hitting `<enter>` in insert mode  
 ### Other plugins or functions
 [✓] [**vim-monokai**](https://github.com/crusoexia/vim-monokai): Beautiful dark theme  
 [✓] [**Powerline**](https://github.com/powerline/powerline): Multi-function status line  
