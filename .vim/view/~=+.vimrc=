@@ -36,15 +36,16 @@ silent! normal! zE
 429,444fold
 453,456fold
 458,461fold
-463,478fold
-480,483fold
-485,498fold
-500,523fold
-525,542fold
-548,555fold
-416,555fold
-577,593fold
-558,608fold
+463,466fold
+468,483fold
+485,488fold
+490,503fold
+505,528fold
+530,547fold
+553,560fold
+416,560fold
+582,598fold
+563,613fold
 let &fdl = &fdl
 150
 normal! zo
@@ -54,16 +55,16 @@ normal! zc
 normal! zo
 416
 normal! zc
-558
+563
 normal! zo
-558
+563
 normal! zc
-let s:l = 264 - ((135 * winheight(0) + 24) / 49)
+let s:l = 458 - ((101 * winheight(0) + 25) / 51)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 264
-normal! 0
+keepjumps 458
+normal! 01|
 let &g:so = s:so_save | let &g:siso = s:siso_save
 nohlsearch
 doautoall SessionLoadPost

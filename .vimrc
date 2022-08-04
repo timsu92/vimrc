@@ -451,7 +451,12 @@ let s:vimspectorMappedBufnr = []
 " ⁰¹²³⁴⁵⁶⁷⁸⁹
 " ['stack_trace', 'output', 'watches', 'terminal', 'variables', 'code', 'eval', 'mode', 'breakpoints', 'tabpage']
 function s:VimspectorUIoutputPre() abort
-	set nonumber 
+	set nonumber
+	set relativenumber
+endfunction
+
+function s:VimspectorUIterminalPre() abort
+	set nonumber
 	set relativenumber
 endfunction
 
