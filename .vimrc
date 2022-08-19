@@ -234,6 +234,7 @@ xmap <leader>f    <Plug>(coc-format-selected)
 nmap <leader>f    <Plug>(coc-format-selected)
 " Update signature help on jump placeholder.
 autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+inoremap <expr> <c-p> CocActionAsync('showSignatureHelp')
 " Apply AutoFix to problem on the current line.
 nmap <leader>qf  <Plug>(coc-fix-current)
 " Add `:Fold` command to fold current buffer.
