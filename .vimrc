@@ -293,6 +293,7 @@ vmap <leader>c<space> <Plug>NERDCommenterToggle
 
 
 " Konfekt/FastFold
+nmap zuz <Plug>(FastFoldUpdate)
 set foldlevel=99 " Open all folds. Close them using 0
 autocmd BufReadPost * if line('$') > 65 | set foldlevel=0 | endif
 let g:fastfold_savehook = 0
