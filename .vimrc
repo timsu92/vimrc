@@ -44,20 +44,16 @@ set hlsearch
 :command W w
 :command Q q
 
-" no wrap
-" set nowrap
-
 " 佈景主題
 syntax on
 colorscheme monokai
 set termguicolors
 let g:monokai_term_italic = 1
 let g:monokai_gui_italic = 1
-
 " 預設的暗色佈景主題
 " colorscheme ron
+
 set encoding=utf-8
-set hidden
 set cmdheight=2
 set updatetime=600
 
@@ -71,11 +67,11 @@ nmap mv <c-v>
 
 " Load matchit.vim, but only if the user hasn't installed a newer version.
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
-  runtime! macros/matchit.vim
+	filetype plugin on
+	runtime! macros/matchit.vim
 endif
 
 " PowerLine
-set rtp+=/usr/local/lib/python3.8/dist-packages/powerline_status-2.8.2-py3.8.egg/powerline/bindings/vim
 set laststatus=2 " always show the statusline rendered by PowerLine
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 function! PowerlineSetup ()
@@ -134,6 +130,7 @@ endif
 "	*= Around all occurrences
 "	**= Left/Right alternating alignment around all occurrences
 "	<Enter> Switching between left/right/center alignment modes
+"		Use before =
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
@@ -151,6 +148,7 @@ set nobackup
 set nowritebackup
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
+set hidden
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
 if has("nvim-0.5.0") || has("patch-8.1.1564")
@@ -196,6 +194,7 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -403,6 +402,10 @@ let g:expand_region_text_objects = {
 
 " Xuyuanp/nerdtree-git-plugin
 let g:NERDTreeGitStatusUseNerdFonts = 1
+
+
+" ryanoasis/vim-devicons
+set encoding=UTF-8
 
 
 " puremourning/vimspector
