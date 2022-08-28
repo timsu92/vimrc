@@ -143,12 +143,11 @@ nmap ga <Plug>(EasyAlign)
 "	- means extension is disabled
 "	Use arrows to navigate. Hit <TAB> to activate action menu
 let g:coc_global_extensions = ['coc-json', 'coc-clangd', 'coc-cmake', 'coc-highlight', 'coc-html', 'coc-sh', 'coc-vimlsp', 'coc-pairs', 'coc-omni', 'coc-word', 'coc-snippets', 'coc-markdownlint', 'coc-spell-checker']
+
 " Some servers have issues with backup files, see #649.
 set nobackup
 set nowritebackup
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
-set hidden
+
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
 if has("nvim-0.5.0") || has("patch-8.1.1564")
@@ -184,11 +183,11 @@ endif
 
 " Use tab for navigate, snippet jump.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
+      \ coc#pum#visible() ? coc#pum#next(1) :
       \ coc#jumpable() ? "\<C-r>=coc#snippet#next()\<CR>" :
       \ <sid>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+inoremap <expr> <S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -364,8 +363,8 @@ let g:EasyMotion_use_migemo = 1  " match multibyte Japanese character with alpha
 let g:EasyMotion_smartcase = 1  " lower case will match both lower and upper; upper case will match upper only
 let g:EasyMotion_use_smartsign_us = 1  " make 1 match 1 and !; ! will match ! only
 " avoid annoying syntax errors while jumping
-autocmd User EasyMotionPromptBegin silent! CocDisable
-autocmd User EasyMotionPromptEnd   silent! CocEnable
+autocmd User EasyMotionPromptBegin :let b:coc_diagnostic_disable = 1
+autocmd User EasyMotionPromptEnd   :let b:coc_diagnostic_disable = 0
 
 
 " preservim/nerdtree
