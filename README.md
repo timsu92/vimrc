@@ -5,7 +5,7 @@ Note! This is a config file on Ubuntu 22.04 on WSL2. If you use another system, 
 [✓] [**coc**](https://github.com/neoclide/coc.nvim): Code linting, code complete, error checking and more!  
 [✓] [**vim-easy-align**](https://github.com/junegunn/vim-easy-align): Align your code with ease  
 [✓] [**nerdcommenter**](https://github.com/preservim/nerdcommenter): Comment code with ease  
-[✓] [**grayout.vim**](https://github.com/mphe/grayout.vim): Grayout unused code in `#` preprocessor blocks of C/C++  
+[✗] [**grayout.vim**](https://github.com/mphe/grayout.vim): (disabled as coc can do the job)Grayout unused code in `#` preprocessor blocks of C/C++  
 [✓] [**FastFold**](https://github.com/Konfekt/FastFold): Recognizes languages and create folds  
 [✗] [**tagbar**](https://github.com/preservim/tagbar): Navigate around code (disabled currently as I'm not using it)  
 [✓] [**vim-stay**](https://github.com/zhimsel/vim-stay): Memorized page position, cursor position, folds' status  

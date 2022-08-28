@@ -2,5 +2,6 @@
 	"coc.source.omni.filetypes": ["VimspectorPrompt"],
 	"markdownlint.config": {
 		"line_length": false
-	}
+	},
+	"semanticTokens.filetypes": ["*"]
 }

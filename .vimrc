@@ -86,7 +86,7 @@ call plug#begin()
 Plug 'junegunn/vim-easy-align'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdcommenter'
-Plug 'mphe/grayout.vim'
+" Plug 'mphe/grayout.vim', {'for': "c,cpp"}
 Plug 'Konfekt/FastFold'
 " Plug 'preservim/tagbar'
 Plug 'zhimsel/vim-stay'
@@ -278,18 +278,18 @@ vmap <leader>cu       <Plug>NERDCommenterUncomment
 vmap <leader>c<space> <Plug>NERDCommenterToggle
 
 
-" mphe/grayout.vim
-" Set libclang searchpath. This should point to the directory containing `libclang.so`.
-let g:grayout_libclang_path = '/usr/lib/llvm-14/lib'
-" Set default compile flags.
-" These are used, when no `compile_commands.json` or `.grayout.conf` file was found.
-autocmd BufNewFile,BufReadPost * if &ft == 'c' | let g:grayout_default_args = ['-x', 'c', '-std=c11'] | endif
-autocmd BufNewFile,BufReadPost * if &ft == 'cpp' | let g:grayout_default_args = ['-x', "c++", '-std=c++14'] | endif
-" Run GrayoutUpdate when cursor stands still. This can cause lag in more complex files.
-autocmd CursorHold,CursorHoldI * if &ft == 'c' || &ft == 'cpp' || &ft == 'objc' | exec 'GrayoutUpdate' | endif
-" Run GrayoutUpdate when opening and saving a buffer
-autocmd BufReadPost,BufWritePost * if &ft == 'c' || &ft == 'cpp' || &ft == 'objc' | exec 'GrayoutUpdate' | endif
-highlight PreprocessorGrayout ctermfg=DarkGray guifg=#6c6c6c
+" " mphe/grayout.vim
+" " Set libclang searchpath. This should point to the directory containing `libclang.so`.
+" let g:grayout_libclang_path = '/usr/lib/llvm-14/lib'
+" " Set default compile flags.
+" " These are used, when no `compile_commands.json` or `.grayout.conf` file was found.
+" autocmd BufNewFile,BufReadPost * if &ft == 'c' | let g:grayout_default_args = ['-x', 'c', '-std=c11'] | endif
+" autocmd BufNewFile,BufReadPost * if &ft == 'cpp' | let g:grayout_default_args = ['-x', "c++", '-std=c++14'] | endif
+" " Run GrayoutUpdate when cursor stands still. This can cause lag in more complex files.
+" autocmd CursorHold,CursorHoldI * if &ft == 'c' || &ft == 'cpp' || &ft == 'objc' | exec 'GrayoutUpdate' | endif
+" " Run GrayoutUpdate when opening and saving a buffer
+" autocmd BufReadPost,BufWritePost * if &ft == 'c' || &ft == 'cpp' || &ft == 'objc' | exec 'GrayoutUpdate' | endif
+" highlight PreprocessorGrayout ctermfg=DarkGray guifg=#6c6c6c
 
 
 " Konfekt/FastFold
