@@ -22,16 +22,7 @@ set noinfercase
 
 set cursorline  " highlighting of the current line
 
-" auto close brackets
-" inoremap " ""<left>
-" autocmd FileType vim iunmap "
-" inoremap ' ''<left>
-" inoremap ( ()<left>
-" inoremap [ []<left>
-" inoremap { {}<left>
-" inoremap {<CR> {<CR>}<ESC>O
-" inoremap {;<CR> {<CR>};<ESC>O
-" autocmd FileType vim inoremap <lt> <lt>><left>
+imap {; {<right>;<left><left>
 
 " line-brake and paste prototype
 " autocmd FileType c,cpp nnoremap <silent> 0 o<ESC>]pA<BS>{}<Left><CR><esc>O

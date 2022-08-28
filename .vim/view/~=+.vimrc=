@@ -9,62 +9,61 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-25,34fold
-40,46fold
-86,95fold
-129,136fold
-139,147fold
-172,177fold
-179,194fold
-196,202fold
-204,207fold
-213,219fold
-244,254fold
-150,263fold
-266,269fold
-272,288fold
-291,302fold
-305,319fold
-322,341fold
-344,349fold
-352,356fold
-359,368fold
-371,377fold
-380,391fold
-394,410fold
-413,414fold
-430,445fold
-454,457fold
-459,462fold
-464,467fold
-469,484fold
-486,489fold
-491,504fold
-506,529fold
-531,548fold
-554,561fold
-417,561fold
-583,599fold
-564,614fold
+31,37fold
+77,86fold
+120,127fold
+130,138fold
+163,168fold
+170,185fold
+187,193fold
+195,198fold
+204,210fold
+235,245fold
+141,254fold
+257,260fold
+263,279fold
+282,293fold
+296,310fold
+313,332fold
+335,340fold
+343,347fold
+350,359fold
+362,368fold
+371,382fold
+385,401fold
+404,405fold
+421,436fold
+445,448fold
+450,453fold
+455,458fold
+460,475fold
+477,480fold
+482,495fold
+497,520fold
+522,539fold
+545,552fold
+408,552fold
+574,590fold
+555,605fold
 let &fdl = &fdl
-150
+141
 normal! zo
-150
+141
 normal! zc
-417
+408
 normal! zo
-417
+408
 normal! zc
-564
+555
 normal! zo
-564
+555
 normal! zc
-let s:l = 213 - ((65 * winheight(0) + 25) / 51)
+let s:l = 25 - ((24 * winheight(0) + 25) / 50)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 213
-normal! 0
+keepjumps 25
+normal! 029|
 let &g:so = s:so_save | let &g:siso = s:siso_save
 nohlsearch
 doautoall SessionLoadPost
