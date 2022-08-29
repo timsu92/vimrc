@@ -310,33 +310,33 @@ let g:zsh_fold_enable = 1
 autocmd TextChanged <silent> <Plug>(FastFoldUpdate)
 
 
-" preservim/tagbar
-" visibility of a tag is shown as { 'public' : '+', 'protected' : '#', 'private' : '-' }
-" nmap <silent> <F8> :TagbarToggle<CR>
-" imap <silent> <F8> <C-O>:TagbarToggle<CR><esc>
-" 視窗水平分割在上方
-let g:tagbar_position = 'top'
-let g:tagbar_height = 13
-" automatically close when you jump to a tag (implies moving cursor to Tagbar window while opening)
-let g:tagbar_autoclose = 1
-" show tag's data-type right of the tag
-let g:tagbar_show_data_type = 1
-" print the tag line number next to the tag in the tagbar (print to the left of the tag)
-" let g:tagbar_show_tag_linenumbers = 2
-" single click to navigate
-let g:tagbar_singleclick = 1
-let g:tagbar_autoshowtag = 1
-" let g:tagbar_autopreview = 1
-let g:tagbar_sort = 0
-let g:no_status_line = 1
-autocmd FileType vim,diff let b:tagbar_ignore = 1
+" " preservim/tagbar
+" " visibility of a tag is shown as { 'public' : '+', 'protected' : '#', 'private' : '-' }
+" " nmap <silent> <F8> :TagbarToggle<CR>
+" " imap <silent> <F8> <C-O>:TagbarToggle<CR><esc>
+" " 視窗水平分割在上方
+" let g:tagbar_position = 'top'
+" let g:tagbar_height = 13
+" " automatically close when you jump to a tag (implies moving cursor to Tagbar window while opening)
+" let g:tagbar_autoclose = 1
+" " show tag's data-type right of the tag
+" let g:tagbar_show_data_type = 1
+" " print the tag line number next to the tag in the tagbar (print to the left of the tag)
+" " let g:tagbar_show_tag_linenumbers = 2
+" " single click to navigate
+" let g:tagbar_singleclick = 1
+" let g:tagbar_autoshowtag = 1
+" " let g:tagbar_autopreview = 1
+" let g:tagbar_sort = 0
+" let g:no_status_line = 1
+" autocmd FileType vim,diff let b:tagbar_ignore = 1
 
 
 " zhimsel/vim-stay
 " type ":CleanViewdir[!] [days]" to remove saved view sessions older than
 " [days]. The bang version will remove w/o confirmation
 set viewoptions=cursor,slash,unix,folds
-autocmd FileType diff,gitcommit set viewoptions=
+autocmd FileType diff,gitcommit,vim-plug set viewoptions=
 autocmd FileType json set viewoptions-=folds
 
 
@@ -553,7 +553,7 @@ augroup VIMSPECTOR_SESSION
 	autocmd VIMSPECTOR_SESSION BufReadPost * silent! execute("VimspectorLoadSession " . s:vimspectorSessionPrefix . s:vimspectorSessionFileName)
 	autocmd VIMSPECTOR_SESSION BufWritePost * silent execute("VimspectorMkSession " . s:vimspectorSessionPrefix . s:vimspectorSessionFileName)
 augroup end
-autocmd FileType diff,gitcommit,json,vim,sh,zsh,log au! VIMSPECTOR_SESSION
+autocmd FileType diff,gitcommit,json,vim,sh,zsh,log,vim-plug au! VIMSPECTOR_SESSION
 
 
 " fzf
