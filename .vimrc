@@ -93,7 +93,7 @@ Plug 'zhimsel/vim-stay'
 " Plug 'crusoexia/vim-monokai' installed manually instead
 " Plug 'pangloss/vim-javascript'
 Plug 'luochen1990/rainbow'
-Plug 'easymotion/vim-easymotion'
+Plug 'timsu92/vim-easymotion'
 Plug 'preservim/nerdtree' | 
 	\ Plug 'Xuyuanp/nerdtree-git-plugin' |
 	\ Plug 'ryanoasis/vim-devicons' " plugins uses it must load before it

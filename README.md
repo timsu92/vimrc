@@ -11,7 +11,7 @@ Note! This is a config file on Ubuntu 22.04 on WSL2. If you use another system, 
 [✓] [**vim-stay**](https://github.com/zhimsel/vim-stay): Memorized page position, cursor position, folds' status  
 [✗] [**vim-javascript**](https://github.com/pangloss/vim-javascript): JavaScript bundle for vim (Never used. Disabled currently)  
 [✓] [**rainbow**](https://github.com/luochen1990/rainbow): Colorful parentheses, brackets... for locate with ease  
-[✓] [**easymotion**](https://github.com/easymotion/vim-easymotion): Move your cursor faster and easier  
+[✓] [**easymotion**](https://github.com/timsu92/vim-easymotion): Move your cursor faster and easier  
 [✓] [**nerdtree**](https://github.com/preservim/nerdtree): File explorer  
 [✓] [**nerdtree-git-plugin**](https://github.com/Xuyuanp/nerdtree-git-plugin): Show Git status in NERDTree  
 [✓] [**vim-devicons**](https://github.com/ryanoasis/vim-devicons): Prettified icons for various file types  
