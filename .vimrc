@@ -245,7 +245,8 @@ omap ac <Plug>(coc-classobj-a)
 " Used for the format on type and improvement of brackets
 " inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 	" \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-inoremap <silent><expr> <cr> coc#expandable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand',''])\<CR>" :
+inoremap <silent><expr> <cr> coc#pum#visible() ? coc#pum#confirm() :
+			\ coc#expandable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand',''])\<CR>" :
 			\ "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Highlight the symbol and its references when holding the cursor.
