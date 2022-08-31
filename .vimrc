@@ -554,7 +554,7 @@ augroup VIMSPECTOR_SESSION
 	autocmd VIMSPECTOR_SESSION BufReadPost * silent! execute("VimspectorLoadSession " . s:vimspectorSessionPrefix . s:vimspectorSessionFileName)
 	autocmd VIMSPECTOR_SESSION BufWritePost * silent execute("VimspectorMkSession " . s:vimspectorSessionPrefix . s:vimspectorSessionFileName)
 augroup end
-autocmd FileType diff,gitcommit,json,vim,sh,zsh,log,vim-plug au! VIMSPECTOR_SESSION
+autocmd FileType diff,gitcommit,json,vim,sh,zsh,log,vim-plug,gitconfig au! VIMSPECTOR_SESSION
 
 
 " fzf
