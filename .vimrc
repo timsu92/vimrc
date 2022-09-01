@@ -144,7 +144,7 @@ nmap ga <Plug>(EasyAlign)
 "	+ means extension is loaded
 "	- means extension is disabled
 "	Use arrows to navigate. Hit <TAB> to activate action menu
-let g:coc_global_extensions = ['coc-json', 'coc-clangd', 'coc-cmake', 'coc-highlight', 'coc-html', 'coc-sh', 'coc-vimlsp', 'coc-pairs', 'coc-omni', 'coc-word', 'coc-snippets', 'coc-markdownlint', 'coc-spell-checker', 'coc-lightbulb', 'fannheyward/coc-pyright']
+let g:coc_global_extensions = ['coc-json', 'coc-clangd', 'coc-cmake', 'coc-highlight', 'coc-html', 'coc-sh', 'coc-vimlsp', 'coc-pairs', 'coc-omni', 'coc-word', 'coc-snippets', 'coc-markdownlint', 'coc-spell-checker', 'coc-lightbulb', 'coc-pyright']
 
 " Some servers have issues with backup files, see #649.
 set nobackup
