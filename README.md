@@ -22,6 +22,7 @@ Note! This is a config file on Ubuntu 22.04 on WSL2. If you use another system, 
 [✓] [**VimSpector**](https://github.com/puremourning/vimspector): Debug right in Vim  
 [✓] [**vim-snippets**](https://github.com/honza/vim-snippets): Snippets for expressing ideas in few key strokes  
 [✓] [**endwise.vim**](https://github.com/tpope/vim-endwise): Close pairs when hitting `<enter>` in insert mode  
+[✓] [**SimpylFold**](https://github.com/tmhedberg/SimpylFold): Fold class and function definitions in Python  
 ### Other plugins or functions
 [✓] [**vim-monokai**](https://github.com/crusoexia/vim-monokai): Beautiful dark theme  
 [✓] [**Powerline**](https://github.com/powerline/powerline): Multi-function status line  

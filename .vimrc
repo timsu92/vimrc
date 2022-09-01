@@ -106,6 +106,7 @@ Plug 'puremourning/vimspector'
 Plug '~/.fzf'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-endwise'
+Plug 'tmhedberg/SimpylFold', {'for': 'python,cython'}
 call plug#end()
 " call ":PlugUpdate [name ...]" to update plugins
 " call ":PlugInstall" to install plugins
@@ -608,3 +609,7 @@ command -complete=dir -nargs=? LS
 command -complete=dir -nargs=? LA
 	\ call fzf#run(fzf#wrap('ls', {'source': 'ls -A', 'dir': <q-args>}))
 nmap <silent> <c-n> :LA<cr>
+
+
+" tmhedberg/SimpylFold
+let g:SimpylFold_docstring_preview = 1
