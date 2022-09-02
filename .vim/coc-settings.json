@@ -3,5 +3,28 @@
 	"markdownlint.config": {
 		"line_length": false
 	},
-	"semanticTokens.filetypes": ["*"]
+	"semanticTokens.filetypes": ["*"],
+	"python.analysis.diagnosticSeverityOverrides": {
+		"reportImportCycles": "information",
+		"reportUnusedImport": "information",
+		"reportUnusedClass": "information",
+		"reportUnusedFunction": "information",
+		"reportUnusedVariable": "information",
+		"reportDuplicateImport": "warning",
+		"reportUntypedNamedTuple": "information",
+		"reportPrivateUsage": "warning",
+		"reportTypeCommentUsage": "warning",
+		"reportConstantRedefinition": "warning",
+		"reportIncompatibleMethodOverride": "information",
+		"reportIncompatibleVariableOverride": "information",
+		"reportMissingSuperCall": "error",
+		"reportUninitializedInstanceVariable": "error",
+		"reportMissingTypeArgument": "information",
+		"reportUnnecessaryIsInstance": "information",
+		"reportUnnecessaryCast": "information",
+		"reportUnnecessaryComparison": "information",
+		"reportUnnecessaryContains": "information",
+		"reportImplicitStringConcatenation": "warning",
+		"reportUnnecessaryTypeIgnoreComment": "information"
+	}
 }
