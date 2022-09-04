@@ -305,7 +305,6 @@ let g:fastfold_minlines = 6
 let g:fastfold_skip_filetypes = ['diff', 'list']
 let g:markdown_folding = 1
 autocmd FileType c,cpp,sh,zsh,json setlocal foldmethod=syntax
-autocmd FileType python setlocal foldmethod=indent
 " javascript在vim-javascript
 let g:sh_fold_enabled = 7
 let g:zsh_fold_enable = 1
