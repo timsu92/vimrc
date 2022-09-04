@@ -1,7 +1,7 @@
 {
 	"$schema": "https://puremourning.github.io/vimspector/schema/vimspector.schema.json#",
 	"configurations": {
-		"launch": {
+		"launch - C family": {
 			"adapter": "vscode-cpptools",
 			"filetypes": [
 				"cpp",
@@ -10,7 +10,6 @@
 				"rust"
 			],
 			"configuration": {
-				"name": "launch",
 				"type":"cppdbg",
 				"request": "launch",
 				"program": "${workspaceRoot}/a.out",
@@ -36,9 +35,9 @@
 				}
 			}
 		},
-		"launch - input from in": {
+		"launch - C family - input from in": {
 			"default": true,
-			"extends": "launch",
+			"extends": "launch - C family",
 			"filetypes": [
 				"cpp",
 				"c",
@@ -54,11 +53,35 @@
 				}
 			}
 		},
-		"attach": {
-			"extends": "launch",
+		"launch - Python":{
+			"adapter":"debugpy",
+			"filetypes": ["python"],
 			"configuration": {
-				"name": "attach",
-				"request": "attach"
+				"type": "python",
+				"request": "launch",
+				"console": "externalTerminal",
+				"python": "${PYTHON}"
+			},
+			"breakpoints": {
+				"exception": {
+					"raised": "N",
+					"uncaught": "Y",
+					"userUnhandled": "Y"
+				}
+			},
+			"variables":{
+				"PYTHON":{
+					"shell": ["which", "python"]
+				}
+			},
+			"autoselect": false
+		},
+		"launch - Python - one file":{
+			"extends": "launch - Python",
+			"default": true,
+			"configuration": {
+				"cwd": "${workspaceRoot}",
+				"program": "${relativeFile}"
 			}
 		}
 	}
