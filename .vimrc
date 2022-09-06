@@ -254,6 +254,24 @@ inoremap <silent><expr> <cr> coc#pum#visible() ? coc#pum#confirm() :
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold,CursorHoldI * call CocActionAsync('highlight')
 
+" Use <c-w>w to close most recent float window
+nmap <expr> <c-w>w
+	\ <sid>coc_float_close_last() ? '' : ''
+
+function! s:coc_float_close_last() abort
+	if(get(g:, 'coc_last_float_win', v:null) is v:null || index(popup_list(), g:coc_last_float_win) == -1)
+		" no such float
+		return v:false
+	endif
+	if(!has_key(getwininfo(g:coc_last_float_win)[0]['variables'], 'float') || getwininfo(g:coc_last_float_win)[0]['variables']['float'] == 0)
+		" not a float
+		return v:false
+	endif
+	call coc#float#close(g:coc_last_float_win)
+	redraw
+	return v:true
+endfunction
+
 
 " coc-snippets
 " select text for visual placeholder of snippet

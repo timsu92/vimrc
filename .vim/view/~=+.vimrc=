@@ -25,63 +25,64 @@ silent! normal! zE
 199,202fold
 204,210fold
 235,245fold
-140,255fold
-258,261fold
-264,280fold
-283,294fold
-297,311fold
-314,333fold
-336,341fold
-344,348fold
-351,360fold
-363,369fold
-372,383fold
-386,402fold
-405,406fold
-409,410fold
-426,441fold
-450,453fold
-455,458fold
-460,463fold
-465,480fold
-482,485fold
-487,500fold
-507,520fold
-502,525fold
-528,541fold
-527,544fold
-550,557fold
-413,557fold
-568,574fold
-579,595fold
-560,610fold
-613,614fold
+261,273fold
+140,273fold
+276,279fold
+282,298fold
+301,312fold
+315,329fold
+332,351fold
+354,359fold
+362,366fold
+369,378fold
+381,387fold
+390,401fold
+404,420fold
+423,424fold
+427,428fold
+444,459fold
+468,471fold
+473,476fold
+478,481fold
+483,498fold
+500,503fold
+505,518fold
+525,538fold
+520,543fold
+546,559fold
+545,562fold
+568,575fold
+431,575fold
+586,592fold
+597,613fold
+578,628fold
+631,632fold
 let &fdl = &fdl
 140
 normal! zo
 140
 normal! zc
-413
+431
 normal! zo
-502
+520
 normal! zo
-502
+520
 normal! zc
-527
+545
 normal! zo
-527
+545
 normal! zc
-413
+431
 normal! zc
-560
+578
 normal! zo
-560
+578
 normal! zc
-let s:l = 112 - ((2 * winheight(0) + 25) / 50)
+let s:l = 116 - ((4 * winheight(0) + 25) / 50)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 112
+keepjumps 116
 normal! 0
 let &g:so = s:so_save | let &g:siso = s:siso_save
 nohlsearch
