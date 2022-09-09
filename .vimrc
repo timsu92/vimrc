@@ -465,12 +465,8 @@ nmap <silent><expr> <leader>db "\<Plug>VimspectorBreakpoints:if len(g:vimspector
 let s:vimspectorMappedBufnr = []
 " ⁰¹²³⁴⁵⁶⁷⁸⁹
 " ['stack_trace', 'output', 'watches', 'terminal', 'variables', 'code', 'eval', 'mode', 'breakpoints', 'tabpage']
+" 'terminal' isn't created when VimspectorUICreated
 function s:VimspectorUIoutputPre() abort
-	set nonumber
-	set relativenumber
-endfunction
-
-function s:VimspectorUIterminalPre() abort
 	set nonumber
 	set relativenumber
 endfunction
@@ -542,6 +538,32 @@ function s:VimspectorInitBuf() abort
 	call add(s:vimspectorMappedBufnr, bufnr())
 endfunction
 
+function s:VimspectorInitTerm() abort
+	if(index(s:vimspectorMappedBufnr, g:vimspector_session_windows['terminal']) != -1)
+		return
+	endif
+
+	call win_gotoid(g:vimspector_session_windows['terminal'])
+	call s:VimspectorInitBuf()
+
+	set nonumber
+	set relativenumber
+	" HUMAN-like mappings
+	tmap     <F3>            <c-\><c-n><Plug>VimspectorStop
+	tnoremap <leader><F3>    <c-\><c-n>:VimspectorReset<cr>
+	tmap     <F4>            <c-\><c-n><Plug>VimspectorRestart
+	tmap     <F6>            <c-\><c-n><Plug>VimspectorPause
+	tmap     <F7>            <c-\><c-n><Plug>VimspectorStepOver
+	tmap     <F8>            <c-\><c-n><Plug>VimspectorStepInto
+	tmap     <F9>            <c-\><c-n><Plug>VimspectorStepOut
+	tmap     <Leader><s-F12> <c-\><c-n><Plug>VimspectorUpFrame
+	tmap     <Leader><F12>   <c-\><c-n><Plug>VimspectorDownFrame
+
+	tnoremap <leader><TAB>    <c-\><c-n>:VimspectorShowOutput 
+	tnoremap <leader><leader> <leader>
+
+endfunction
+
 function s:VimspectorOnDebugEnd() abort
 	for l:bufnr in s:vimspectorMappedBufnr
 		silent! nunmap <buffer> <F3>
@@ -557,12 +579,24 @@ function s:VimspectorOnDebugEnd() abort
 		silent! xunmap <buffer> <f1>
 		silent! nunmap <buffer> <leader><TAB>
 	endfor
+	silent! tunmap <f3>
+	silent! tunmap <leader><f3>
+	silent! tunmap <f4>
+	silent! tunmap <f6>
+	silent! tunmap <f7>
+	silent! tunmap <f8>
+	silent! tunmap <f9>
+	silent! tunmap <Leader><s-F12>
+	silent! tunmap <Leader><F12>
+	silent! tunmap <leader><TAB>
+	silent! tunmap <leader><leader>
 
 	let s:vimspectorMappedBufnr = []
 endfunction
 
-autocmd User VimspectorUICreated call <sid>VimspectorCreateUI()
-autocmd User VimspectorJumpedToFrame call <sid>VimspectorInitBuf()
+autocmd User VimspectorUICreated           call <sid>VimspectorCreateUI()
+autocmd User VimspectorJumpedToFrame       call <sid>VimspectorInitBuf()
+autocmd User VimspectorTerminalOpened      call <sid>VimspectorInitTerm()
 autocmd User VimspectorDebugEnded ++nested call <sid>VimspectorOnDebugEnd()
 
 " Save/load session file
