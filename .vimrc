@@ -690,7 +690,7 @@ let g:fastfold_savehook = 0
 let g:fastfold_fold_command_suffixes =  ['x','X','a','A','O','C']
 let g:fastfold_fold_movement_commands = [']z','[z','zj','zk']
 let g:fastfold_minlines = 6
-let g:fastfold_skip_filetypes = ['diff', 'list']
+let g:fastfold_skip_filetypes = ['diff', 'list', 'gitcommit', 'vim-plug']
 let g:markdown_folding = 1
 autocmd FileType c,cpp,sh,zsh,json setlocal foldmethod=syntax
 " javascript在vim-javascript
