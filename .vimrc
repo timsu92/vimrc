@@ -214,7 +214,7 @@ function! ShowDocumentation() "{{{
   if CocAction('hasProvider', 'hover')
     call CocActionAsync('doHover')
   else
-    call feedkeys('\<f1>', 'in')
+    call feedkeys("\<f1>", 'in')
   endif
 endfunction "}}}
 
