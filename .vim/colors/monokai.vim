@@ -5,7 +5,7 @@
 "
 " The colour palette is from http://www.colourlovers.com/
 
-" Initialisation
+" Initialization
 " --------------
 
 if !has("gui_running") && &t_Co < 256
@@ -19,8 +19,6 @@ endif
 if ! exists("g:monokai_term_italic")
     let g:monokai_term_italic = 0
 endif
-
-let g:monokai_termcolors = 256 " does not support 16 color term right now.
 
 set background=dark
 hi clear
@@ -48,13 +46,8 @@ function! s:h(group, style)
     let s:guiformat = substitute(s:guiformat, "italic,", "", "")
     let s:guiformat = substitute(s:guiformat, "italic", "", "")
   endif
-  if g:monokai_termcolors == 16
-    let l:ctermfg = (has_key(a:style, "fg") ? a:style.fg.cterm16 : "NONE")
-    let l:ctermbg = (has_key(a:style, "bg") ? a:style.bg.cterm16 : "NONE")
-  else
-    let l:ctermfg = (has_key(a:style, "fg") ? a:style.fg.cterm : "NONE")
-    let l:ctermbg = (has_key(a:style, "bg") ? a:style.bg.cterm : "NONE")
-  end
+  let l:ctermfg = (has_key(a:style, "fg") ? a:style.fg.cterm : "NONE")
+  let l:ctermbg = (has_key(a:style, "bg") ? a:style.bg.cterm : "NONE")
   execute "highlight" a:group
     \ "guifg="   (has_key(a:style, "fg")      ? a:style.fg.gui   : "NONE")
     \ "guibg="   (has_key(a:style, "bg")      ? a:style.bg.gui   : "NONE")
@@ -162,8 +155,8 @@ call s:h("FoldColumn",    {                     "bg": s:darkblack })
 "        Incsearch"
 
 " popup menu
-call s:h("Pmenu",         { "fg": s:white2,     "bg": s:lightblack3 })
-call s:h("PmenuSel",      { "fg": s:aqua,       "bg": s:lightblack3,        "format": "reverse,bold" })
+call s:h("Pmenu",         { "fg": s:white2,     "bg": s:lightblack2 })
+call s:h("PmenuSel",      { "fg": s:lightgrey,       "bg": s:lightblack2,        "format": "reverse,bold" })
 call s:h("PmenuThumb",    { "fg": s:lightblack, "bg": s:grey })
 "        PmenuSbar"
 
@@ -246,6 +239,7 @@ call s:h("CocWarningFloat",         { "fg": s:orange, "bg": s:lightblack3 })
 
 call s:h("CocInfoSign",             { "fg": s:yellow, "bg": s:lightblack3 })
 call s:h("CocInfoHighlight",        { "format": "underline" })
+"call s:h("CocInfoHighlight",        { "bg": s:lightblack2, "format": "underline" })
 
 call s:h("CocHintSign",             { "fg": s:white, "bg": s:lightblack3 })
 call s:h("CocHintHighlight",        { "format": "underline" })
