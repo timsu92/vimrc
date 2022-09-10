@@ -283,8 +283,6 @@ endfunction
 
 
 " coc-snippets {{{
-" select text for visual placeholder of snippet
-vmap <c-s-right> <Plug>(coc-snippets-select)
 let g:coc_snippet_next = '<tab>'
 "}}}
 
