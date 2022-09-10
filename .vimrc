@@ -29,13 +29,14 @@ imap {; {<right>;<left><left>
 " autocmd FileType c,cpp nnoremap <silent> 0 o<ESC>]pA<BS>{}<Left><CR><esc>O
 autocmd FileType c,cpp nnoremap <silent> 0 yyGo<ESC>]pA<BS>{}<Left><CR><esc>O
 
-" move a line up/down
+" move a line up/down {{{
 inoremap <c-up>   <esc>dd<up>]Pi
 inoremap <c-down> <esc>dd]pi
 xnoremap <c-up>   d<up>]P
 xnoremap <c-down> d]p
 nnoremap <c-up>   Vd<up>]P
 nnoremap <c-down> Vd]p
+"}}}
 
 " highlight search
 set hlsearch
@@ -45,7 +46,7 @@ set hlsearch
 :command W w
 :command Q q
 
-" 佈景主題
+" 佈景主題 {{{
 syntax on
 colorscheme monokai
 set termguicolors
@@ -53,26 +54,30 @@ let g:monokai_term_italic = 1
 let g:monokai_gui_italic = 1
 " 預設的暗色佈景主題
 " colorscheme ron
+"}}}
 
 set encoding=utf-8
 set cmdheight=2
 set updatetime=600
 
-" 以摺疊移動
+" 以摺疊移動 {{{
 nnoremap z<up>   zk
 nnoremap z<down> zj
+"}}}
 
-" block-wise visual mode
+" block-wise visual mode {{{
 " Used for 多欄選取。Windows會變成貼上
 nmap mv <c-v>
+"}}}
 
-" Load matchit.vim, but only if the user hasn't installed a newer version.
+" Load matchit.vim, but only if the user hasn't installed a newer version. {{{
 if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
 	filetype plugin on
 	runtime! macros/matchit.vim
 endif
+"}}}
 
-" PowerLine
+" PowerLine {{{
 set laststatus=2 " always show the statusline rendered by PowerLine
 set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
 function! PowerlineSetup ()
@@ -81,6 +86,7 @@ function! PowerlineSetup ()
 	py3 del powerline_setup
 endfunction
 call PowerlineSetup()
+"}}}
 
 " vim-plug
 call plug#begin()
@@ -115,7 +121,7 @@ call plug#end()
 " call ":PlugClean" to remove unlisted plugins
 
 
-" WSL yank support
+" WSL yank support {{{
 let s:clip = '/mnt/c/Windows/System32/clip.exe'  " change this path according to your mount point
 if executable(s:clip)
     augroup WSLYank
@@ -123,9 +129,10 @@ if executable(s:clip)
         autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
     augroup END
 endif
+"}}}
 
 
-" junegunn/vim-easy-align
+" junegunn/vim-easy-align {{{
 " vip代表選取整個paragraph
 "	= Around the 1st occurrences
 "	2= Around the 2nd occurrences
@@ -135,9 +142,10 @@ endif
 "		Use before =
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+"}}}
 
 
-" neoclide/coc.nvim
+" neoclide/coc.nvim {{{
 " Call ":CocList extensions" to check the status of coc plugins
 "	? means invalid extension
 "	* means extension is activated
@@ -146,27 +154,27 @@ nmap ga <Plug>(EasyAlign)
 "	Use arrows to navigate. Hit <TAB> to activate action menu
 let g:coc_global_extensions = ['coc-json', 'coc-clangd', 'coc-cmake', 'coc-highlight', 'coc-html', 'coc-sh', 'coc-vimlsp', 'coc-pairs', 'coc-omni', 'coc-word', 'coc-snippets', 'coc-markdownlint', 'coc-spell-checker', 'coc-lightbulb', 'coc-pyright']
 
-" Some servers have issues with backup files, see #649.
+" Some servers have issues with backup files, see #649. {{{
 set nobackup
-set nowritebackup
+set nowritebackup "}}}
 
-" Always show the signcolumn, otherwise it would shift the text each time
+" Always show the signcolumn, otherwise it would shift the text each time {{{
 " diagnostics appear/become resolved.
 if has("nvim-0.5.0") || has("patch-8.1.1564")
   " Recently vim can merge signcolumn and number column into one
   set signcolumn=number
 else
   set signcolumn=yes
-endif
+endif "}}}
 
-function! EchoWarn(text)
+function! EchoWarn(text) "{{{
 	echohl WarningMsg
 	echo a:text
 	echohl None
 	return ""
-endfunction
+endfunction "}}}
 
-" Map <C-f> and <C-b> for scroll float windows/popups.
+" Map <C-f> and <C-b> for scroll float windows/popups. {{{
 if has('nvim-0.4.0') || has('patch-8.2.0750')
 	inoremap <silent><nowait><expr> <c-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : EchoWarn("[coc] Scroll not exist")
 	inoremap <silent><nowait><expr> <c-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : EchoWarn("[coc] Scroll not exist")
@@ -181,15 +189,16 @@ else
 	nnoremap <silent><nowait><expr> <c-b> EchoWarn("[coc] Scroll not supported")
 	vnoremap <silent><nowait><expr> <c-f> EchoWarn("[coc] Scroll not supported")
 	vnoremap <silent><nowait><expr> <c-b> EchoWarn("[coc] Scroll not supported")
-endif
+endif "}}}
 
-" Use tab for navigate, snippet jump.
+" Tab for navigate, snippet jump. {{{
 inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#pum#next(1) :
       \ coc#jumpable() ? "\<C-r>=coc#snippet#next()\<CR>" :
       \ <sid>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr> <S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+"}}}
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -201,15 +210,15 @@ endfunction
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
-function! ShowDocumentation()
+function! ShowDocumentation() "{{{
   if CocAction('hasProvider', 'hover')
     call CocActionAsync('doHover')
   else
     call feedkeys('\<f1>', 'in')
   endif
-endfunction
+endfunction "}}}
 
-" GoTo code navigation.
+" GoTo code navigation
 " Use ctrl-o to go back
 " Use ":verbose imap <KEY>" to check if it's mapped by others
 nmap <silent> gd  <Plug>(coc-definition)
@@ -232,7 +241,7 @@ nmap <leader>qf  <Plug>(coc-fix-current)
 command! -nargs=? Fold :call CocAction('fold', <f-args>)
 nnoremap <silent> <f1> :call ShowDocumentation()<CR>
 
-" Map function and class text objects
+" Map function and class text objects {{{
 " Use like vif, vaf...
 " NOTE: Requires 'textDocument.documentSymbol' support from the language server.
 xmap if <Plug>(coc-funcobj-i)
@@ -243,10 +252,8 @@ xmap ic <Plug>(coc-classobj-i)
 omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
+"}}}
 
-" Used for the format on type and improvement of brackets
-" inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-	" \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 inoremap <silent><expr> <cr> coc#pum#visible() ? coc#pum#confirm() :
 			\ coc#expandable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand',''])\<CR>" :
 			\ "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
@@ -254,7 +261,7 @@ inoremap <silent><expr> <cr> coc#pum#visible() ? coc#pum#confirm() :
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold,CursorHoldI * call CocActionAsync('highlight')
 
-" Use <c-w>w to close most recent float window
+" Use <c-w>w to close most recent float window {{{
 nmap <expr> <c-w>w
 	\ <sid>coc_float_close_last() ? '' : ''
 
@@ -271,15 +278,18 @@ function! s:coc_float_close_last() abort
 	redraw
 	return v:true
 endfunction
+"}}}
+"}}}
 
 
-" coc-snippets
+" coc-snippets {{{
 " select text for visual placeholder of snippet
 vmap <c-s-right> <Plug>(coc-snippets-select)
 let g:coc_snippet_next = '<tab>'
+"}}}
 
 
-" preservim/nerdcommenter
+" preservim/nerdcommenter {{{
 filetype plugin on
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
@@ -296,9 +306,10 @@ nmap <leader>c<space> <Plug>NERDCommenterToggle
 vmap <leader>cc       <Plug>NERDCommenterComment
 vmap <leader>cu       <Plug>NERDCommenterUncomment
 vmap <leader>c<space> <Plug>NERDCommenterToggle
+"}}}
 
 
-" " mphe/grayout.vim
+" " mphe/grayout.vim {{{
 " " Set libclang searchpath. This should point to the directory containing `libclang.so`.
 " let g:grayout_libclang_path = '/usr/lib/llvm-14/lib'
 " " Set default compile flags.
@@ -310,26 +321,10 @@ vmap <leader>c<space> <Plug>NERDCommenterToggle
 " " Run GrayoutUpdate when opening and saving a buffer
 " autocmd BufReadPost,BufWritePost * if &ft == 'c' || &ft == 'cpp' || &ft == 'objc' | exec 'GrayoutUpdate' | endif
 " highlight PreprocessorGrayout ctermfg=DarkGray guifg=#6c6c6c
+" "}}}
 
 
-" Konfekt/FastFold
-nmap zuz <Plug>(FastFoldUpdate)
-set foldlevel=99 " Open all folds. Close them using 0
-autocmd BufReadPost * if line('$') > 65 | set foldlevel=0 | endif
-let g:fastfold_savehook = 0
-let g:fastfold_fold_command_suffixes =  ['x','X','a','A','O','C']
-let g:fastfold_fold_movement_commands = [']z','[z','zj','zk']
-let g:fastfold_minlines = 6
-let g:fastfold_skip_filetypes = ['diff', 'list']
-let g:markdown_folding = 1
-autocmd FileType c,cpp,sh,zsh,json setlocal foldmethod=syntax
-" javascript在vim-javascript
-let g:sh_fold_enabled = 7
-let g:zsh_fold_enable = 1
-autocmd TextChanged <silent> <Plug>(FastFoldUpdate)
-
-
-" " preservim/tagbar
+" " preservim/tagbar {{{
 " " visibility of a tag is shown as { 'public' : '+', 'protected' : '#', 'private' : '-' }
 " " nmap <silent> <F8> :TagbarToggle<CR>
 " " imap <silent> <F8> <C-O>:TagbarToggle<CR><esc>
@@ -349,24 +344,28 @@ autocmd TextChanged <silent> <Plug>(FastFoldUpdate)
 " let g:tagbar_sort = 0
 " let g:no_status_line = 1
 " autocmd FileType vim,diff let b:tagbar_ignore = 1
+" "}}}
 
 
-" zhimsel/vim-stay
+" zhimsel/vim-stay {{{
 " type ":CleanViewdir[!] [days]" to remove saved view sessions older than
 " [days]. The bang version will remove w/o confirmation
 set viewoptions=cursor,slash,unix,folds
 autocmd FileType diff,gitcommit,vim-plug set viewoptions=
 autocmd FileType json set viewoptions-=folds
+autocmd User BufStayLoadPre if expand('%:p')==expand('~/.vimrc') | setlocal viewoptions-=folds | endif
+"}}}
 
 
-" pangloss/vim-javascript
+" pangloss/vim-javascript {{{
 augroup javascript_folding
     autocmd!
     autocmd FileType javascript setlocal foldmethod=syntax
 augroup END
+"}}}
 
 
-" luochen1990/rainbow
+" luochen1990/rainbow {{{
 let g:rainbow_active = 1
 " rainbow is conflicting with NERDTree
 let g:rainbow_conf = {
@@ -376,18 +375,20 @@ let g:rainbow_conf = {
 		\ 'nerdtree': 0,
 	\ },
 \}
+"}}}
 
 
-" easymotion/vim-easymotion
+" easymotion/vim-easymotion {{{
 let g:EasyMotion_use_migemo = 1  " match multibyte Japanese character with alphabetical input
 let g:EasyMotion_smartcase = 1  " lower case will match both lower and upper; upper case will match upper only
 let g:EasyMotion_use_smartsign_us = 1  " make 1 match 1 and !; ! will match ! only
 " avoid annoying syntax errors while jumping
 autocmd User EasyMotionPromptBegin :let b:coc_diagnostic_disable = 1
 autocmd User EasyMotionPromptEnd   :let b:coc_diagnostic_disable = 0
+"}}}
 
 
-" preservim/nerdtree
+" preservim/nerdtree {{{
 autocmd StdinReadPre * let s:std_in=1
 " Start NERDTree when Vim is started without file arguments.
 autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
@@ -399,11 +400,13 @@ autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTa
 autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
     \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 nnoremap <silent><c-t> :NERDTreeToggle<cr>
+"}}}
 
 
-" terryma/vim-expand-region
+" terryma/vim-expand-region {{{
 map <silent>+ <Plug>(expand_region_expand)
 map <silent>- <Plug>(expand_region_shrink)
+"{{{
 let g:expand_region_text_objects = {
       \ 'i"'  :1,
       \ 'a"'  :1,
@@ -418,17 +421,21 @@ let g:expand_region_text_objects = {
       \ 'il'  :1,
       \ 'ip'  :1,
       \ }
+"}}}
+"}}}
 
 
-" Xuyuanp/nerdtree-git-plugin
+" Xuyuanp/nerdtree-git-plugin {{{
 let g:NERDTreeGitStatusUseNerdFonts = 1
+"}}}
 
 
-" ryanoasis/vim-devicons
+" ryanoasis/vim-devicons {{{
 set encoding=UTF-8
+"}}}
 
 
-" puremourning/vimspector
+" puremourning/vimspector {{{
 " use ":VimspectorInstall <adapter> <args...>" to install adapters/gadgets. Add '!' to not close the
 " output window right after successful installation
 " use ":VimspectorUpdate <adapter> <args...>" to update adapters/gadgets. Add '!' to not close the
@@ -441,7 +448,7 @@ let g:vimspector_install_gadgets = ['debugpy', 'vscode-cpptools']
 " required by debugpy
 let g:vimspector_base_dir=expand('~/.vim/plugged/vimspector') " do NOT end with forward slash
 
-" HUMAN-like mappings
+" HUMAN-like mappings {{{
 " nmap <F3>            <Plug>VimspectorStop
 " nmap <leader><F3>    :VimspectorReset<cr>
 " nmap <F4>            <Plug>VimspectorRestart
@@ -457,26 +464,28 @@ nmap <leader><F10>   <Plug>VimspectorToggleConditionalBreakpoint
 nmap <leader><s-F10> <Plug>VimspectorAddFunctionBreakpoint
 " nmap <Leader><s-F12> <Plug>VimspectorUpFrame
 " nmap <Leader><F12>   <Plug>VimspectorDownFrame
+"}}}
 
-" toggle breakpoints window
-nmap <silent><expr> <leader>db "\<Plug>VimspectorBreakpoints:if len(g:vimspector_session_windows) > 1 \| call \<sid>VimspectorInitBuf()<cr> \| endif<cr>"
+" toggle breakpoints window {{{
 " See https://github.com/puremourning/vimspector#breakpoints-window
+nmap <silent><expr> <leader>db "\<Plug>VimspectorBreakpoints:if len(g:vimspector_session_windows) > 1 \| call \<sid>VimspectorInitBuf()<cr> \| endif<cr>"
+"}}}
 
 let s:vimspectorMappedBufnr = []
 " ⁰¹²³⁴⁵⁶⁷⁸⁹
 " ['stack_trace', 'output', 'watches', 'terminal', 'variables', 'code', 'eval', 'mode', 'breakpoints', 'tabpage']
 " 'terminal' isn't created when VimspectorUICreated
-function s:VimspectorUIoutputPre() abort
+function s:VimspectorUIoutputPre() abort "{{{
 	set nonumber
 	set relativenumber
-endfunction
+endfunction "}}}
 
-function s:VimspectorUIwatchesPre() abort
+function s:VimspectorUIwatchesPre() abort "{{{
 	nnoremap <buffer> <up>   <up><up>
 	nnoremap <buffer> <down> <down><down>
-endfunction
+endfunction "}}}
 
-function s:VimspectorUIcodePost() abort
+function s:VimspectorUIcodePost() abort "{{{
 	" Evaluate part of program
 	nmap <buffer> <f1> <Plug>VimspectorBalloonEval
 	xmap <buffer> <f1> <Plug>VimspectorBalloonEval
@@ -491,14 +500,14 @@ function s:VimspectorUIcodePost() abort
 	nmenu WinBar.↷Over⁷     <Plug>VimspectorStepOver
 	nmenu WinBar.↓Into⁸     <Plug>VimspectorStepInto
 	nmenu WinBar.↑Out⁹      <Plug>VimspectorStepOut
-endfunction
+endfunction "}}}
 
-function s:VimspectorUIbreakpointsPost() abort
-	nunmap <buffer> <leader><F3>
-	nmap <buffer><expr> <leader><F3> ":call win_gotoid(g:vimspector_session_windows['code'])<cr>:VimspectorReset<cr>"
-endfunction
+function s:VimspectorUIbreakpointsPost() abort "{{{
+	nunmap <buffer>       <leader><F3>
+	nmap   <buffer><expr> <leader><F3> ":call win_gotoid(g:vimspector_session_windows['code'])<cr>:VimspectorReset<cr>"
+endfunction "}}}
 
-function s:VimspectorCreateUI() abort
+function s:VimspectorCreateUI() abort "{{{
 	for l:winName in keys(g:vimspector_session_windows)
 		if g:vimspector_session_windows[l:winName] != v:none && l:winName != 'tabpage' && l:winName != 'mode'
 			call win_gotoid(g:vimspector_session_windows[l:winName])
@@ -511,14 +520,14 @@ function s:VimspectorCreateUI() abort
 			endif
 		endif
 	endfor
-endfunction
+endfunction "}}}
 
-function s:VimspectorInitBuf() abort
+function s:VimspectorInitBuf() abort "{{{
 	if(index(s:vimspectorMappedBufnr, bufnr()) != -1)
 		return
 	endif
 
-	" HUMAN-like mappings
+	" HUMAN-like mappings {{{
 	nmap <buffer> <F3>             <Plug>VimspectorStop
 	if(g:vimspector_session_windows['breakpoints'] == bufnr())
 		nmap <buffer><expr> <leader><F3> ":call win_gotoid(g:vimspector_session_windows['code'])<cr>:VimspectorReset<cr>"
@@ -532,13 +541,13 @@ function s:VimspectorInitBuf() abort
 	nmap <buffer> <F9>             <Plug>VimspectorStepOut
 	nmap <buffer> <Leader><s-F12>  <Plug>VimspectorUpFrame
 	nmap <buffer> <Leader><F12>    <Plug>VimspectorDownFrame
-
+	"}}}
 	nnoremap <buffer> <leader><TAB> :VimspectorShowOutput 
 
 	call add(s:vimspectorMappedBufnr, bufnr())
-endfunction
+endfunction "}}}
 
-function s:VimspectorInitTerm() abort
+function s:VimspectorInitTerm() abort "{{{
 	if(index(s:vimspectorMappedBufnr, g:vimspector_session_windows['terminal']) != -1)
 		return
 	endif
@@ -548,7 +557,7 @@ function s:VimspectorInitTerm() abort
 
 	set nonumber
 	set relativenumber
-	" HUMAN-like mappings
+	" HUMAN-like mappings {{{
 	tmap     <F3>            <c-\><c-n><Plug>VimspectorStop
 	tnoremap <leader><F3>    <c-\><c-n>:VimspectorReset<cr>
 	tmap     <F4>            <c-\><c-n><Plug>VimspectorRestart
@@ -558,14 +567,14 @@ function s:VimspectorInitTerm() abort
 	tmap     <F9>            <c-\><c-n><Plug>VimspectorStepOut
 	tmap     <Leader><s-F12> <c-\><c-n><Plug>VimspectorUpFrame
 	tmap     <Leader><F12>   <c-\><c-n><Plug>VimspectorDownFrame
-
+	"}}}
 	tnoremap <leader><TAB>    <c-\><c-n>:VimspectorShowOutput 
 	tnoremap <leader><leader> <leader>
 
-endfunction
+endfunction "}}}
 
-function s:VimspectorOnDebugEnd() abort
-	for l:bufnr in s:vimspectorMappedBufnr
+function s:VimspectorOnDebugEnd() abort "{{{
+	for l:bufnr in s:vimspectorMappedBufnr "{{{
 		silent! nunmap <buffer> <F3>
 		silent! nunmap <buffer> <leader><F3>
 		silent! nunmap <buffer> <F4>
@@ -578,7 +587,8 @@ function s:VimspectorOnDebugEnd() abort
 		silent! nunmap <buffer> <f1>
 		silent! xunmap <buffer> <f1>
 		silent! nunmap <buffer> <leader><TAB>
-	endfor
+	endfor "}}}
+	" Unmap terminal {{{
 	silent! tunmap <f3>
 	silent! tunmap <leader><f3>
 	silent! tunmap <f4>
@@ -590,16 +600,17 @@ function s:VimspectorOnDebugEnd() abort
 	silent! tunmap <Leader><F12>
 	silent! tunmap <leader><TAB>
 	silent! tunmap <leader><leader>
+	"}}}
 
 	let s:vimspectorMappedBufnr = []
-endfunction
+endfunction "}}}
 
 autocmd User VimspectorUICreated           call <sid>VimspectorCreateUI()
 autocmd User VimspectorJumpedToFrame       call <sid>VimspectorInitBuf()
 autocmd User VimspectorTerminalOpened      call <sid>VimspectorInitTerm()
 autocmd User VimspectorDebugEnded ++nested call <sid>VimspectorOnDebugEnd()
 
-" Save/load session file
+" Save/load session file {{{
 let s:vimspectorSessionPrefix = '~/.vim/view/'
 let s:vimspectorSessionFileName = substitute(expand('%:p'), '/', '+', 'g') . '.vimspector.session.json'
 augroup VIMSPECTOR_SESSION
@@ -607,9 +618,11 @@ augroup VIMSPECTOR_SESSION
 	autocmd VIMSPECTOR_SESSION BufWritePost * silent execute("VimspectorMkSession " . s:vimspectorSessionPrefix . s:vimspectorSessionFileName)
 augroup end
 autocmd FileType diff,gitcommit,json,vim,sh,zsh,log,vim-plug,gitconfig au! VIMSPECTOR_SESSION
+"}}}
+"}}}
 
 
-" fzf
+" fzf {{{
 " An action can be a reference to a function that processes selected lines
 " function! s:build_quickfix_list(lines)
   " call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
@@ -628,7 +641,7 @@ let g:fzf_action = {
 " Popup window (anchored to the bottom of the current window)
 let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.6, 'relative': v:true, 'yoffset': 1.0 } }
 
-" Customize fzf colors to match your color scheme
+" Customize fzf colors to match your color scheme {{{
 " - fzf#wrap translates this to a set of `--color` options
 let g:fzf_colors = {
         \  'fg':      ['fg', 'Normal'],
@@ -644,15 +657,17 @@ let g:fzf_colors = {
         \  'marker':  ['fg', 'Keyword'],
         \  'spinner': ['fg', 'Label'],
         \  'header':  ['fg', 'Comment']
-	  \ }
+		\ }
+"}}}
 
-" Enable per-command history
+" Enable per-command history {{{
 " - History files will be stored in the specified directory
 " - When set, CTRL-N and CTRL-P will be bound to 'next-history' and
 "   'previous-history' instead of 'down' and 'up'.
 let g:fzf_history_dir = '~/.local/share/fzf-history'
+"}}}
 
-" Use fzf to find files.
+" Use fzf to find files. {{{
 " Receives an optional param to specify the folder to search
 " Saves historical searches of *LS* and *LA* in file *ls*
 command -complete=dir -nargs=? LS
@@ -660,7 +675,30 @@ command -complete=dir -nargs=? LS
 command -complete=dir -nargs=? LA
 	\ call fzf#run(fzf#wrap('ls', {'source': 'ls -A', 'dir': <q-args>}))
 nmap <silent> <c-n> :LA<cr>
+"}}}
+"}}}
 
 
-" tmhedberg/SimpylFold
+" tmhedberg/SimpylFold {{{
 let g:SimpylFold_docstring_preview = 1
+"}}}
+
+
+" Konfekt/FastFold {{{
+nmap zuz <Plug>(FastFoldUpdate)
+set foldlevel=99 " Open all folds. Close them using 0
+autocmd BufReadPost * if line('$') > 65 | set foldlevel=0 | endif
+let g:fastfold_savehook = 0
+let g:fastfold_fold_command_suffixes =  ['x','X','a','A','O','C']
+let g:fastfold_fold_movement_commands = [']z','[z','zj','zk']
+let g:fastfold_minlines = 6
+let g:fastfold_skip_filetypes = ['diff', 'list']
+let g:markdown_folding = 1
+autocmd FileType c,cpp,sh,zsh,json setlocal foldmethod=syntax
+" javascript在vim-javascript
+let g:sh_fold_enabled = 7
+let g:zsh_fold_enable = 1
+autocmd TextChanged <silent> <Plug>(FastFoldUpdate)
+"}}}
+
+" vim: foldmethod=marker
