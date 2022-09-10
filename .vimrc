@@ -349,8 +349,8 @@ vmap <leader>c<space> <Plug>NERDCommenterToggle
 " type ":CleanViewdir[!] [days]" to remove saved view sessions older than
 " [days]. The bang version will remove w/o confirmation
 set viewoptions=cursor,slash,unix,folds
-autocmd FileType diff,gitcommit,vim-plug set viewoptions=
-autocmd FileType json set viewoptions-=folds
+autocmd FileType diff,gitcommit,vim-plug setlocal viewoptions=
+autocmd FileType json setlocal viewoptions-=folds
 autocmd User BufStayLoadPre if expand('%:p')==expand('~/.vimrc') | setlocal viewoptions-=folds | endif
 "}}}
 
