@@ -502,8 +502,8 @@ function s:VimspectorUIcodePost() abort "{{{
 endfunction "}}}
 
 function s:VimspectorUIbreakpointsPost() abort "{{{
-	nunmap <buffer>       <leader><F3>
-	nmap   <buffer><expr> <leader><F3> ":call win_gotoid(g:vimspector_session_windows['code'])<cr>:VimspectorReset<cr>"
+	nunmap <buffer> <leader><F3>
+	nmap   <buffer> <leader><F3> :call win_gotoid(g:vimspector_session_windows['code'])<cr>:VimspectorReset<cr>
 endfunction "}}}
 
 function s:VimspectorCreateUI() abort "{{{
