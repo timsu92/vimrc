@@ -533,13 +533,13 @@ function s:VimspectorInitBuf() abort "{{{
 	else
 		nmap <buffer>       <leader><F3> :VimspectorReset<cr>
 	endif
-	nmap <buffer> <F4>             <Plug>VimspectorRestart
-	nmap <buffer> <F6>             <Plug>VimspectorPause
-	nmap <buffer> <F7>             <Plug>VimspectorStepOver
-	nmap <buffer> <F8>             <Plug>VimspectorStepInto
-	nmap <buffer> <F9>             <Plug>VimspectorStepOut
-	nmap <buffer> <Leader><s-F12>  <Plug>VimspectorUpFrame
-	nmap <buffer> <Leader><F12>    <Plug>VimspectorDownFrame
+	nmap <buffer> <F4>            <Plug>VimspectorRestart
+	nmap <buffer> <F6>            <Plug>VimspectorPause
+	nmap <buffer> <F7>            <Plug>VimspectorStepOver
+	nmap <buffer> <F8>            <Plug>VimspectorStepInto
+	nmap <buffer> <F9>            <Plug>VimspectorStepOut
+	nmap <buffer> <Leader><s-F12> <Plug>VimspectorUpFrame
+	nmap <buffer> <Leader><F12>   <Plug>VimspectorDownFrame
 	"}}}
 	nnoremap <buffer> <leader><TAB> :VimspectorShowOutput 
 
@@ -557,17 +557,17 @@ function s:VimspectorInitTerm() abort "{{{
 	set nonumber
 	set relativenumber
 	" HUMAN-like mappings {{{
-	tmap     <F3>            <c-\><c-n><Plug>VimspectorStop
-	tnoremap <leader><F3>    <c-\><c-n>:VimspectorReset<cr>
-	tmap     <F4>            <c-\><c-n><Plug>VimspectorRestart
-	tmap     <F6>            <c-\><c-n><Plug>VimspectorPause
-	tmap     <F7>            <c-\><c-n><Plug>VimspectorStepOver
-	tmap     <F8>            <c-\><c-n><Plug>VimspectorStepInto
-	tmap     <F9>            <c-\><c-n><Plug>VimspectorStepOut
-	tmap     <Leader><s-F12> <c-\><c-n><Plug>VimspectorUpFrame
-	tmap     <Leader><F12>   <c-\><c-n><Plug>VimspectorDownFrame
+	tmap     <F3>             <c-\><c-n><Plug>VimspectorStop
+	tnoremap <leader><F3>     <c-\><c-n>:VimspectorReset<cr>
+	tmap     <F4>             <c-\><c-n><Plug>VimspectorRestart
+	tmap     <F6>             <c-\><c-n><Plug>VimspectorPause
+	tmap     <F7>             <c-\><c-n><Plug>VimspectorStepOver
+	tmap     <F8>             <c-\><c-n><Plug>VimspectorStepInto
+	tmap     <F9>             <c-\><c-n><Plug>VimspectorStepOut
+	tmap     <Leader><s-F12>  <c-\><c-n><Plug>VimspectorUpFrame
+	tmap     <Leader><F12>    <c-\><c-n><Plug>VimspectorDownFrame
 	"}}}
-	tnoremap <leader><TAB>    <c-\><c-n>:VimspectorShowOutput 
+	tnoremap <leader><TAB>    <c-\><c-n>:VimspectorShowOutput
 	tnoremap <leader><leader> <leader>
 
 endfunction "}}}
