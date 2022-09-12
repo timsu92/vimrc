@@ -685,8 +685,8 @@ let g:SimpylFold_docstring_preview = 1
 
 " Konfekt/FastFold {{{
 nmap zuz <Plug>(FastFoldUpdate)
-set foldlevel=99 " Open all folds. Close them using 0
-autocmd BufReadPost * if line('$') > 65 | set foldlevel=0 | endif
+setlocal foldlevel=99 " Open all folds. Close them using 0
+autocmd BufReadPost * if line('$') > 65 | setlocal foldlevel=0 | endif
 let g:fastfold_savehook = 0
 let g:fastfold_fold_command_suffixes =  ['x','X','a','A','O','C']
 let g:fastfold_fold_movement_commands = [']z','[z','zj','zk']
