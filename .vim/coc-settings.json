@@ -26,5 +26,6 @@
 		"reportUnnecessaryContains": "information",
 		"reportImplicitStringConcatenation": "warning",
 		"reportUnnecessaryTypeIgnoreComment": "information"
-	}
+	},
+	"colors.filetypes": ["*"]
 }
