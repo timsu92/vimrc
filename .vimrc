@@ -113,6 +113,8 @@ Plug '~/.fzf'
 Plug 'honza/vim-snippets'
 Plug 'tpope/vim-endwise'
 Plug 'tmhedberg/SimpylFold', {'for': 'python,cython'}
+Plug 'iamcco/mathjax-support-for-mkdp', {'for': 'markdown'}
+Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app && yarn install', 'for': 'markdown'} " If you have nodejs and yarn
 call plug#end()
 " call ":PlugUpdate [name ...]" to update plugins
 " call ":PlugInstall" to install plugins
@@ -613,8 +615,8 @@ autocmd User VimspectorDebugEnded ++nested call <sid>VimspectorOnDebugEnd()
 let s:vimspectorSessionPrefix = '~/.vim/view/'
 let s:vimspectorSessionFileName = substitute(expand('%:p'), '/', '+', 'g') . '.vimspector.session.json'
 augroup VIMSPECTOR_SESSION
-	autocmd VIMSPECTOR_SESSION BufReadPost * silent! execute("VimspectorLoadSession " . s:vimspectorSessionPrefix . s:vimspectorSessionFileName)
-	autocmd VIMSPECTOR_SESSION BufWritePost * silent execute("VimspectorMkSession " . s:vimspectorSessionPrefix . s:vimspectorSessionFileName)
+	autocmd BufReadPost * silent! execute("VimspectorLoadSession " . s:vimspectorSessionPrefix . s:vimspectorSessionFileName)
+	autocmd BufWritePost * silent execute("VimspectorMkSession " . s:vimspectorSessionPrefix . s:vimspectorSessionFileName)
 augroup end
 autocmd FileType diff,gitcommit,json,vim,sh,zsh,log,vim-plug,gitconfig au! VIMSPECTOR_SESSION
 "}}}
@@ -681,6 +683,40 @@ nmap <silent> <c-n> :LA<cr>
 " tmhedberg/SimpylFold {{{
 let g:SimpylFold_docstring_preview = 1
 "}}}
+
+
+" iamcco/markdown-preview.nvim {{{
+function! MdpOpenPreview(url) abort
+	let l:mdp_browser = '/mnt/c/Program\ Files/Google/Chrome/Application/chrome.exe'
+	let l:mdp_browser_opts = '--profile-directory="Default" --new-window'
+	if !filereadable(substitute(l:mdp_browser, '\\ ', ' ', 'g'))
+		let l:mdp_browser = '/mnt/c/Program\ Files\ \(x86\)/Microsoft/Edge/Application/msedge.exe'
+		let l:mdp_browser_opts = '--new-window'
+	endif
+	execute join(['silent! !', l:mdp_browser, l:mdp_browser_opts, a:url])
+	redraw!
+endfunction
+
+let g:mkdp_browserfunc = 'MdpOpenPreview'
+let g:mkdp_preview_options = {
+		\ 'disable_filename': 1
+	  \ }
+let g:mkdp_echo_preview_url = 1
+let g:mkdp_page_title = expand('%:p:h:t') . '/${name}'
+" disable vimspector and use markdown-preview instead
+autocmd FileType markdown {
+		nmap <buffer> <leader><F5>    <esc>
+		nmap <buffer> <leader><s-F5>  <esc>
+		nmap <buffer> <F10>           <esc>
+		nmap <buffer> <leader><F10>   <esc>
+		nmap <buffer> <leader><s-F10> <esc>
+		nmap <buffer> <leader>db      <esc>
+		nmap <buffer> <f5>            <Plug>MarkdownPreview
+		nmap <buffer> <leader><f3>    <Plug>MarkdownPreviewStop:echo 'Markdown preview stopped'<cr>
+		imap <buffer> <f5>            <Plug>MarkdownPreview
+		imap <buffer> <leader><f3>    <Plug>MarkdownPreviewStop<c-o>:echo 'Markdown preview stopped'<cr>
+	}
+" }}}
 
 
 " Konfekt/FastFold {{{
