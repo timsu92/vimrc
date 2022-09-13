@@ -16,9 +16,9 @@ Note! This is a config file on Ubuntu 22.04 on WSL2. If you use another system, 
 [✓] [**nerdtree-git-plugin**](https://github.com/Xuyuanp/nerdtree-git-plugin): Show Git status in NERDTree  
 [✓] [**vim-devicons**](https://github.com/ryanoasis/vim-devicons): Prettified icons for various file types  
 [✓] [**vim-surround**](https://github.com/tpope/vim-surround): Manipulate parentheses, brackets... around texts  
-[▲] [**vim-expand-region**](https://github.com/terryma/vim-expand-region): Expand and shrink selection somewhat like IntelliJ's [Select code constructs](https://www.jetbrains.com/help/idea/working-with-source-code.html#editor_code_selection), but can be improved  
-[✓] [**vim-textobj-user**](https://github.com/kana/vim-textobj-user): Define `textobj` on your own  
-[✓] [**vim-textobj-line**](https://github.com/kana/vim-textobj-line): Make entire line as `textobj`s  
+[▲] [**vim-expand-region**](https://github.com/terryma/vim-expand-region): Expand and shrink selection somewhat like [IntelliJ's Select code constructs](https://www.jetbrains.com/help/idea/working-with-source-code.html#editor_code_selection), but can be improved  
+[✓] [**vim-textobj-user**](https://github.com/kana/vim-textobj-user): Define `text-objects` on your own  
+[✓] [**vim-textobj-line**](https://github.com/kana/vim-textobj-line): Make entire line as a `text-objects`  
 [✓] [**VimSpector**](https://github.com/puremourning/vimspector): Debug right in Vim  
 [✓] [**vim-snippets**](https://github.com/honza/vim-snippets): Snippets for expressing ideas in few key strokes  
 [✓] [**endwise.vim**](https://github.com/tpope/vim-endwise): Close pairs when hitting `<enter>` in insert mode  
@@ -32,6 +32,13 @@ Note! This is a config file on Ubuntu 22.04 on WSL2. If you use another system, 
 [✓] [**fzf**](https://github.com/junegunn/fzf): The fuzzy finder  
 
 ## Installation
+- [Node.js](#node.js)
+- [Powerline](#powerline)
+- [Dependency of grayout](#dependency-of-grayout)
+- [Plugins using [vim-plug]](#plugins-using-vim-plug)
+- [Clangd](#clangd-of-coc)
+- [fzf](#fzf)
+- [VimSpector](#vimspector)
 ### Node.js
 This guide allows you to install Node.js using nvm
 #### step 1: Install cURL
@@ -109,7 +116,7 @@ powerline-daemon -q
 ```
 #### step9: restart your terminal or source `.bashrc`
 
-### Depency of grayout
+### Dependency of grayout
 #### step1: Install `libclang1`
 ```bash
 sudo apt install libclang1
