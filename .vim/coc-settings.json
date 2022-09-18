@@ -27,5 +27,14 @@
 		"reportImplicitStringConcatenation": "warning",
 		"reportUnnecessaryTypeIgnoreComment": "information"
 	},
-	"colors.filetypes": ["*"]
+	"colors.filetypes": ["*"],
+	"snippet.highlight": true,
+	"inlayHint.refreshOnInsertMode": true,
+	"list.smartCase": true,
+	"list.previousKeymap": "<up>",
+	"list.nextKeymap": "<down>",
+	"coc.preferences.jumpCommand": "tab drop",
+	"tree.closedIcon": "",
+	"tree.openedIcon": "",
+	"outline.sortBy": "position"
 }
