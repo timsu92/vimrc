@@ -279,6 +279,8 @@ function! s:coc_float_close_last() abort
 	return v:true
 endfunction
 "}}}
+
+autocmd BufWritePre * silent! call CocAction('fold', 'imports')
 "}}}
 
 
