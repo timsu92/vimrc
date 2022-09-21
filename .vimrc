@@ -353,7 +353,7 @@ vmap <leader>c<space> <Plug>NERDCommenterToggle
 " [days]. The bang version will remove w/o confirmation
 set viewoptions=cursor,slash,unix,folds
 autocmd FileType diff,gitcommit,vim-plug setlocal viewoptions=
-autocmd FileType json setlocal viewoptions-=folds
+autocmd FileType c,cpp,sh,zsh,json setlocal viewoptions-=folds
 autocmd User BufStayLoadPre if expand('%:p')==expand('~/.vimrc') | setlocal viewoptions-=folds | endif
 "}}}
 
