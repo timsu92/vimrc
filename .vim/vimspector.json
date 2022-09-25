@@ -78,6 +78,7 @@
 		},
 		"launch - Python - one file":{
 			"extends": "launch - Python",
+			"filetypes": ["python"],
 			"default": true,
 			"configuration": {
 				"cwd": "${workspaceRoot}",
