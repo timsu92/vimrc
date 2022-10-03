@@ -53,6 +53,31 @@
 				}
 			}
 		},
+		"launch - C family - make":{
+			"extends": "launch - C family",
+			"configuration": {
+				"program": "${workspaceRoot}/${compiledFileName:a.out}"
+			},
+			"variables": {
+				"BUILD_IGNORED": {
+					"shell": ["make"],
+					"cwd": "${workspaceRoot}"
+				}
+			}
+		},
+		"launch - C family - make - input from in":{
+			"default": true,
+			"extends": "launch - C family - make",
+			"configuration": {
+				"args": ["${args}"]
+			},
+			"variables":{
+				"args":{
+					"shell": ["cat", "in"],
+					"cwd": "${workspaceRoot}"
+				}
+			}
+		},
 		"launch - Python":{
 			"adapter":"debugpy",
 			"filetypes": ["python"],
