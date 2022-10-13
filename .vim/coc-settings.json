@@ -3,7 +3,7 @@
 	"markdownlint.config": {
 		"line_length": false
 	},
-	"semanticTokens.filetypes": ["*"],
+	"semanticTokens.enable": true,
 	"python.analysis.diagnosticSeverityOverrides": {
 		"reportImportCycles": "information",
 		"reportUnusedImport": "information",
