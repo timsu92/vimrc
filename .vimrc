@@ -279,12 +279,6 @@ function! s:coc_float_close_last() abort
 	return v:true
 endfunction
 "}}}
-
-augroup CocFoldImportOnSave
-	au!
-	autocmd BufWritePre * silent! call CocAction('fold', 'imports')
-augroup END
-autocmd FileType json au! CocFoldImportOnSave
 "}}}
 
 
