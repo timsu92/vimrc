@@ -24,8 +24,7 @@ set noinfercase
 set cursorline  " highlighting of the current line
 
 " line-brake and paste prototype
-" autocmd FileType c,cpp nnoremap <silent> 0 o<ESC>]pA<BS>{}<Left><CR><esc>O
-autocmd FileType c,cpp nnoremap <silent> 0 yyGo<ESC>]pA<BS>{}<Left><CR><esc>O
+autocmd FileType c,cpp nnoremap <silent> 0 yyGo<ESC>]pA<BS><CR>{}<Left><CR><c-o>O
 
 " move a line up/down {{{
 inoremap <c-up>   <esc>dd<up>]Pi
