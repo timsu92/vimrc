@@ -36,5 +36,18 @@
 	"coc.preferences.jumpCommand": "tab drop",
 	"tree.closedIcon": "",
 	"tree.openedIcon": "",
-	"outline.sortBy": "position"
+	"outline.sortBy": "position",
+	"cSpell.words": [
+		"Powerline",
+		"clangd",
+		"omni"
+	],
+	"cSpell.flagWords": [
+		"hte",
+		"teh"
+	],
+	"cSpell.allowCompoundWords": true,
+	"cSpell.languageSettings": [
+		{"languageId": "css", "dictionaries": ["fonts"]}
+	]
 }
