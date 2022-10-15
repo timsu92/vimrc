@@ -190,13 +190,16 @@ else
 	vnoremap <silent><nowait><expr> <c-b> EchoWarn("[coc] Scroll not supported")
 endif "}}}
 
-" Tab for navigate, snippet jump. {{{
+" Tab for navigate, snippet jump, show pum. S-Tab for navigate, snippet jump. {{{
 inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#pum#next(1) :
       \ coc#jumpable() ? "\<C-r>=coc#snippet#next()\<CR>" :
       \ <sid>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-inoremap <expr> <S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+inoremap <silent><expr> <S-TAB>
+      \ coc#pum#visible() ? coc#pum#prev(1) :
+      \ coc#jumpable() ? "\<C-r>=coc#snippet#prev()\<CR>" :
+      \ ""
 "}}}
 
 function! s:check_back_space() abort
