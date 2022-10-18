@@ -49,5 +49,7 @@
 	"cSpell.allowCompoundWords": true,
 	"cSpell.languageSettings": [
 		{"languageId": "css", "dictionaries": ["fonts"]}
-	]
+	],
+	"volar.tsLocale": "zh-tw",
+	"volar.takeOverMode.enabled": true
 }
