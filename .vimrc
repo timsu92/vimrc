@@ -735,7 +735,6 @@ autocmd FileType c,cpp,sh,zsh,json setlocal foldmethod=syntax
 " javascript在vim-javascript
 let g:sh_fold_enabled = 7
 let g:zsh_fold_enable = 1
-autocmd TextChanged <silent> <Plug>(FastFoldUpdate)
 xnoremap <silent> iz :<c-u>FastFoldUpdate<cr>]z<up>$v[z<down>^
 xnoremap <silent> az :<c-u>FastFoldUpdate<cr>]zV[z
 "}}}
