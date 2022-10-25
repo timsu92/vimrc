@@ -482,11 +482,6 @@ function s:VimspectorUIoutputPre() abort "{{{
 	set relativenumber
 endfunction "}}}
 
-function s:VimspectorUIwatchesPre() abort "{{{
-	nnoremap <buffer> <up>   <up><up>
-	nnoremap <buffer> <down> <down><down>
-endfunction "}}}
-
 function s:VimspectorUIcodePost() abort "{{{
 	" Evaluate part of program
 	nmap <buffer> <f1> <Plug>VimspectorBalloonEval
