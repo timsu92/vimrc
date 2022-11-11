@@ -27,6 +27,12 @@
 				],
 				"stopAtEntry": false
 			},
+			"variables": {
+				"BUILD_IGNORED": {
+					"shell": ["g++", "-g", "${relativeFile}"],
+					"cwd": "${workspaceRoot}"
+				}
+			},
 			"breakpoints": {
 				"exception": {
 					"cpp_catch": "N",
@@ -45,12 +51,6 @@
 			],
 			"configuration": {
 				"args": ["<", "in"]
-			},
-			"variables": {
-				"BUILD_IGNORED": {
-					"shell": ["g++", "-g", "${relativeFile}"],
-					"cwd": "${workspaceRoot}"
-				}
 			}
 		},
 		"launch - C family - make":{
