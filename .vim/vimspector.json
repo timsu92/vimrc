@@ -56,7 +56,7 @@
 		"launch - C family - make":{
 			"extends": "launch - C family",
 			"configuration": {
-				"program": "${workspaceRoot}/${compiledFileName:a.out}"
+				"program": "${workspaceRoot}/${compiledExecutableName:${fileBasenameNoExtension\\}}"
 			},
 			"variables": {
 				"BUILD_IGNORED": {
