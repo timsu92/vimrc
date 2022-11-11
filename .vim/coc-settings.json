@@ -37,10 +37,11 @@
 	"tree.closedIcon": "",
 	"tree.openedIcon": "",
 	"outline.sortBy": "position",
-	"cSpell.words": [
+	"cSpell.userWords": [
 		"Powerline",
 		"clangd",
-		"omni"
+		"omni",
+		"uncommenting"
 	],
 	"cSpell.flagWords": [
 		"hte",

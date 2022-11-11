@@ -302,12 +302,12 @@ let g:NERDCompactSexyComs = 1
 let g:NERDTrimTrailingWhitespace = 1
 let g:NERDAltDelims_java = 1
 let g:NERDCreateDefaultMappings = 0
-nmap <leader>cc       <Plug>NERDCommenterComment
-nmap <leader>cu       <Plug>NERDCommenterUncomment
-nmap <leader>c<space> <Plug>NERDCommenterToggle
-vmap <leader>cc       <Plug>NERDCommenterComment
-vmap <leader>cu       <Plug>NERDCommenterUncomment
-vmap <leader>c<space> <Plug>NERDCommenterToggle
+nmap <leader>cc <Plug>NERDCommenterComment
+nmap <leader>cu <Plug>NERDCommenterUncomment
+nmap <leader>cs <Plug>NERDCommenterSexy
+vmap <leader>cc <Plug>NERDCommenterComment
+vmap <leader>cu <Plug>NERDCommenterUncomment
+vmap <leader>cs <Plug>NERDCommenterSexy
 "}}}
 
 
