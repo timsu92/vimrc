@@ -51,6 +51,5 @@
 	"cSpell.languageSettings": [
 		{"languageId": "css", "dictionaries": ["fonts"]}
 	],
-	"volar.tsLocale": "zh-tw",
-	"eslint.onIgnoredFiles": "warn"
+	"volar.tsLocale": "zh-tw"
 }
