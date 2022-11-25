@@ -52,6 +52,5 @@
 		{"languageId": "css", "dictionaries": ["fonts"]}
 	],
 	"volar.tsLocale": "zh-tw",
-	"volar.takeOverMode.enabled": true,
 	"eslint.onIgnoredFiles": "warn"
 }
