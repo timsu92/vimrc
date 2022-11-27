@@ -1,4 +1,5 @@
 {
+	"clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/15.0.3/clangd_15.0.3/bin/clangd",
 	"coc.source.omni.filetypes": ["VimspectorPrompt"],
 	"markdownlint.config": {
 		"line_length": false
@@ -51,5 +52,6 @@
 	"cSpell.languageSettings": [
 		{"languageId": "css", "dictionaries": ["fonts"]}
 	],
-	"volar.tsLocale": "zh-tw"
+	"volar.tsLocale": "zh-tw",
+	"volar.autoClosingTags": true
 }
