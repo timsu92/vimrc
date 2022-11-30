@@ -352,10 +352,8 @@ vmap <leader>cs <Plug>NERDCommenterSexy
 " zhimsel/vim-stay {{{
 " type ":CleanViewdir[!] [days]" to remove saved view sessions older than
 " [days]. The bang version will remove w/o confirmation
-set viewoptions=cursor,slash,unix,folds
+set viewoptions=cursor,slash,unix
 autocmd FileType diff,gitcommit,vim-plug setlocal viewoptions=
-autocmd FileType c,cpp,sh,zsh,json setlocal viewoptions-=folds
-autocmd User BufStayLoadPre if expand('%:p')==expand('~/.vimrc') | setlocal viewoptions-=folds | endif
 "}}}
 
 
