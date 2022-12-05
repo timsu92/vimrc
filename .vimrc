@@ -258,7 +258,7 @@ omap ac <Plug>(coc-classobj-a)
 "}}}
 
 inoremap <silent><expr> <cr> coc#pum#visible() ? coc#pum#confirm() :
-			\ coc#expandable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand',''])\<CR>" :
+			\ coc#pum#visible() && coc#expandable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand',''])\<CR>" :
 			\ "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Highlight the symbol and its references when holding the cursor.
