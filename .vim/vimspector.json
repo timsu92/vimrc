@@ -85,7 +85,8 @@
 				"type": "python",
 				"request": "launch",
 				"console": "externalTerminal",
-				"python": "${PYTHON}"
+				"python": "${PYTHON}",
+				"args": ["*${CommandLineArgs}"]
 			},
 			"breakpoints": {
 				"exception": {
@@ -108,6 +109,18 @@
 			"configuration": {
 				"cwd": "${workspaceRoot}",
 				"program": "${relativeFile}"
+			}
+		},
+		"launch - Python - one file - argv from file":{
+			"extends": "launch - Python - one file",
+			"configuration": {
+				"args": ["${CommandLineArgs}"]
+			},
+			"variables":{
+				"CommandLineArgs":{
+					"shell": ["cat", "${argvFileName:in}"],
+					"cwd": "${workspaceRoot}"
+				}
 			}
 		}
 	}
