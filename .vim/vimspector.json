@@ -13,7 +13,7 @@
 				"type":"cppdbg",
 				"request": "launch",
 				"program": "${workspaceRoot}/a.out",
-				"args": [],
+				"args": ["*${CommandLineArgs}"],
 				"cwd": "${workspaceRoot}",
 				"environment": [],
 				"externalConsole": true,
