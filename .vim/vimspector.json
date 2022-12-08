@@ -65,7 +65,7 @@
 				}
 			}
 		},
-		"launch - C family - make - input from in":{
+		"launch - C family - make - input from file":{
 			"default": true,
 			"extends": "launch - C family - make",
 			"configuration": {
@@ -73,7 +73,7 @@
 			},
 			"variables":{
 				"args":{
-					"shell": ["cat", "in"],
+					"shell": ["cat", "${argvFileName:in}"],
 					"cwd": "${workspaceRoot}"
 				}
 			}
