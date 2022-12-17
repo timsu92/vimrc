@@ -541,7 +541,9 @@ function s:VimspectorInitBuf() abort "{{{
 	"}}}
 	nnoremap <buffer> <leader><TAB> :VimspectorShowOutput 
 
-	call add(s:vimspectorMappedBufnr, bufnr())
+	if win_getid() == g:vimspector_session_windows['code']
+		call add(s:vimspectorMappedBufnr, bufnr())
+	endif
 endfunction "}}}
 
 function s:VimspectorInitTerm() abort "{{{
@@ -571,20 +573,35 @@ function s:VimspectorInitTerm() abort "{{{
 endfunction "}}}
 
 function s:VimspectorOnDebugEnd() abort "{{{
-	for l:bufnr in s:vimspectorMappedBufnr "{{{
-		silent! nunmap <buffer> <F3>
-		silent! nunmap <buffer> <leader><F3>
-		silent! nunmap <buffer> <F4>
-		silent! nunmap <buffer> <F6>
-		silent! nunmap <buffer> <F7>
-		silent! nunmap <buffer> <F8>
-		silent! nunmap <buffer> <F9>
-		silent! nunmap <buffer> <leader><s-F12>
-		silent! nunmap <buffer> <Leader><F12>
-		silent! nunmap <buffer> <f1>
-		silent! xunmap <buffer> <f1>
-		silent! nunmap <buffer> <leader><TAB>
-	endfor "}}}
+	let l:originalBufnr = bufnr()
+	let l:hidden = &hidden
+
+	try
+		set hidden
+		for l:bufnr in s:vimspectorMappedBufnr "{{{
+			try
+				execute "buffer " . l:bufnr
+				silent! nunmap <buffer> <F3>
+				silent! nunmap <buffer> <leader><F3>
+				silent! nunmap <buffer> <F4>
+				silent! nunmap <buffer> <F6>
+				silent! nunmap <buffer> <F7>
+				silent! nunmap <buffer> <F8>
+				silent! nunmap <buffer> <F9>
+				silent! nunmap <buffer> <leader><s-F12>
+				silent! nunmap <buffer> <Leader><F12>
+				silent! nunmap <buffer> <f1>
+				silent! xunmap <buffer> <f1>
+				silent! nunmap <buffer> <leader><TAB>
+			endtry
+		endfor "}}}
+	finally
+		execute 'noautocmd buffer ' . l:originalBufnr
+		let &hidden = hidden
+	endtry
+
+	let s:vimspectorMappedBufnr = []
+
 	" Unmap terminal {{{
 	silent! tunmap <f3>
 	silent! tunmap <leader><f3>
@@ -599,7 +616,6 @@ function s:VimspectorOnDebugEnd() abort "{{{
 	silent! tunmap <leader><leader>
 	"}}}
 
-	let s:vimspectorMappedBufnr = []
 endfunction "}}}
 
 autocmd User VimspectorUICreated           call <sid>VimspectorCreateUI()
