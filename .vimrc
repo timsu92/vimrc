@@ -514,14 +514,6 @@ function s:VimspectorCreateUI() abort "{{{
 endfunction "}}}
 
 function s:VimspectorInitBuf() abort "{{{
-	if(win_getid() != g:vimspector_session_windows['code'])
-		let l:thisWinid = win_getid()
-		call win_gotoid(g:vimspector_session_windows['code'])
-		call s:VimspectorInitBuf()
-		call win_gotoid(l:thisWinid)
-		unlet l:thisWinid
-	endif
-
 	if(index(s:vimspectorMappedBufnr, bufnr()) != -1)
 		return
 	endif
