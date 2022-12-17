@@ -448,13 +448,20 @@ let g:vimspector_install_gadgets = ['debugpy', 'vscode-cpptools']
 " required by debugpy
 let g:vimspector_base_dir=expand('~/.vim/plugged/vimspector') " do NOT end with forward slash
 
+let s:vimspectorOriginalWinid = v:null
+function s:setVimspectorOriginalWinid()
+	if s:vimspectorOriginalWinid == v:null || len(g:vimspector_session_windows) == 0
+		let s:vimspectorOriginalWinid = win_getid()
+	endif
+endfunction
+
 " HUMAN-like mappings {{{
 " nmap <F3>            <Plug>VimspectorStop
 " nmap <leader><F3>    :VimspectorReset<cr>
 " nmap <F4>            <Plug>VimspectorRestart
-nmap <F5>            <Plug>VimspectorContinue
-nmap <leader><F5>    <Plug>VimspectorLaunch
-nmap <leader><s-F5>  <Plug>VimspectorRunToCursor
+nmap <silent> <F5>           :call <SID>setVimspectorOriginalWinid()<cr><Plug>VimspectorContinue
+nmap <silent> <leader><F5>   :call <SID>setVimspectorOriginalWinid()<cr><Plug>VimspectorLaunch
+nmap <silent> <leader><s-F5> :call <SID>setVimspectorOriginalWinid()<cr><Plug>VimspectorRunToCursor
 " nmap <F6>            <Plug>VimspectorPause
 " nmap <F7>            <Plug>VimspectorStepOver
 " nmap <F8>            <Plug>VimspectorStepInto
@@ -621,6 +628,8 @@ function s:VimspectorOnDebugEnd() abort "{{{
 	silent! tunmap <leader><leader>
 	"}}}
 
+	call win_gotoid(s:vimspectorOriginalWinid)
+	let s:vimspectorOriginalWinid = v:null
 endfunction "}}}
 
 autocmd User VimspectorUICreated           call <sid>VimspectorCreateUI()
