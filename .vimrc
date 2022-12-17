@@ -481,10 +481,6 @@ function s:VimspectorUIoutputPre() abort "{{{
 endfunction "}}}
 
 function s:VimspectorUIcodePost() abort "{{{
-	" Evaluate part of program
-	nmap <buffer> <f1> <Plug>VimspectorBalloonEval
-	xmap <buffer> <f1> <Plug>VimspectorBalloonEval
-
 	" Clear the existing WinBar created by Vimspector
 	nunmenu WinBar
 	nmenu WinBar.▶Cont⁵     <Plug>VimspectorContinue
@@ -518,6 +514,14 @@ function s:VimspectorCreateUI() abort "{{{
 endfunction "}}}
 
 function s:VimspectorInitBuf() abort "{{{
+	if(win_getid() != g:vimspector_session_windows['code'])
+		let l:thisWinid = win_getid()
+		call win_gotoid(g:vimspector_session_windows['code'])
+		call s:VimspectorInitBuf()
+		call win_gotoid(l:thisWinid)
+		unlet l:thisWinid
+	endif
+
 	if(index(s:vimspectorMappedBufnr, bufnr()) != -1)
 		return
 	endif
@@ -529,6 +533,13 @@ function s:VimspectorInitBuf() abort "{{{
 	else
 		nmap <buffer>       <leader><F3> :VimspectorReset<cr>
 	endif
+
+	if(win_getid() == g:vimspector_session_windows['code'])
+		" Evaluate part of program
+		nmap <buffer> <f1> <Plug>VimspectorBalloonEval
+		xmap <buffer> <f1> <Plug>VimspectorBalloonEval
+	endif
+
 	nmap <buffer> <F4>            <Plug>VimspectorRestart
 	nmap <buffer> <F6>            <Plug>VimspectorPause
 	nmap <buffer> <F7>            <Plug>VimspectorStepOver
