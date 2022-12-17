@@ -527,19 +527,18 @@ function s:VimspectorInitBuf() abort "{{{
 	endif
 
 	" HUMAN-like mappings {{{
-	nmap <buffer> <F3>             <Plug>VimspectorStop
-	if(g:vimspector_session_windows['breakpoints'] == bufnr())
-		nmap <buffer><expr> <leader><F3> ":call win_gotoid(g:vimspector_session_windows['code'])<cr>:VimspectorReset<cr>"
-	else
-		nmap <buffer>       <leader><F3> :VimspectorReset<cr>
-	endif
-
 	if(win_getid() == g:vimspector_session_windows['code'])
 		" Evaluate part of program
 		nmap <buffer> <f1> <Plug>VimspectorBalloonEval
 		xmap <buffer> <f1> <Plug>VimspectorBalloonEval
 	endif
 
+	nmap <buffer> <F3>             <Plug>VimspectorStop
+	if(g:vimspector_session_windows['breakpoints'] == win_getid())
+		nmap <buffer><expr> <leader><F3> ":call win_gotoid(g:vimspector_session_windows['code'])<cr>:VimspectorReset<cr>"
+	else
+		nmap <buffer>       <leader><F3> :VimspectorReset<cr>
+	endif
 	nmap <buffer> <F4>            <Plug>VimspectorRestart
 	nmap <buffer> <F6>            <Plug>VimspectorPause
 	nmap <buffer> <F7>            <Plug>VimspectorStepOver
