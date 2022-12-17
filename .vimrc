@@ -575,6 +575,10 @@ endfunction "}}}
 function s:VimspectorOnDebugEnd() abort "{{{
 	let l:originalBufnr = bufnr()
 	let l:hidden = &hidden
+	augroup VimspectorSwapExists
+		autocmd!
+		autocmd SwapExists * let v:swapchoice='o'
+	augroup END
 
 	try
 		set hidden
@@ -600,6 +604,7 @@ function s:VimspectorOnDebugEnd() abort "{{{
 		let &hidden = hidden
 	endtry
 
+	autocmd! VimspectorSwapExists
 	let s:vimspectorMappedBufnr = []
 
 	" Unmap terminal {{{
