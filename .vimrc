@@ -766,4 +766,10 @@ xnoremap <silent> iz :<c-u>FastFoldUpdate<cr>]z<up>$v[z<down>^
 xnoremap <silent> az :<c-u>FastFoldUpdate<cr>]zV[z
 "}}}
 
+
+" yaegassy/coc-volar {{{
+autocmd FileType css,vue setl iskeyword+=-
+autocmd FileType scss    setl iskeyword+=@-@
+" }}}
+
 " vim: foldmethod=marker
