@@ -305,9 +305,11 @@ let g:NERDCreateDefaultMappings = 0
 nmap <leader>cc <Plug>NERDCommenterComment
 nmap <leader>cu <Plug>NERDCommenterUncomment
 nmap <leader>cs <Plug>NERDCommenterSexy
+nmap <leader>cm <Plug>NERDCommenterMinimal
 vmap <leader>cc <Plug>NERDCommenterComment
 vmap <leader>cu <Plug>NERDCommenterUncomment
 vmap <leader>cs <Plug>NERDCommenterSexy
+vmap <leader>cm <Plug>NERDCommenterMinimal
 "}}}
 
 
