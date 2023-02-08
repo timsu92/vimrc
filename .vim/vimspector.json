@@ -37,7 +37,7 @@
 				"exception": {
 					"cpp_catch": "N",
 					"cpp_throw": "Y",
-					"all": "Y"
+					"all": "N"
 				}
 			}
 		},
