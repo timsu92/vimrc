@@ -3,12 +3,7 @@
 	"configurations": {
 		"launch - C family - one file": {
 			"adapter": "vscode-cpptools",
-			"filetypes": [
-				"cpp",
-				"c",
-				"objc",
-				"rust"
-			],
+			"filetypes": ["cpp", "c", "objc", "rust"],
 			"configuration": {
 				"type":"cppdbg",
 				"request": "launch",
@@ -43,8 +38,7 @@
 			},
 			"variables": {
 				"BUILD_IGNORED": {
-					"shell": ["g++", "-g", "${relativeFile}"],
-					"cwd": "${workspaceRoot}"
+					"shell": ["g++", "-g", "${file}", "-o", "${workspaceRoot}/a.out"]
 				}
 			}
 		},
@@ -78,6 +72,24 @@
 				"args":{
 					"shell": ["cat", "${argvFileName:in}"],
 					"cwd": "${workspaceRoot}"
+				}
+			}
+		},
+		"launch - C family - CMake":{
+			"extends": "launch - C family - one file",
+			"filetypes": ["cpp", "c", "objc", "rust"],
+			"configuration": {
+				"program": "${program:a.out}",
+				"cwd":"${workspaceRoot}/build"
+			},
+			"variables":{
+				"CHECK_CMAKELISTS_IGNORED":{
+					"shell": ["ls", "CMakeLists.txt"],
+					"cwd": "${workspaceRoot}"
+				},
+				"BUILD_IGNORED":{
+					"shell": ["cmake", "--build", "."],
+					"cwd": "${workspaceRoot}/build"
 				}
 			}
 		},
