@@ -1,7 +1,7 @@
 {
 	"$schema": "https://puremourning.github.io/vimspector/schema/vimspector.schema.json#",
 	"configurations": {
-		"launch - C family": {
+		"launch - C family - one file": {
 			"adapter": "vscode-cpptools",
 			"filetypes": [
 				"cpp",
@@ -12,7 +12,7 @@
 			"configuration": {
 				"type":"cppdbg",
 				"request": "launch",
-				"program": "${workspaceRoot}/a.out",
+				"program": "${program:${workspaceRoot\\}/a.out}",
 				"args": ["*${CommandLineArgs}"],
 				"cwd": "${workspaceRoot}",
 				"environment": [],
@@ -27,12 +27,6 @@
 				],
 				"stopAtEntry": false
 			},
-			"variables": {
-				"BUILD_IGNORED": {
-					"shell": ["g++", "-g", "${relativeFile}"],
-					"cwd": "${workspaceRoot}"
-				}
-			},
 			"breakpoints": {
 				"exception": {
 					"cpp_catch": "N",
@@ -41,21 +35,31 @@
 				}
 			}
 		},
-		"launch - C family - input from in": {
-			"extends": "launch - C family",
-			"filetypes": [
-				"cpp",
-				"c",
-				"objc"
-			],
+		"launch - C family - one file - g++":{
+			"extends": "launch - C family - one file",
+			"filetypes": ["c", "cpp", "objc", "rust"],
+			"configuration": {
+				"program": "${workspaceRoot}/a.out"
+			},
+			"variables": {
+				"BUILD_IGNORED": {
+					"shell": ["g++", "-g", "${relativeFile}"],
+					"cwd": "${workspaceRoot}"
+				}
+			}
+		},
+		"launch - C family - one file - g++ - input from in": {
+			"extends": "launch - C family - one file - g++",
+			"filetypes": ["c", "cpp", "objc", "rust"],
 			"configuration": {
 				"args": ["<", "in"]
 			}
 		},
 		"launch - C family - make":{
-			"extends": "launch - C family",
+			"extends": "launch - C family - one file",
+			"filetypes": ["c", "cpp", "objc", "rust"],
 			"configuration": {
-				"program": "${workspaceRoot}/${compiledExecutableName:${fileBasenameNoExtension\\}}"
+				"program": "${workspaceRoot}/${program:${fileBasenameNoExtension\\}}"
 			},
 			"variables": {
 				"BUILD_IGNORED": {
@@ -66,6 +70,7 @@
 		},
 		"launch - C family - make - input from file":{
 			"extends": "launch - C family - make",
+			"filetypes": ["c", "cpp", "objc", "rust"],
 			"configuration": {
 				"args": ["${args}"]
 			},
