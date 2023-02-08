@@ -78,12 +78,14 @@
 				}
 			}
 		},
-		"launch - Python":{
+		"launch - Python - one file":{
 			"adapter":"debugpy",
 			"filetypes": ["python"],
 			"configuration": {
 				"type": "python",
 				"request": "launch",
+				"cwd": "${workspaceRoot}",
+				"program": "${relativeFile}",
 				"console": "externalTerminal",
 				"python": "${PYTHON}",
 				"args": ["*${CommandLineArgs}"]
@@ -99,20 +101,11 @@
 				"PYTHON":{
 					"shell": ["which", "python"]
 				}
-			},
-			"autoselect": false
-		},
-		"launch - Python - one file":{
-			"extends": "launch - Python",
-			"filetypes": ["python"],
-			"default": true,
-			"configuration": {
-				"cwd": "${workspaceRoot}",
-				"program": "${relativeFile}"
 			}
 		},
-		"launch - Python - one file - argv from file":{
+		"launch - Python - one file - argv":{
 			"extends": "launch - Python - one file",
+			"filetypes": ["python"],
 			"configuration": {
 				"args": ["${CommandLineArgs}"]
 			},
