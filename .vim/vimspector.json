@@ -38,12 +38,9 @@
 		"launch - C family - one file - g++":{
 			"extends": "launch - C family - one file",
 			"filetypes": ["c", "cpp", "objc", "rust"],
-			"configuration": {
-				"program": "${workspaceRoot}/a.out"
-			},
 			"variables": {
 				"BUILD_IGNORED": {
-					"shell": ["g++", "-g", "${relativeFile}"],
+					"shell": ["g++", "-g", "${relativeFile}", "-o", "${program:${workspaceRoot\\}/a.out}"],
 					"cwd": "${workspaceRoot}"
 				}
 			}
