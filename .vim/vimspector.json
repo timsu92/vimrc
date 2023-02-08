@@ -42,7 +42,6 @@
 			}
 		},
 		"launch - C family - input from in": {
-			"default": true,
 			"extends": "launch - C family",
 			"filetypes": [
 				"cpp",
@@ -66,7 +65,6 @@
 			}
 		},
 		"launch - C family - make - input from file":{
-			"default": true,
 			"extends": "launch - C family - make",
 			"configuration": {
 				"args": ["${args}"]
