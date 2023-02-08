@@ -45,11 +45,11 @@
 				}
 			}
 		},
-		"launch - C family - one file - g++ - input from in": {
+		"launch - C family - one file - g++ - stdin": {
 			"extends": "launch - C family - one file - g++",
 			"filetypes": ["c", "cpp", "objc", "rust"],
 			"configuration": {
-				"args": ["<", "in"]
+				"args": ["<", "${file_fed_to_stdin}"]
 			}
 		},
 		"launch - C family - make":{
