@@ -230,8 +230,10 @@ nmap <silent> gi  <Plug>(coc-implementation)
 nmap <silent> gr  <Plug>(coc-references)
 nmap <f2>         <Plug>(coc-rename)
 imap <f2>         <c-o><Plug>(coc-rename)
-nmap <leader>ca   <Plug>(coc-codeaction)
+" code action for the whole file
+nmap <leader>cA   <Plug>(coc-codeaction)
 vmap <leader>ca   <Plug>(coc-codeaction-selected)
+nmap <leader>ca   <Plug>(coc-codeaction-line)
 " Formatting selected code.
 xmap <leader>f    <Plug>(coc-format-selected)
 nmap <leader>f    <Plug>(coc-format-selected)
