@@ -53,5 +53,7 @@
 		{"languageId": "css", "dictionaries": ["fonts"]}
 	],
 	"volar.tsLocale": "zh-tw",
-	"volar.autoClosingTags": true
+	"volar.autoClosingTags": true,
+	"pydocstring.formatter": "google",
+	"pydocstring.enableFileAction": true
 }
