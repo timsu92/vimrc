@@ -293,6 +293,11 @@ let g:coc_snippet_prev = '<s-tab>'
 "}}}
 
 
+" coc-pyright
+autocmd BufWritePre *.py execute("CocCommand pyright.organizeimports") | call CocAction('format')
+autocmd FileType python nmap <buffer> <leader>f <Plug>(coc-format)
+
+
 " preservim/nerdcommenter {{{
 filetype plugin on
 " Add spaces after comment delimiters by default
