@@ -54,6 +54,7 @@
 	],
 	"volar.tsLocale": "zh-tw",
 	"volar.autoClosingTags": true,
+	"volar.diagnostics.delay": 10,
 	"pydocstring.formatter": "google",
 	"pydocstring.enableFileAction": true
 }
