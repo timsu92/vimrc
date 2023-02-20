@@ -28,7 +28,7 @@
 		"reportImplicitStringConcatenation": "warning",
 		"reportUnnecessaryTypeIgnoreComment": "information"
 	},
-	"colors.filetypes": ["*"],
+	"colors.enable": true,
 	"snippet.highlight": true,
 	"inlayHint.refreshOnInsertMode": true,
 	"list.smartCase": true,
