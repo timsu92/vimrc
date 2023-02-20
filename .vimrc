@@ -95,7 +95,7 @@ Plug 'Konfekt/FastFold'
 " Plug 'preservim/tagbar'
 Plug 'zhimsel/vim-stay'
 " Plug 'crusoexia/vim-monokai' installed manually instead
-" Plug 'pangloss/vim-javascript'
+Plug 'pangloss/vim-javascript'
 Plug 'luochen1990/rainbow'
 Plug 'timsu92/vim-easymotion'
 Plug 'preservim/nerdtree' | 
@@ -358,14 +358,6 @@ vmap <leader>cm <Plug>NERDCommenterMinimal
 " [days]. The bang version will remove w/o confirmation
 set viewoptions=cursor,slash,unix
 autocmd FileType diff,gitcommit,vim-plug setlocal viewoptions=
-"}}}
-
-
-" pangloss/vim-javascript {{{
-augroup javascript_folding
-    autocmd!
-    autocmd FileType javascript setlocal foldmethod=syntax
-augroup END
 "}}}
 
 
@@ -760,7 +752,7 @@ let g:fastfold_minlines = 6
 let g:fastfold_skip_filetypes = ['diff', 'list', 'gitcommit', 'vim-plug']
 let g:markdown_folding = 1
 filetype on
-autocmd FileType c,cpp,sh,zsh,json setlocal foldmethod=syntax
+autocmd FileType c,cpp,sh,zsh,json,typescript,javascript setlocal foldmethod=syntax
 " javascript在vim-javascript
 let g:sh_fold_enabled = 7
 let g:zsh_fold_enable = 1
