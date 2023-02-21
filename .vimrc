@@ -293,9 +293,10 @@ let g:coc_snippet_prev = '<s-tab>'
 "}}}
 
 
-" coc-pyright
+" coc-pyright {{{
 autocmd BufWritePre *.py execute("CocCommand pyright.organizeimports") | call CocAction('format')
 autocmd FileType python nmap <buffer> <leader>f <Plug>(coc-format)
+" }}}
 
 
 " preservim/nerdcommenter {{{
@@ -769,6 +770,12 @@ xnoremap <silent> az :<c-u>FastFoldUpdate<cr>]zV[z
 " yaegassy/coc-volar {{{
 autocmd FileType css,vue setl iskeyword+=-
 autocmd FileType scss    setl iskeyword+=@-@
+" }}}
+
+
+" neoclide/coc-json {{{
+" Avoid chaos because of comments in json
+autocmd FileType json setl filetype=jsonc
 " }}}
 
 " vim: foldmethod=marker
