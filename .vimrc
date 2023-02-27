@@ -90,9 +90,7 @@ call plug#begin()
 Plug 'junegunn/vim-easy-align'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdcommenter'
-" Plug 'mphe/grayout.vim', {'for': "c,cpp"}
 Plug 'Konfekt/FastFold'
-" Plug 'preservim/tagbar'
 Plug 'zhimsel/vim-stay'
 " Plug 'crusoexia/vim-monokai' installed manually instead
 Plug 'pangloss/vim-javascript'
@@ -319,44 +317,6 @@ vmap <leader>cu <Plug>NERDCommenterUncomment
 vmap <leader>cs <Plug>NERDCommenterSexy
 vmap <leader>cm <Plug>NERDCommenterMinimal
 "}}}
-
-
-" " mphe/grayout.vim {{{
-" " Set libclang searchpath. This should point to the directory containing `libclang.so`.
-" let g:grayout_libclang_path = '/usr/lib/llvm-14/lib'
-" " Set default compile flags.
-" " These are used, when no `compile_commands.json` or `.grayout.conf` file was found.
-" autocmd BufNewFile,BufReadPost * if &ft == 'c' | let g:grayout_default_args = ['-x', 'c', '-std=c11'] | endif
-" autocmd BufNewFile,BufReadPost * if &ft == 'cpp' | let g:grayout_default_args = ['-x', "c++", '-std=c++14'] | endif
-" " Run GrayoutUpdate when cursor stands still. This can cause lag in more complex files.
-" autocmd CursorHold,CursorHoldI * if &ft == 'c' || &ft == 'cpp' || &ft == 'objc' | exec 'GrayoutUpdate' | endif
-" " Run GrayoutUpdate when opening and saving a buffer
-" autocmd BufReadPost,BufWritePost * if &ft == 'c' || &ft == 'cpp' || &ft == 'objc' | exec 'GrayoutUpdate' | endif
-" highlight PreprocessorGrayout ctermfg=DarkGray guifg=#6c6c6c
-" "}}}
-
-
-" " preservim/tagbar {{{
-" " visibility of a tag is shown as { 'public' : '+', 'protected' : '#', 'private' : '-' }
-" " nmap <silent> <F8> :TagbarToggle<CR>
-" " imap <silent> <F8> <C-O>:TagbarToggle<CR><esc>
-" " 視窗水平分割在上方
-" let g:tagbar_position = 'top'
-" let g:tagbar_height = 13
-" " automatically close when you jump to a tag (implies moving cursor to Tagbar window while opening)
-" let g:tagbar_autoclose = 1
-" " show tag's data-type right of the tag
-" let g:tagbar_show_data_type = 1
-" " print the tag line number next to the tag in the tagbar (print to the left of the tag)
-" " let g:tagbar_show_tag_linenumbers = 2
-" " single click to navigate
-" let g:tagbar_singleclick = 1
-" let g:tagbar_autoshowtag = 1
-" " let g:tagbar_autopreview = 1
-" let g:tagbar_sort = 0
-" let g:no_status_line = 1
-" autocmd FileType vim,diff let b:tagbar_ignore = 1
-" "}}}
 
 
 " zhimsel/vim-stay {{{
