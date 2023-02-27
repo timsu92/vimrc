@@ -232,7 +232,7 @@ imap <f2>         <c-o><Plug>(coc-rename)
 " code action for the whole file
 nmap <leader>cA   <Plug>(coc-codeaction)
 vmap <leader>ca   <Plug>(coc-codeaction-selected)
-nmap <leader>ca   <Plug>(coc-codeaction-line)
+nmap <leader>ca   <Plug>(coc-codeaction-cursor)
 " Formatting selected code.
 xmap <leader>f    <Plug>(coc-format-selected)
 nmap <leader>f    <Plug>(coc-format)
