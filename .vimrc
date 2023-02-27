@@ -235,7 +235,7 @@ vmap <leader>ca   <Plug>(coc-codeaction-selected)
 nmap <leader>ca   <Plug>(coc-codeaction-line)
 " Formatting selected code.
 xmap <leader>f    <Plug>(coc-format-selected)
-nmap <leader>f    <Plug>(coc-format-selected)
+nmap <leader>f    <Plug>(coc-format)
 " Update signature help on jump placeholder.
 autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 inoremap <expr> <c-p> CocActionAsync('showSignatureHelp')
@@ -294,7 +294,6 @@ let g:coc_snippet_prev = '<s-tab>'
 
 " coc-pyright {{{
 autocmd BufWritePre *.py execute("CocCommand pyright.organizeimports") | call CocAction('format')
-autocmd FileType python nmap <buffer> <leader>f <Plug>(coc-format)
 " }}}
 
 
