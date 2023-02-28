@@ -224,13 +224,13 @@ endfunction "}}}
 " Use ctrl-o to go back
 " Use ":verbose imap <KEY>" to check if it's mapped by others
 nmap <silent> gd  <Plug>(coc-definition)
-nmap <silent> gtd <Plug>(coc-type-definition)
+nmap <silent> gy  <Plug>(coc-type-definition)
 nmap <silent> gi  <Plug>(coc-implementation)
 nmap <silent> gr  <Plug>(coc-references)
 nmap <f2>         <Plug>(coc-rename)
 imap <f2>         <c-o><Plug>(coc-rename)
 " code action for the whole file
-nmap <leader>cA   <Plug>(coc-codeaction)
+nmap <leader>cA   <Plug>(coc-codeaction-source)
 vmap <leader>ca   <Plug>(coc-codeaction-selected)
 nmap <leader>ca   <Plug>(coc-codeaction-cursor)
 " Formatting selected code.
