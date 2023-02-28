@@ -727,6 +727,17 @@ let g:sh_fold_enabled = 7
 let g:zsh_fold_enable = 1
 xnoremap <silent> iz :<c-u>FastFoldUpdate<cr>]z<up>$v[z<down>^
 xnoremap <silent> az :<c-u>FastFoldUpdate<cr>]zV[z
+
+function FoldWhenCocProviderExist() abort
+	if get(g:, 'coc_service_initialized', 0) == 1 && exists('*CocHasProvider') && call('CocHasProvider', ['foldingRange']) == v:true
+		call CocActionAsync('fold')
+		setl foldlevel=1
+	else
+		call timer_start(100, {-> FoldWhenCocProviderExist()})
+	endif
+endfunction
+
+autocmd FileType vue call FoldWhenCocProviderExist()
 "}}}
 
 
