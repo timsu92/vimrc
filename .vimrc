@@ -16,6 +16,7 @@ set sidescrolloff=5  " keep at least 5 characters left/right
 set incsearch  " incremental search
 " set cindent  " 自動縮排
 set wildmenu  " 按下tab時，顯示候選清單，而非直接覆蓋原本的指令
+set mouse=nvi
 
 " auto completion ignoring case
 set ignorecase
