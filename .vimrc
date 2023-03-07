@@ -111,6 +111,8 @@ Plug 'tpope/vim-endwise'
 Plug 'tmhedberg/SimpylFold', {'for': 'python,cython'}
 Plug 'iamcco/mathjax-support-for-mkdp', {'for': 'markdown'}
 Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app && yarn install', 'for': 'markdown'} " If you have nodejs and yarn
+Plug 'OmniSharp/omnisharp-vim'
+Plug 'dense-analysis/ale', {'for': 'cs'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 call plug#end()
@@ -753,6 +755,46 @@ autocmd FileType scss    setl iskeyword+=@-@
 " neoclide/coc-json {{{
 " Avoid chaos because of comments in json
 autocmd FileType json setl filetype=jsonc
+" }}}
+
+
+" OmniSharp/omnisharp-vim {{{
+let g:OmniSharp_coc_snippet = 1
+let g:OmniSharp_highlighting = 3
+function s:setupCSharp() abort
+	nmap <buffer> <F5>           :silent! nunmap <buffer> <F5><CR>:call <SID>setVimspectorOriginalWinid()<cr>:OmniSharpDebugProject<CR>
+	nmap <buffer> <leader><F5>   :silent! nunmap <buffer> <leader><F5><CR>:call <SID>setVimspectorOriginalWinid()<cr>:OmniSharpDebugProject<CR>
+	nmap <buffer> <leader><s-F5> <esc>
+	autocmd User VimspectorDebugEnded {
+		nmap <buffer> <F5>         :silent! nunmap <buffer> <F5><CR>:call <SID>setVimspectorOriginalWinid()<cr>:OmniSharpDebugProject<CR>
+		nmap <buffer> <leader><F5> :silent! nunmap <buffer> <leader><F5><CR>:call <SID>setVimspectorOriginalWinid()<cr>:OmniSharpDebugProject<CR>
+	}
+
+	" call coc#add_command('diagnostic', 'OmniSharpGlobalCodeCheck', 'Diagnostics of CSharp file')
+	nmap <buffer><silent> gd         <Plug>(omnisharp_go_to_definition)
+	nmap <buffer><silent> gy         :echoerr "no go type definition"<CR>
+	nmap <buffer><silent> gi         :OmniSharpPreviewImplementation<CR>
+	nmap <buffer><silent> gr         <Plug>(omnisharp_find_usages)
+	nmap <buffer><silent> <f2>       <Plug>(omnisharp_rename)
+	imap <buffer><silent> <f2>       <c-o><Plug>(omnisharp_rename)
+	nmap <buffer><silent> <leader>cA <Plug>(omnisharp_code_actions)
+	xmap <buffer><silent> <leader>ca <Plug>(omnisharp_code_actions)
+	nmap <buffer><silent> <leader>f  <Plug>(omnisharp_code_format)
+	" autocmd User CocJumpPlaceholder call OmniSharp#actions#signature#SignatureHelp()
+	imap <buffer><silent> <c-p>      <Plug>(omnisharp_signature_help)
+	nmap <buffer><silent> <F1>       <Plug>(omnisharp_documentation)
+
+	let g:OmniSharp_popup_mappings = {
+		\ 'sigNext': '<tab>',
+		\ 'sigPrev': '<s-tab>'
+	  \ }
+endfunction
+autocmd FileType cs call <SID>setupCSharp()
+" }}}
+
+
+" dense-analysis/ale {{{
+let g:ale_linters = {'cs': ['OmniSharp']}
 " }}}
 
 
