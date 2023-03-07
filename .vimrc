@@ -74,16 +74,16 @@ if !exists('g:loaded_matchit') && findfile('plugin/matchit.vim', &rtp) ==# ''
 endif
 "}}}
 
-" PowerLine {{{
-set laststatus=2 " always show the statusline rendered by PowerLine
-set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
-function! PowerlineSetup ()
-	py3 from powerline.vim import setup as powerline_setup
-	py3 powerline_setup()
-	py3 del powerline_setup
-endfunction
-call PowerlineSetup()
-"}}}
+" " PowerLine {{{
+" set laststatus=2 " always show the statusline rendered by PowerLine
+" set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)
+" function! PowerlineSetup ()
+	" py3 from powerline.vim import setup as powerline_setup
+	" py3 powerline_setup()
+	" py3 del powerline_setup
+" endfunction
+" call PowerlineSetup()
+" "}}}
 
 " vim-plug
 call plug#begin()
@@ -110,6 +110,8 @@ Plug 'tpope/vim-endwise'
 Plug 'tmhedberg/SimpylFold', {'for': 'python,cython'}
 Plug 'iamcco/mathjax-support-for-mkdp', {'for': 'markdown'}
 Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app && yarn install', 'for': 'markdown'} " If you have nodejs and yarn
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 " call ":PlugUpdate [name ...]" to update plugins
 " call ":PlugInstall" to install plugins
@@ -750,6 +752,17 @@ autocmd FileType scss    setl iskeyword+=@-@
 " neoclide/coc-json {{{
 " Avoid chaos because of comments in json
 autocmd FileType json setl filetype=jsonc
+" }}}
+
+
+" vim-airline/vim-airline {{{
+set laststatus=2
+set noshowmode
+" show buffers when there's only one tab
+let g:airline_theme='wombat'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 " }}}
 
 " vim: foldmethod=marker
