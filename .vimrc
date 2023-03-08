@@ -46,8 +46,8 @@ set hlsearch
 
 " 佈景主題 {{{
 syntax on
-colorscheme monokai
 set termguicolors
+colorscheme monokai
 let g:monokai_term_italic = 1
 let g:monokai_gui_italic = 1
 " 預設的暗色佈景主題
