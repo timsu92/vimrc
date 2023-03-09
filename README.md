@@ -1,11 +1,12 @@
 # vimrc: my vim settings
 Note! This is a config file on Ubuntu 22.04 on WSL2. If you use another system, you may need some changes to it.
+
+Although contents in here still valid, many of the plugins I use now aren't updated to this list😢 I'll try to find a time to do it.
 ## Plugins
 ### Plugins installed using [vim-plug](https://github.com/junegunn/vim-plug)
 [✓] [**coc**](https://github.com/neoclide/coc.nvim): Code linting, code complete, error checking and more!  
 [✓] [**vim-easy-align**](https://github.com/junegunn/vim-easy-align): Align your code with ease  
 [✓] [**nerdcommenter**](https://github.com/preservim/nerdcommenter): Comment code with ease  
-[✗] [**grayout.vim**](https://github.com/mphe/grayout.vim): (disabled as coc can do the job)Grayout unused code in `#` preprocessor blocks of C/C++  
 [✓] [**FastFold**](https://github.com/Konfekt/FastFold): Recognizes languages and create folds  
 [✗] [**tagbar**](https://github.com/preservim/tagbar): Navigate around code (disabled currently as I'm not using it)  
 [✓] [**vim-stay**](https://github.com/zhimsel/vim-stay): Memorized page position, cursor position, folds' status  
@@ -26,7 +27,7 @@ Note! This is a config file on Ubuntu 22.04 on WSL2. If you use another system, 
 [✓] [**markdown-preview.nvim**](https://github.com/iamcco/markdown-preview.nvim): Preview markdown on-the-fly  
 ### Other plugins or functions
 [✓] [**vim-monokai**](https://github.com/crusoexia/vim-monokai): Beautiful dark theme  
-[✓] [**Powerline**](https://github.com/powerline/powerline): Multi-function status line  
+[✗] [**Powerline**](https://github.com/powerline/powerline): Multi-function status line. (Using [vim-airline](https://github.com/vim-airline/vim-airline) instead as it's hard to config)  
 [▲] **line mover**: Move line using `ctrl+UP` and `ctrl+DOWN`. (Indentation might be wrong)  
 [✓] **WSL yank**: Copy yanked content to Windows clipboard w/o installing other programs  
 [✓] **matchit.vim**: Use % to jump between correspond surrounds and if, else if, else  
@@ -35,7 +36,6 @@ Note! This is a config file on Ubuntu 22.04 on WSL2. If you use another system, 
 ## Installation
 - [Node.js](#node.js)
 - [Powerline](#powerline)
-- [Dependency of grayout](#dependency-of-grayout)
 - [Plugins using [vim-plug]](#plugins-using-vim-plug)
 - [Clangd](#clangd-of-coc)
 - [fzf](#fzf)
@@ -116,24 +116,6 @@ If you use git, it's nice to turn it on to improve performance a lot. To do so, 
 powerline-daemon -q
 ```
 #### step9: restart your terminal or source `.bashrc`
-
-### Dependency of grayout
-#### step1: Install `libclang1`
-```bash
-sudo apt install libclang1
-```
-#### step2: Move to the folder
-```bash
-cd /usr/lib/llvm-<version appropriate>/lib
-```
-for example
-```bash
-cd /usr/lib/llvm-14/lib
-```
-#### step3: Alias the lib
-```bash
-sudo ln -s libclang.so.1 libclang.so
-```
 
 ### Plugins using [vim-plug](https://github.com/junegunn/vim-plug)
 #### step1: Enter your Vim
