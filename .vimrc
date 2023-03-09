@@ -747,6 +747,7 @@ autocmd FileType vue call FoldWhenCocProviderExist()
 " yaegassy/coc-volar {{{
 autocmd FileType css,vue setl iskeyword+=-
 autocmd FileType scss    setl iskeyword+=@-@
+autocmd FileType vue call coc#config('coc.preferences', {'formatOnType': v:true})
 " }}}
 
 
