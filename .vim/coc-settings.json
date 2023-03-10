@@ -58,5 +58,7 @@
 	"volar.autoClosingTags": true,
 	"volar.diagnostics.delay": 10,
 	"pydocstring.formatter": "google",
-	"pydocstring.enableFileAction": true
+	"pydocstring.enableFileAction": true,
+	"rust-analyzer.debug.runtime": "vimspector",
+	"rust-analyzer.debug.vimspector.configuration.name": "launch - Rust",
 }

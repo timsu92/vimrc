@@ -153,7 +153,7 @@ nmap ga <Plug>(EasyAlign)
 "	- means extension is disabled
 "	Use arrows to navigate. Hit <TAB> to activate action menu
 let g:coc_global_extensions = ['coc-json', 'coc-clangd', 'coc-cmake', 'coc-highlight', 'coc-html', 'coc-sh', 'coc-vimlsp', 'coc-pairs', 'coc-omni', 'coc-word', 'coc-snippets', 'coc-markdownlint', 'coc-spell-checker', 'coc-lightbulb', 'coc-pyright', '@yaegassy/coc-volar', '@yaegassy/coc-volar-tools', '@yaegassy/coc-tailwindcss3',
-			\ 'coc-pydocstring', 'coc-toml']
+			\ 'coc-pydocstring', 'coc-toml', 'coc-rust-analyzer']
 set hidden
 
 " Some servers have issues with backup files, see #649. {{{
@@ -412,7 +412,7 @@ set encoding=UTF-8
 " Config file '.vimspector.json' can be put under ~/.vim/plugged/vimspector/configurations/linux/_all/
 syntax enable
 filetype indent on
-let g:vimspector_install_gadgets = ['debugpy', 'vscode-cpptools']
+let g:vimspector_install_gadgets = ['debugpy', 'vscode-cpptools', 'CodeLLDB']
 " required by debugpy
 let g:vimspector_base_dir=expand('~/.vim/plugged/vimspector') " do NOT end with forward slash
 
@@ -754,6 +754,92 @@ autocmd FileType vue call coc#config('coc.preferences', {'formatOnType': v:true}
 " neoclide/coc-json {{{
 " Avoid chaos because of comments in json
 autocmd FileType json setl filetype=jsonc
+" }}}
+
+
+" fannheyward/coc-rust-analyzer {{{
+function! s:rustSetupDebug() "{{{
+	function! s:rustDebugUnmap() abort
+		silent! nunmap <buffer> <F5>
+		silent! nunmap <buffer> <leader><F5>
+		silent! nunmap <buffer> <leader><s-F5>
+	endfunction
+
+	function! s:rustDebugMap() abort
+		nmap <buffer><silent> <F5>           :call <SID>setVimspectorOriginalWinid()<CR>:CocCommand rust-analyzer.debug<CR>
+		nmap <buffer><silent> <leader><F5>   :call <SID>setVimspectorOriginalWinid()<CR>:CocCommand rust-analyzer.debug<CR>
+		nmap <buffer><silent> <leader><s-F5> <esc>
+	endfunction
+
+	" override default function
+	function! s:VimspectorOnDebugEnd() abort
+		let l:originalBufnr = bufnr()
+		let l:hidden = &hidden
+		augroup VimspectorSwapExists
+			autocmd!
+			autocmd SwapExists * let v:swapchoice='o'
+		augroup END
+
+		try
+			set hidden
+			for l:bufnr in s:vimspectorMappedBufnr "{{{
+				try
+					execute "buffer " . l:bufnr
+					silent! nunmap <buffer> <F3>
+					silent! nunmap <buffer> <leader><F3>
+					silent! nunmap <buffer> <F4>
+					silent! nunmap <buffer> <F6>
+					silent! nunmap <buffer> <F7>
+					silent! nunmap <buffer> <F8>
+					silent! nunmap <buffer> <F9>
+					silent! nunmap <buffer> <leader><s-F12>
+					silent! nunmap <buffer> <Leader><F12>
+					silent! nunmap <buffer> <f1>
+					silent! xunmap <buffer> <f1>
+					silent! nunmap <buffer> <leader><TAB>
+					call s:rustDebugUnmap()
+					call s:rustDebugMap()
+				endtry
+			endfor "}}}
+		finally
+			execute 'noautocmd buffer ' . l:originalBufnr
+			let &hidden = hidden
+		endtry
+
+		autocmd! VimspectorSwapExists
+		let s:vimspectorMappedBufnr = []
+
+		" Unmap terminal {{{
+		silent! tunmap <f3>
+		silent! tunmap <leader><f3>
+		silent! tunmap <f4>
+		silent! tunmap <f6>
+		silent! tunmap <f7>
+		silent! tunmap <f8>
+		silent! tunmap <f9>
+		silent! tunmap <Leader><s-F12>
+		silent! tunmap <Leader><F12>
+		silent! tunmap <leader><TAB>
+		silent! tunmap <leader><leader>
+		"}}}
+
+		call win_gotoid(s:vimspectorOriginalWinid)
+		let s:vimspectorOriginalWinid = v:null
+	endfunction
+
+	" if there's a function with the same name, don't just override!
+	function s:VimspectorUIcodePre() abort
+		call win_gotoid(g:vimspector_session_windows['code'])
+		call s:rustDebugUnmap()
+	endfunction
+endfunction "}}}
+
+autocmd FileType rust {
+	call s:rustSetupDebug()
+	call s:rustDebugMap()
+	autocmd User VimspectorJumpedToFrame call s:rustDebugUnmap()
+	call coc#config('coc.preferences', {'formatOnType': v:true})
+}
 " }}}
 
 
