@@ -113,6 +113,7 @@ Plug 'iamcco/mathjax-support-for-mkdp', {'for': 'markdown'}
 Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app && yarn install', 'for': 'markdown'} " If you have nodejs and yarn
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-sleuth'
 call plug#end()
 " call ":PlugUpdate [name ...]" to update plugins
 " call ":PlugInstall" to install plugins
