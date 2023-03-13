@@ -79,8 +79,7 @@
 			"extends": "launch - C family - one file",
 			"filetypes": ["cpp", "c", "objc"],
 			"configuration": {
-				"program": "${program:a.out}",
-				"cwd":"${workspaceRoot}/build"
+				"program": "${program:build/a.out}"
 			},
 			"variables":{
 				"CHECK_CMAKELISTS_IGNORED":{
