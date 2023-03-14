@@ -848,10 +848,12 @@ autocmd FileType rust {
 set laststatus=2
 set noshowmode
 " show buffers when there's only one tab
-let g:airline_theme='wombat'
+let g:airline_theme='powerlineish'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:airline#extensions#coc#enabled = 1
+let g:airline#extensions#coc#show_coc_status = 1
 " }}}
 
 " vim: foldmethod=marker
