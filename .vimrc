@@ -116,6 +116,7 @@ Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app && yarn install', 'for': 'ma
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-sleuth'
+Plug 'untitled-ai/jupyter_ascending.vim'
 call plug#end()
 " call ":PlugUpdate [name ...]" to update plugins
 " call ":PlugInstall" to install plugins
@@ -302,7 +303,9 @@ let g:coc_snippet_prev = '<s-tab>'
 
 
 " coc-pyright {{{
-autocmd BufWritePre *.py execute("CocCommand pyright.organizeimports") | call CocAction('format')
+augroup Python
+	autocmd BufWritePre *.py execute("CocCommand pyright.organizeimports") | call CocAction('format')
+augroup END
 " }}}
 
 
@@ -388,7 +391,7 @@ let g:expand_region_text_objects = {
       \ 'ib'  :1,
       \ 'ab'  :1,
       \ 'iB'  :1,
-	  \ 'aB'  :1,
+      \ 'aB'  :1,
       \ 'il'  :1,
       \ 'ip'  :1,
       \ }
@@ -856,6 +859,25 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#coc#enabled = 1
 let g:airline#extensions#coc#show_coc_status = 1
+" }}}
+
+
+" untitled-ai/jupyter_ascending.vim {{{
+let g:jupyter_ascending_default_mappings = v:false
+augroup Jupyter
+	au!
+	au! Python BufWritePre
+	call coc#config("python.formatting", {
+			\ "provider": v:null
+		  \ })
+	nmap <buffer> <F4>            <Plug>JupyterRestart
+	nmap <buffer> <F5>            <Plug>JupyterExecute
+	nmap <buffer> <leader><F5>    <Plug>JupyterExecuteAll
+	nmap <buffer> <leader><s-F5>  <esc>
+	nmap <buffer> <F10>           <esc>
+	nmap <buffer> <leader><F10>   <esc>
+	nmap <buffer> <leader><s-F10> <esc>
+augroup END
 " }}}
 
 " vim: foldmethod=marker
