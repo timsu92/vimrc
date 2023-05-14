@@ -43,6 +43,8 @@ set hlsearch
 :command Wq wq
 :command W w
 :command Q q
+:command -nargs=? -complete=file -bar Tabe tabe <args>
+:command -nargs=* -complete=buffer -bang Bd bd<bang> <args>
 
 " 佈景主題 {{{
 syntax on
