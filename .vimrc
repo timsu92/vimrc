@@ -882,4 +882,4 @@ augroup Jupyter
 augroup END
 " }}}
 
-" vim: foldmethod=marker
+" vim: foldmethod=marker:tabstop=4
