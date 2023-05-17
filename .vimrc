@@ -866,17 +866,19 @@ let g:airline#extensions#coc#show_coc_status = 1
 let g:jupyter_ascending_default_mappings = v:false
 augroup Jupyter
 	au!
-	au! Python BufWritePre
-	call coc#config("python.formatting", {
-			\ "provider": v:null
-		  \ })
-	nmap <buffer> <F4>            <Plug>JupyterRestart
-	nmap <buffer> <F5>            <Plug>JupyterExecute
-	nmap <buffer> <leader><F5>    <Plug>JupyterExecuteAll
-	nmap <buffer> <leader><s-F5>  <esc>
-	nmap <buffer> <F10>           <esc>
-	nmap <buffer> <leader><F10>   <esc>
-	nmap <buffer> <leader><s-F10> <esc>
+	if match(expand('%'), '.sync.py$') != -1
+		au! Python BufWritePre
+		call coc#config("python.formatting", {
+				\ "provider": v:null
+			  \ })
+		nmap <buffer> <F4>            <Plug>JupyterRestart
+		nmap <buffer> <F5>            <Plug>JupyterExecute
+		nmap <buffer> <leader><F5>    <Plug>JupyterExecuteAll
+		nmap <buffer> <leader><s-F5>  <esc>
+		nmap <buffer> <F10>           <esc>
+		nmap <buffer> <leader><F10>   <esc>
+		nmap <buffer> <leader><s-F10> <esc>
+	endif
 augroup END
 " }}}
 
