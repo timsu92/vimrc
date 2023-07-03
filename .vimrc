@@ -112,7 +112,7 @@ Plug 'honza/vim-snippets'
 Plug 'tpope/vim-endwise'
 Plug 'tmhedberg/SimpylFold', {'for': 'python,cython'}
 Plug 'iamcco/mathjax-support-for-mkdp', {'for': 'markdown'}
-Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app && yarn install', 'for': 'markdown'} " If you have nodejs and yarn
+Plug 'iamcco/markdown-preview.nvim', {'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-sleuth'
