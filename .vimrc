@@ -688,7 +688,7 @@ let g:SimpylFold_docstring_preview = 1
 " iamcco/markdown-preview.nvim {{{
 function! MdpOpenPreview(url) abort
 	let l:mdp_browser = '/mnt/c/Program\ Files/Google/Chrome/Application/chrome.exe'
-	let l:mdp_browser_opts = '--profile-directory="Default" --new-window'
+	let l:mdp_browser_opts = '--profile-directory=default --new-window'
 	if !filereadable(substitute(l:mdp_browser, '\\ ', ' ', 'g'))
 		let l:mdp_browser = '/mnt/c/Program\ Files\ \(x86\)/Microsoft/Edge/Application/msedge.exe'
 		let l:mdp_browser_opts = '--new-window'
