@@ -754,7 +754,7 @@ autocmd FileType vue call FoldWhenCocProviderExist()
 autocmd FileType css,vue,typescriptreact,javascriptreact setl iskeyword+=-
 autocmd FileType scss    setl iskeyword+=@-@
 autocmd FileType vue call coc#config('coc.preferences', {'formatOnType': v:true})
-autocmd FileType typescript let b:coc_root_patterns = ['.git', '.env', 'package.json', 'tsconfig.json', 'jsconfig.json', 'vite.config.ts', 'vite.config.js', 'vue.config.js', 'nuxt.config.ts', 'node_modules']
+autocmd FileType javascript,typescript let b:coc_root_patterns = ['.git', '.env', 'package.json', 'tsconfig.json', 'jsconfig.json', 'vite.config.ts', 'vite.config.js', 'vue.config.js', 'nuxt.config.ts', 'node_modules']
 autocmd FileType vue let b:coc_root_patterns = ['.git', '.env', 'package.json', 'tsconfig.json', 'jsconfig.json', 'vite.config.ts', 'vite.config.js', 'vue.config.js', 'nuxt.config.ts', 'node_modules']
 " }}}
 
