@@ -42,3 +42,5 @@ test.c
 .lesshst
 1111oop/
 .fzf-git.sh/
+/.vim/sessions/
+/.vim/view/

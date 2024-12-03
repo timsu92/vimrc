@@ -13,12 +13,14 @@ if !has("gui_running") && &t_Co < 256
 endif
 
 if ! exists("g:monokai_gui_italic")
-    let g:monokai_gui_italic = 0
+    let g:monokai_gui_italic = 1
 endif
 
 if ! exists("g:monokai_term_italic")
-    let g:monokai_term_italic = 0
+    let g:monokai_term_italic = 1
 endif
+
+let g:monokai_termcolors = 256 " does not support 16 color term right now.
 
 set background=dark
 hi clear
@@ -46,8 +48,13 @@ function! s:h(group, style)
     let s:guiformat = substitute(s:guiformat, "italic,", "", "")
     let s:guiformat = substitute(s:guiformat, "italic", "", "")
   endif
-  let l:ctermfg = (has_key(a:style, "fg") ? a:style.fg.cterm : "NONE")
-  let l:ctermbg = (has_key(a:style, "bg") ? a:style.bg.cterm : "NONE")
+  if g:monokai_termcolors == 16
+    let l:ctermfg = (has_key(a:style, "fg") ? a:style.fg.cterm16 : "NONE")
+    let l:ctermbg = (has_key(a:style, "bg") ? a:style.bg.cterm16 : "NONE")
+  else
+    let l:ctermfg = (has_key(a:style, "fg") ? a:style.fg.cterm : "NONE")
+    let l:ctermbg = (has_key(a:style, "bg") ? a:style.bg.cterm : "NONE")
+  end
   execute "highlight" a:group
     \ "guifg="   (has_key(a:style, "fg")      ? a:style.fg.gui   : "NONE")
     \ "guibg="   (has_key(a:style, "bg")      ? a:style.bg.gui   : "NONE")
@@ -68,6 +75,7 @@ let s:lightblack  = { "gui": "#2D2E27", "cterm": "235" }
 let s:lightblack2 = { "gui": "#383a3e", "cterm": "236" }
 let s:lightblack3 = { "gui": "#3f4145", "cterm": "237" }
 let s:darkblack   = { "gui": "#211F1C", "cterm": "233" }
+let s:br_grey     = { "gui": "#a1a29c", "cterm": "243" }
 let s:grey        = { "gui": "#8F908A", "cterm": "243" }
 let s:lightgrey   = { "gui": "#575b61", "cterm": "237" }
 let s:darkgrey    = { "gui": "#64645e", "cterm": "239" }
@@ -90,13 +98,13 @@ let s:delbg       = { "gui": "#f75f5f", "cterm": "124" }
 let s:changefg    = { "gui": "#d7d7ff", "cterm": "189" }
 let s:changebg    = { "gui": "#5f5f87", "cterm": "60" }
 
-let s:cyan        = { "gui": "#A1EFE4" }
-let s:br_green    = { "gui": "#9EC400" }
-let s:br_yellow   = { "gui": "#E7C547" }
-let s:br_blue     = { "gui": "#7AA6DA" }
-let s:br_purple   = { "gui": "#B77EE0" }
-let s:br_cyan     = { "gui": "#54CED6" }
-let s:br_white    = { "gui": "#FFFFFF" }
+let s:cyan        = { "gui": "#A1EFE4", "cterm": "159" }
+let s:br_green    = { "gui": "#9EC400", "cterm": "148" }
+let s:br_yellow   = { "gui": "#E7C547", "cterm": "221" }
+let s:br_blue     = { "gui": "#7AA6DA", "cterm": "110" }
+let s:br_purple   = { "gui": "#B77EE0", "cterm": "140" }
+let s:br_cyan     = { "gui": "#54CED6", "cterm": "80" }
+let s:br_white    = { "gui": "#FFFFFF", "cterm": "16" }
 
 " Highlighting 
 " ------------
@@ -104,19 +112,21 @@ let s:br_white    = { "gui": "#FFFFFF" }
 " editor
 call s:h("Normal",        { "fg": s:white,      "bg": s:black })
 call s:h("ColorColumn",   {                     "bg": s:lightblack })
+call s:h("Conceal",       { "fg": s:grey })
 call s:h("Cursor",        { "fg": s:black,      "bg": s:white })
 call s:h("CursorColumn",  {                     "bg": s:lightblack2 })
 call s:h("CursorLine",    {                     "bg": s:lightblack2 })
 call s:h("NonText",       { "fg": s:lightgrey })
 call s:h("Visual",        {                     "bg": s:lightgrey })
 call s:h("Search",        { "fg": s:black,      "bg": s:yellow })
-call s:h("MatchParen",    { "fg": s:purple,                           "format": "underline,bold" })
+call s:h("MatchParen",    { "fg": s:purple,                           "format": "bold" })
 call s:h("Question",      { "fg": s:yellow })
 call s:h("ModeMsg",       { "fg": s:yellow })
 call s:h("MoreMsg",       { "fg": s:yellow })
 call s:h("ErrorMsg",      { "fg": s:black,      "bg": s:red,          "format": "standout" })
 call s:h("WarningMsg",    { "fg": s:red })
 call s:h("VertSplit",     { "fg": s:darkgrey,   "bg": s:darkblack })
+call s:h("WinSeparator",  { "fg": s:darkgrey,   "bg": s:darkblack })
 call s:h("LineNr",        { "fg": s:grey,       "bg": s:lightblack })
 call s:h("CursorLineNr",  { "fg": s:orange,     "bg": s:lightblack })
 call s:h("SignColumn",    {                     "bg": s:lightblack })
@@ -133,7 +143,7 @@ call s:h("User3",         { "fg": s:purple,     "bg": s:lightgrey,    "format": 
 call s:h("User4",         { "fg": s:aqua,       "bg": s:lightgrey,    "format": "bold" })
 
 " spell
-call s:h("SpellBad",      { "fg": s:red,                              "format": "underline" })
+call s:h("SpellBad",      { "fg": s:red,                              "format": "undercurl" })
 call s:h("SpellCap",      { "fg": s:purple,                           "format": "underline" })
 call s:h("SpellRare",     { "fg": s:aqua,                             "format": "underline" })
 call s:h("SpellLocal",    { "fg": s:pink,                             "format": "underline" })
@@ -159,6 +169,9 @@ call s:h("Pmenu",         { "fg": s:white2,     "bg": s:lightblack2 })
 call s:h("PmenuSel",      { "fg": s:lightgrey,       "bg": s:lightblack2,        "format": "reverse,bold" })
 call s:h("PmenuThumb",    { "fg": s:lightblack, "bg": s:grey })
 "        PmenuSbar"
+
+" floating
+call s:h("NormalFloat",   { "fg": s:white2,     "bg": s:darkblack })
 
 " Generic Syntax Highlighting
 " ---------------------------
@@ -204,7 +217,48 @@ call s:h("Comment",       { "fg": s:warmgrey, "format": "italic" })
                          
 call s:h("Underlined",    { "fg": s:green })
 call s:h("Ignore",        {})
-call s:h("Error",         { "fg": s:red, "bg": s:darkred })
+call s:h("Error",         { "fg": s:purered, "bg": s:lightblack3 })
+
+" TreeSitter
+" Refer to `:h treesitter-highlight-groups`
+" ----------
+
+if has('nvim')
+call s:h("@variable.builtin",             { "fg": s:purple })
+call s:h("@variable.parameter",           { "fg": s:orange })
+call s:h("@variable.parameter.builtin",   { "fg": s:orange })
+"call s:h("@variable.member",              { "fg": s:yellow })
+
+call s:h("@constant",               { "fg": s:orange })
+call s:h("@constant.builtin",       { "fg": s:aqua })
+
+call s:h("@string.regexp",          { "fg": s:yellow })
+
+call s:h("@character.special",      { "fg": s:purple })
+
+call s:h("@type",                   { "fg": s:aqua, "format": "italic" })
+call s:h("@type.builtin",           { "fg": s:aqua })
+
+call s:h("@attribute",              { "fg": s:purple })
+call s:h("@attribute.builtin",      { "fg": s:purple })
+
+call s:h("@function",               { "fg": s:white })
+call s:h("@function.call",          { "fg": s:green })
+call s:h("@function.method",        { "fg": s:green })
+call s:h("@function.method.call",   { "fg": s:green })
+call s:h("@constructor",            { "fg": s:aqua, "format": "italic" })
+
+call s:h("@keyword",                { "fg": s:pink })
+
+call s:h("@punctuation.delimiter",  { "fg": s:white })
+call s:h("@punctuation.bracket",    { "fg": s:white })
+call s:h("@punctuation.special",    { "fg": s:purple })
+
+call s:h("@tag",                    { "fg": s:aqua })
+call s:h("@tag.builtin",            { "fg": s:pink })
+call s:h("@tag.attribute",          { "fg": s:green })
+call s:h("@tag.delimiter",          { "fg": s:white })
+endif
 
 " NerdTree
 " --------
@@ -230,19 +284,18 @@ call s:h("SyntasticWarningSign",    { "fg": s:lightblack, "bg": s:orange })
 " ---
 
 hi! link CocErrorSign Error
-call s:h("CocErrorHighlight",       { "fg": s:red, "format": "underline" })
+call s:h("CocErrorHighlight",       { "fg": s:red, "format": "undercurl" })
 call s:h("CocErrorFloat",           { "fg": s:purered, "bg": s:lightblack3 })
 
 call s:h("CocWarningSign",          { "fg": s:orange, "bg": s:lightblack })
-call s:h("CocWarningHighlight",     { "format": "underline" })
+call s:h("CocWarningHighlight",     { "fg": s:orange, "format": "undercurl" })
 call s:h("CocWarningFloat",         { "fg": s:orange, "bg": s:lightblack3 })
 
 call s:h("CocInfoSign",             { "fg": s:yellow, "bg": s:lightblack3 })
 call s:h("CocInfoHighlight",        { "format": "underline" })
-"call s:h("CocInfoHighlight",        { "bg": s:lightblack2, "format": "underline" })
 
-call s:h("CocHintSign",             { "fg": s:white, "bg": s:lightblack3 })
-call s:h("CocHintHighlight",        { "format": "underline" })
+call s:h("CocHintSign",             { "fg": s:grey, "bg": s:lightblack3 })
+call s:h("CocHintHighlight",        { "format": "undercurl" })
 
 " Language highlight
 " ------------------
