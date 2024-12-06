@@ -50,6 +50,9 @@ set hlsearch
 syntax on
 set termguicolors
 colorscheme monokai
+" fix undercurl not showing. https://github.com/vim/vim/issues/12744 https://vimhelp.org/term.txt.html#t_Ce
+let &t_Cs="\<Esc>[4:3m"
+let &t_Ce="\<Esc>[4:0m"
 " 預設的暗色佈景主題
 " colorscheme ron
 "}}}
