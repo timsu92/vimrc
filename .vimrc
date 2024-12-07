@@ -125,13 +125,12 @@ call plug#end()
 " call ":PlugStatus" to check the status of plugins
 " call ":PlugClean" to remove unlisted plugins
 
-
 " WSL yank support {{{
 let s:clip = '/mnt/c/Windows/System32/clip.exe'  " change this path according to your mount point
-if executable(s:clip)
+if executable(s:clip) && executable('iconv')
     augroup WSLYank
         autocmd!
-        autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
+        autocmd TextYankPost * if v:event.operator ==# 'y' | call system('iconv -t UTF16LE | ' . shellescape(s:clip), @0) | endif
     augroup END
 endif
 "}}}
