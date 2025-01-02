@@ -125,14 +125,26 @@ call plug#end()
 " call ":PlugStatus" to check the status of plugins
 " call ":PlugClean" to remove unlisted plugins
 
-" WSL yank support {{{
-let s:clip = '/mnt/c/Windows/System32/clip.exe'  " change this path according to your mount point
-if executable(s:clip) && executable('iconv')
-    augroup WSLYank
-        autocmd!
-        autocmd TextYankPost * if v:event.operator ==# 'y' | call system('iconv -t UTF16LE | ' . shellescape(s:clip), @0) | endif
-    augroup END
+" yank to clipboards {{{
+let s:clip = []
+if executable('/mnt/c/Windows/System32/clip.exe')
+	if executable('iconv')
+		let s:clip += ['iconv -t UTF16LE | /mnt/c/Windows/System32/clip.exe']
+	else
+		let s:clip += ['/mnt/c/Windows/System32/clip.exe']
+	endif
 endif
+
+if executable('snap') && system('snap list clipboard') !~? '^error'
+	let s:clip += ['snap run clipboard']
+endif
+
+augroup WSLYank
+	autocmd!
+	for clip in s:clip
+		autocmd TextYankPost * if v:event.operator ==# 'y' | call system(clip, @0) | endif
+	endfor
+augroup END
 "}}}
 
 
