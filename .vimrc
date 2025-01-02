@@ -304,7 +304,7 @@ endfunction
 "}}}
 
 autocmd BufAdd * let b:coc_trim_trailing_whitespace = 1
-autocmd BufAdd * let b:coc_trim_final_newlines = 1
+autocmd BufAdd * let b:coc_trim_final_newlines = 0
 "}}}
 
 
