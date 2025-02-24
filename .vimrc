@@ -896,4 +896,12 @@ augroup Jupyter
 augroup END
 " }}}
 
+
+" Gazebo SDF files {{{
+augroup GazeboSDF
+	autocmd!
+	autocmd BufNew,BufNewFile,BufRead *.sdf :setfiletype xml
+augroup END
+" }}}
+
 " vim: foldmethod=marker:tabstop=4
