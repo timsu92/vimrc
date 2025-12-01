@@ -92,7 +92,11 @@ endif
 " vim-plug
 call plug#begin()
 Plug 'junegunn/vim-easy-align'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+if v:version < 900
+  Plug 'neoclide/coc.nvim', {'commit': 'f0ce9ae'}
+else
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+endif
 Plug 'preservim/nerdcommenter'
 Plug 'Konfekt/FastFold'
 Plug 'zhimsel/vim-stay'
