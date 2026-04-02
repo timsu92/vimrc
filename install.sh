@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -e
-SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]:-${(%):-%x}}")" && pwd)"
 
 cd ~
 ln -sTf "$SCRIPT_DIR/.vimrc" ~/.vimrc
