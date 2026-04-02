@@ -24,6 +24,11 @@ set noinfercase
 
 set cursorline  " highlighting of the current line
 
+" Fix tmux-256color not being recognized
+if &term ==# 'tmux-256color'
+  set term=xterm-256color
+endif
+
 " line-brake and paste prototype
 autocmd FileType c,cpp nnoremap <silent> 0 yyGo<ESC>]pA<BS><CR>{}<Left><CR><c-o>O
 
