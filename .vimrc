@@ -34,6 +34,13 @@ endif
 " through the xterm focus events it enables for the term above, and inside
 " tmux they need `set -g focus-events on` in ~/.tmux.conf.
 set autoread
+" autoread only decides what happens once Vim checks; Vim does not check when
+" moving to another window (CTRL-W), so check on entering one too. Skipped in
+" the command-line window (q:), where :checktime fails with E11.
+augroup AutoReadCheck
+  autocmd!
+  autocmd FocusGained,BufEnter * if getcmdwintype() ==# '' | checktime | endif
+augroup END
 
 " line-brake and paste prototype
 autocmd FileType c,cpp nnoremap <silent> 0 yyGo<ESC>]pA<BS><CR>{}<Left><CR><c-o>O
