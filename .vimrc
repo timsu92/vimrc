@@ -24,9 +24,18 @@ set noinfercase
 
 set cursorline  " highlighting of the current line
 
-" Fix tmux-256color not being recognized
-if &term ==# 'tmux-256color'
+" Treat tmux and screen as xterm. Vim only enables these for xterm-like term
+" names: mouse dragging and clicks past column 223 (ttymouse=sgr), bracketed
+" paste (no staircase indent when pasting into screen), focus events (for
+" autoread), and, before Vim 9.0, 24-bit colour (t_8f/t_8b), without which
+" the colorscheme disappears.
+" Remember screen before the rename: its version decides termguicolors below.
+let s:in_screen = &term =~# '^screen' && !empty($STY)
+if &term =~# '^\%(tmux\|screen\)-256color$'
   set term=xterm-256color
+  " Both speak SGR mouse, but Vim 8.2 only picks sgr from a version reply it
+  " knows, and it doesn't know tmux 3.2's.
+  if has('mouse_sgr') | set ttymouse=sgr | endif
 endif
 
 " Reload a file changed outside Vim (e.g. by Claude Code in another pane) when
@@ -67,6 +76,11 @@ set hlsearch
 " 佈景主題 {{{
 syntax on
 set termguicolors
+" screen before 5.0 has no 24-bit colour and misreads its codes as dim text
+" on 8-colour backgrounds, so use the colorscheme's 256-colour palette there.
+if s:in_screen && str2nr(matchstr(system('screen --version'), 'version \zs\d\+')) < 5
+  set notermguicolors
+endif
 colorscheme monokai
 " fix undercurl not showing. https://github.com/vim/vim/issues/12744 https://vimhelp.org/term.txt.html#t_Ce
 let &t_Cs="\<Esc>[4:3m"
