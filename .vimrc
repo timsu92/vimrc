@@ -51,6 +51,18 @@ augroup AutoReadCheck
   autocmd FocusGained,BufEnter * if getcmdwintype() ==# '' | checktime | endif
 augroup END
 
+" Cursor shape: bar in Insert, underline in Replace, block elsewhere. Set
+" after the term rename above, which resets these codes. Entering Vim starts
+" with a block, and leaving it (:q, :!, CTRL-Z) restores the terminal's own
+" shape. tmux and screen pass these on without passthrough wrapping.
+if &term =~# 'xterm'
+  let &t_SI = "\e[6 q"
+  let &t_SR = "\e[4 q"
+  let &t_EI = "\e[2 q"
+  let &t_ti .= "\e[2 q"
+  let &t_te .= "\e[0 q"
+endif
+
 " line-brake and paste prototype
 autocmd FileType c,cpp nnoremap <silent> 0 yyGo<ESC>]pA<BS><CR>{}<Left><CR><c-o>O
 
